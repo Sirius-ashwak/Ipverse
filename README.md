@@ -254,13 +254,13 @@ The application uses the following partner integrations:
 - ✅ Partner integrations
 - ✅ MVP launch
 
-### Phase 2 (Q3 2024)
+### Phase 2 (Q3 2025)
 - 🔄 Advanced AI capabilities
 - 🔄 Mobile application
 - 🔄 Enterprise features
 - 🔄 Additional blockchain support
 
-### Phase 3 (Q4 2024)
+### Phase 3 (Q4 2025)
 - 📋 DAO governance
 - 📋 Token launch
 - 📋 Global expansion
