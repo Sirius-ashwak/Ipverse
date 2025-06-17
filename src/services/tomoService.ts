@@ -1,4 +1,6 @@
 // Tomo SDK integration for walletless onboarding
+import { env } from '../config/environment';
+
 export interface TomoUser {
   id: string;
   email?: string;
@@ -16,14 +18,25 @@ export interface TomoSession {
 }
 
 export class TomoService {
-  private static clientId = 'xDsx8PcJd6QrpkgejZRWi9WpyTQ2FvCZOOmG2Ry4brFQxlil77Y3Rfg5XGTEFl5MWOfc6VOzDHku84Cye7l7pwnr';
-  private static baseUrl = 'https://api.tomo.inc';
+  private static get clientId() {
+    return env.tomo.clientId;
+  }
+  
+  private static get baseUrl() {
+    return env.tomo.apiUrl;
+  }
 
   static async initializeSDK(): Promise<void> {
-    // Initialize Tomo SDK with client ID
+    // Initialize Tomo SDK with client ID from environment
     try {
+      if (env.development.debugMode) {
+        console.log('🔐 Initializing Tomo SDK with client ID:', this.clientId.slice(0, 10) + '...');
+      }
+      
       // Mock initialization - in real implementation, this would initialize the actual SDK
-      console.log('Tomo SDK initialized with client ID:', this.clientId);
+      if (!this.clientId || this.clientId === 'your_tomo_client_id_here') {
+        throw new Error('Tomo Client ID not configured. Please set VITE_TOMO_CLIENT_ID in your environment.');
+      }
     } catch (error) {
       console.error('Failed to initialize Tomo SDK:', error);
       throw error;
