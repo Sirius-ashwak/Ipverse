@@ -105,22 +105,22 @@ export const HomePage: React.FC = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
             >
               {user ? (
-                <Link to="/dashboard">
-                  <Button size="lg" className="px-8">
+                <Link to="/dashboard" className="inline-block">
+                  <Button size="lg" className="px-8 w-full sm:w-auto">
                     Go to Dashboard
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
               ) : (
                 <>
-                  <Link to="/login">
-                    <Button size="lg" className="px-8">
+                  <Link to="/login" className="inline-block">
+                    <Button size="lg" className="px-8 w-full sm:w-auto">
                       Get Started Free
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   </Link>
-                  <Link to="/discover">
-                    <Button variant="outline" size="lg" className="px-8">
+                  <Link to="/discover" className="inline-block">
+                    <Button variant="outline" size="lg" className="px-8 w-full sm:w-auto">
                       Explore Marketplace
                     </Button>
                   </Link>
@@ -311,8 +311,8 @@ export const HomePage: React.FC = () => {
             Join thousands of creators who trust IPVerse with their intellectual property.
           </p>
           {!user && (
-            <Link to="/login">
-              <Button variant="outline" size="lg" className="px-8 bg-white text-primary-600 hover:bg-gray-100">
+            <Link to="/login" className="inline-block">
+              <Button variant="outline" size="lg" className="px-8 bg-white text-primary-600 hover:bg-gray-100 border-white hover:border-gray-100">
                 Start Your Free Trial
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
