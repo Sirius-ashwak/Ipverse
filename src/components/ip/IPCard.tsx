@@ -38,10 +38,10 @@ export const IPCard: React.FC<IPCardProps> = ({ asset, onView, onLicense }) => {
     const colors = {
       image: 'primary',
       audio: 'secondary',
-      video: 'accent',
+      video: 'warning',
       text: 'success',
-      dataset: 'warning',
-      code: 'error',
+      dataset: 'error',
+      code: 'primary',
     };
     return colors[type as keyof typeof colors] || 'primary';
   };
@@ -71,27 +71,27 @@ export const IPCard: React.FC<IPCardProps> = ({ asset, onView, onLicense }) => {
       </div>
 
       <div className="p-6">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+        <h3 className="text-lg font-semibold text-white mb-2">
           {asset.title}
         </h3>
         
-        <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+        <p className="text-gray-400 text-sm mb-4 line-clamp-2">
           {asset.description}
         </p>
 
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
             <img
-              src={asset.creator.avatar || `https://ui-avatars.com/api/?name=${asset.creator.name}&background=0ea5e9&color=fff`}
+              src={asset.creator.avatar || `https://ui-avatars.com/api/?name=${asset.creator.name}&background=374151&color=fff`}
               alt={asset.creator.name}
               className="h-6 w-6 rounded-full"
             />
-            <span className="text-sm text-gray-600 dark:text-gray-400">
+            <span className="text-sm text-gray-400">
               {asset.creator.name}
             </span>
           </div>
           
-          <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+          <div className="flex items-center text-sm text-gray-500">
             <Calendar className="h-4 w-4 mr-1" />
             {asset.registrationDate.toLocaleDateString()}
           </div>
@@ -107,10 +107,10 @@ export const IPCard: React.FC<IPCardProps> = ({ asset, onView, onLicense }) => {
         </div>
 
         <div className="flex items-center justify-between mb-4">
-          <div className="text-sm text-gray-600 dark:text-gray-400">
+          <div className="text-sm text-gray-400">
             Royalty: {asset.royaltyPercentage}%
           </div>
-          <div className="text-sm font-medium text-green-600 dark:text-green-400">
+          <div className="text-sm font-medium text-green-400">
             {asset.licenseType.name}
           </div>
         </div>
@@ -120,7 +120,7 @@ export const IPCard: React.FC<IPCardProps> = ({ asset, onView, onLicense }) => {
             variant="outline"
             size="sm"
             onClick={onView}
-            className="flex-1"
+            className="flex-1 text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white"
           >
             <Eye className="h-4 w-4 mr-1" />
             View
@@ -134,7 +134,7 @@ export const IPCard: React.FC<IPCardProps> = ({ asset, onView, onLicense }) => {
             <Download className="h-4 w-4 mr-1" />
             License
           </Button>
-          <Button variant="ghost" size="sm" className="p-2">
+          <Button variant="ghost" size="sm" className="p-2 text-gray-400 hover:text-white">
             <Share className="h-4 w-4" />
           </Button>
         </div>

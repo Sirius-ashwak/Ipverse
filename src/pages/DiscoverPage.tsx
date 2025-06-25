@@ -52,27 +52,27 @@ export const DiscoverPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
+    <div className="min-h-screen bg-black py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-3xl font-bold text-white mb-2">
             Discover IP Assets
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-400">
             Explore and license intellectual property from creators worldwide
           </p>
         </div>
 
         {/* Search and Filters */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-8">
+        <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 mb-8">
           <div className="flex flex-col lg:flex-row gap-4">
             {/* Search */}
             <div className="relative flex-1">
@@ -82,7 +82,7 @@ export const DiscoverPage: React.FC = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search assets by title, description, or tags..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full pl-10 pr-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-700 text-white placeholder-gray-400"
               />
             </div>
 
@@ -94,6 +94,7 @@ export const DiscoverPage: React.FC = () => {
                   variant={selectedType === type.id ? 'primary' : 'outline'}
                   size="sm"
                   onClick={() => setSelectedType(type.id)}
+                  className={selectedType === type.id ? '' : 'text-gray-300 border-gray-600 hover:bg-gray-700'}
                 >
                   {type.name} ({type.count})
                 </Button>
@@ -106,7 +107,7 @@ export const DiscoverPage: React.FC = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="px-3 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-700 text-white"
               >
                 {sortOptions.map((option) => (
                   <option key={option.id} value={option.id}>
@@ -117,12 +118,12 @@ export const DiscoverPage: React.FC = () => {
             </div>
 
             {/* View Mode */}
-            <div className="flex border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden">
+            <div className="flex border border-gray-600 rounded-lg overflow-hidden">
               <Button
                 variant={viewMode === 'grid' ? 'primary' : 'ghost'}
                 size="sm"
                 onClick={() => setViewMode('grid')}
-                className="rounded-none border-r border-gray-300 dark:border-gray-600"
+                className="rounded-none border-r border-gray-600"
               >
                 <Grid className="h-4 w-4" />
               </Button>
@@ -140,18 +141,18 @@ export const DiscoverPage: React.FC = () => {
 
         {/* Results Count */}
         <div className="flex items-center justify-between mb-6">
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-400">
             {filteredAssets.length} assets found
           </p>
           
           {/* Popular Tags */}
           <div className="flex items-center space-x-2">
-            <span className="text-sm text-gray-500 dark:text-gray-400">Popular:</span>
+            <span className="text-sm text-gray-500">Popular:</span>
             {['digital-art', 'machine-learning', 'music', 'smart-contracts'].map((tag) => (
               <Badge
                 key={tag}
                 variant="secondary"
-                className="cursor-pointer hover:bg-primary-100 dark:hover:bg-primary-900/20"
+                className="cursor-pointer hover:bg-gray-600"
                 onClick={() => setSearchTerm(tag)}
               >
                 {tag}
@@ -187,10 +188,10 @@ export const DiscoverPage: React.FC = () => {
             <div className="text-gray-400 mb-4">
               <Search className="h-16 w-16 mx-auto" />
             </div>
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+            <h3 className="text-lg font-medium text-white mb-2">
               No assets found
             </h3>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-gray-400">
               Try adjusting your search terms or filters
             </p>
           </div>
@@ -199,7 +200,7 @@ export const DiscoverPage: React.FC = () => {
         {/* Load More */}
         {filteredAssets.length > 9 && (
           <div className="text-center mt-12">
-            <Button variant="outline" size="lg">
+            <Button variant="outline" size="lg" className="text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white">
               Load More Assets
             </Button>
           </div>

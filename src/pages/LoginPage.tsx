@@ -38,7 +38,7 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-secondary-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-black flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -48,25 +48,17 @@ export const LoginPage: React.FC = () => {
         {/* Logo */}
         <div className="text-center">
           <Link to="/" className="inline-flex items-center space-x-2">
-            <motion.div
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.5 }}
-              className="bg-gradient-to-r from-primary-600 to-secondary-600 p-3 rounded-lg"
-            >
-              <Brain className="h-8 w-8 text-white" />
-            </motion.div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-              IPVerse
-            </span>
+            <div className="text-3xl font-bold text-white">#</div>
+            <span className="text-2xl font-bold text-white">IPVerse</span>
           </Link>
         </div>
 
         <Card className="p-8">
           <div className="text-center mb-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-2xl font-bold text-white">
               {isLogin ? 'Welcome back' : 'Create account'}
             </h2>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-gray-400">
               {isLogin 
                 ? 'Sign in to manage your IP portfolio' 
                 : 'Join the future of IP management'
@@ -77,8 +69,8 @@ export const LoginPage: React.FC = () => {
           {/* Tomo-powered Social Login */}
           <div className="space-y-3 mb-6">
             <div className="text-center mb-4">
-              <div className="inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r from-primary-100 to-secondary-100 dark:from-primary-900/20 dark:to-secondary-900/20">
-                <span className="text-xs font-medium text-primary-700 dark:text-primary-300">
+              <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
+                <span className="text-xs font-medium text-blue-400">
                   🔐 Powered by Tomo - Walletless & Gasless
                 </span>
               </div>
@@ -86,7 +78,7 @@ export const LoginPage: React.FC = () => {
 
             <Button
               variant="outline"
-              className="w-full"
+              className="w-full bg-gray-700 border-gray-600 text-white hover:bg-gray-600"
               onClick={() => handleSocialLogin('google')}
               disabled={isLoading}
             >
@@ -98,7 +90,7 @@ export const LoginPage: React.FC = () => {
             
             <Button
               variant="outline"
-              className="w-full"
+              className="w-full bg-gray-700 border-gray-600 text-white hover:bg-gray-600"
               onClick={() => handleSocialLogin('twitter')}
               disabled={isLoading}
             >
@@ -108,7 +100,7 @@ export const LoginPage: React.FC = () => {
 
             <Button
               variant="outline"
-              className="w-full"
+              className="w-full bg-gray-700 border-gray-600 text-white hover:bg-gray-600"
               onClick={() => handleSocialLogin('discord')}
               disabled={isLoading}
             >
@@ -119,10 +111,10 @@ export const LoginPage: React.FC = () => {
 
           <div className="relative mb-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300 dark:border-gray-600" />
+              <div className="w-full border-t border-gray-600" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white dark:bg-gray-800 text-gray-500">
+              <span className="px-2 bg-gray-800 text-gray-400">
                 Or continue with email
               </span>
             </div>
@@ -142,7 +134,7 @@ export const LoginPage: React.FC = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                  className="w-full pl-10 pr-3 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-700 text-white placeholder-gray-400"
                   placeholder="Enter your email"
                 />
               </div>
@@ -150,7 +142,7 @@ export const LoginPage: React.FC = () => {
 
             <Button
               type="submit"
-              className="w-full"
+              className="w-full bg-white text-black hover:bg-gray-100"
               isLoading={isLoading}
             >
               {isLogin ? 'Sign in' : 'Create account'}
@@ -160,7 +152,7 @@ export const LoginPage: React.FC = () => {
           <div className="mt-6 text-center">
             <button
               onClick={() => setIsLogin(!isLogin)}
-              className="text-primary-600 hover:text-primary-500 font-medium"
+              className="text-blue-400 hover:text-blue-300 font-medium"
             >
               {isLogin 
                 ? "Don't have an account? Sign up" 
@@ -170,49 +162,22 @@ export const LoginPage: React.FC = () => {
           </div>
 
           <div className="mt-4 text-center">
-            <p className="text-xs text-gray-500 dark:text-gray-400">
+            <p className="text-xs text-gray-500">
               By continuing, you agree to our{' '}
-              <Link to="/terms" className="text-primary-600 hover:text-primary-500">
+              <Link to="/terms" className="text-blue-400 hover:text-blue-300">
                 Terms of Service
               </Link>{' '}
               and{' '}
-              <Link to="/privacy" className="text-primary-600 hover:text-primary-500">
+              <Link to="/privacy" className="text-blue-400 hover:text-blue-300">
                 Privacy Policy
               </Link>
             </p>
           </div>
         </Card>
 
-        {/* Tomo Features */}
-        <Card className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-blue-200 dark:border-blue-800">
-          <div className="text-center">
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
-              ✨ Powered by Tomo SDK
-            </h3>
-            <div className="grid grid-cols-2 gap-2 text-xs text-gray-600 dark:text-gray-400">
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                No wallet setup
-              </div>
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                Gasless transactions
-              </div>
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                Social login
-              </div>
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                Secure & simple
-              </div>
-            </div>
-          </div>
-        </Card>
-
         {/* Demo Account Info */}
-        <Card className="p-4 bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800">
-          <p className="text-sm text-blue-800 dark:text-blue-200 text-center">
+        <Card className="p-4 bg-blue-500/10 border-blue-500/20">
+          <p className="text-sm text-blue-400 text-center">
             <strong>Demo:</strong> Use any email or social login to explore the platform with sample data
           </p>
         </Card>

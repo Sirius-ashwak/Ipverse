@@ -122,20 +122,20 @@ export const AIAgentsPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
+    <div className="min-h-screen bg-black py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              <h1 className="text-3xl font-bold text-white mb-2">
                 AI Agents
               </h1>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-400">
                 Deploy intelligent agents to automate IP management tasks
               </p>
             </div>
-            <Button>
+            <Button className="bg-white text-black hover:bg-gray-100">
               <Plus className="h-5 w-5 mr-2" />
               Deploy New Agent
             </Button>
@@ -163,31 +163,31 @@ export const AIAgentsPage: React.FC = () => {
 
             {/* Agent Performance */}
             <Card className="p-6">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-xl font-semibold text-white mb-4">
                 Agent Performance
               </h2>
               <div className="space-y-4">
                 {agents.map((agent) => (
-                  <div key={agent.id} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                  <div key={agent.id} className="flex items-center justify-between p-4 bg-gray-700/50 rounded-lg">
                     <div className="flex items-center space-x-3">
-                      <div className="bg-gradient-to-r from-primary-500 to-secondary-500 p-2 rounded-lg">
+                      <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-2 rounded-lg">
                         <Brain className="h-5 w-5 text-white" />
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900 dark:text-white">
+                        <p className="font-medium text-white">
                           {agent.name}
                         </p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                        <p className="text-sm text-gray-400">
                           {agent.type.charAt(0).toUpperCase() + agent.type.slice(1)}
                         </p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-4">
                       <div className="text-right">
-                        <p className="text-sm font-medium text-gray-900 dark:text-white">
+                        <p className="text-sm font-medium text-white">
                           {Math.floor(Math.random() * 50) + 50} tasks
                         </p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                        <p className="text-xs text-gray-400">
                           This week
                         </p>
                       </div>
@@ -206,7 +206,7 @@ export const AIAgentsPage: React.FC = () => {
           <div className="lg:col-span-1">
             <Card className="p-6 h-[600px] flex flex-col">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+                <h2 className="text-xl font-semibold text-white">
                   Agent Chat
                 </h2>
                 {selectedAgent && (
@@ -224,7 +224,7 @@ export const AIAgentsPage: React.FC = () => {
                     {chatHistory.length === 0 ? (
                       <div className="text-center py-8">
                         <Brain className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                        <p className="text-gray-600 dark:text-gray-400">
+                        <p className="text-gray-400">
                           Start a conversation with {selectedAgent.name}
                         </p>
                       </div>
@@ -237,8 +237,8 @@ export const AIAgentsPage: React.FC = () => {
                           <div
                             className={`max-w-xs px-4 py-2 rounded-lg ${
                               chat.role === 'user'
-                                ? 'bg-primary-600 text-white'
-                                : 'bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white'
+                                ? 'bg-blue-600 text-white'
+                                : 'bg-gray-700 text-white'
                             }`}
                           >
                             <p className="text-sm">{chat.message}</p>
@@ -252,11 +252,11 @@ export const AIAgentsPage: React.FC = () => {
                     
                     {isTyping && (
                       <div className="flex justify-start">
-                        <div className="bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded-lg">
+                        <div className="bg-gray-700 px-4 py-2 rounded-lg">
                           <div className="flex space-x-1">
-                            <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
-                            <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                            <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                           </div>
                         </div>
                       </div>
@@ -271,7 +271,7 @@ export const AIAgentsPage: React.FC = () => {
                       onChange={(e) => setCurrentMessage(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                       placeholder="Type your message..."
-                      className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
+                      className="flex-1 px-3 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-700 text-white text-sm placeholder-gray-400"
                     />
                     <Button
                       onClick={handleSendMessage}
@@ -286,7 +286,7 @@ export const AIAgentsPage: React.FC = () => {
                 <div className="flex-1 flex items-center justify-center">
                   <div className="text-center">
                     <Brain className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-gray-400">
                       Select an agent to start chatting
                     </p>
                   </div>

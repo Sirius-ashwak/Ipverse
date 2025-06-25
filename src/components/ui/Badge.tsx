@@ -12,11 +12,11 @@ export const Badge: React.FC<BadgeProps> = ({
   size = 'md' 
 }) => {
   const variants = {
-    primary: 'bg-blue-900/50 text-blue-300 border border-blue-700',
-    secondary: 'bg-gray-700 text-gray-300 border border-gray-600',
-    success: 'bg-green-900/50 text-green-300 border border-green-700',
-    warning: 'bg-yellow-900/50 text-yellow-300 border border-yellow-700',
-    error: 'bg-red-900/50 text-red-300 border border-red-700',
+    primary: 'bg-blue-500/20 text-blue-300 border border-blue-500/30',
+    secondary: 'bg-gray-500/20 text-gray-300 border border-gray-500/30',
+    success: 'bg-green-500/20 text-green-300 border border-green-500/30',
+    warning: 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/30',
+    error: 'bg-red-500/20 text-red-300 border border-red-500/30',
   };
 
   const sizes = {

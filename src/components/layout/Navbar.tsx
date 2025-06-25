@@ -64,50 +64,32 @@ export const Navbar: React.FC = () => {
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="text-white text-xl font-bold flex items-center">
-                <span className="text-2xl mr-2">#</span>
-                <span>IPVerse</span>
-              </div>
+              <div className="text-2xl font-bold text-white">#</div>
+              <span className="text-xl font-bold text-white">IPVerse</span>
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Center Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {/* GitHub Stars */}
-            <div className="flex items-center space-x-2 bg-gray-800 rounded-lg px-3 py-1">
+            {/* GitHub Star */}
+            <div className="flex items-center space-x-2 bg-gray-800 border border-gray-700 rounded-lg px-3 py-1">
               <Github className="h-4 w-4 text-gray-400" />
-              <Star className="h-4 w-4 text-yellow-400 fill-current" />
-              <span className="text-sm text-gray-300">1,194</span>
+              <span className="text-sm text-gray-300">GitHub</span>
+              <div className="flex items-center space-x-1">
+                <Star className="h-3 w-3 text-yellow-400 fill-current" />
+                <span className="text-sm text-gray-300">1,194</span>
+              </div>
             </div>
 
+            {/* Main Navigation */}
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className="text-gray-300 hover:text-white transition-colors flex items-center"
+                className="flex items-center text-gray-300 hover:text-white transition-colors"
               >
                 {item.name}
                 {item.external && <ExternalLink className="h-3 w-3 ml-1" />}
-              </Link>
-            ))}
-
-            {user && userNavigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`px-3 py-2 text-sm font-medium transition-colors relative ${
-                  isActive(item.href)
-                    ? 'text-blue-400'
-                    : 'text-gray-300 hover:text-white'
-                }`}
-              >
-                {item.name}
-                {isActive(item.href) && (
-                  <motion.div
-                    layoutId="navbar-indicator"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-400"
-                  />
-                )}
               </Link>
             ))}
           </div>
@@ -116,17 +98,33 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center space-x-4">
             {user ? (
               <>
+                {/* User Navigation */}
+                <div className="hidden lg:flex items-center space-x-6">
+                  {userNavigation.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className={`text-sm transition-colors ${
+                        isActive(item.href)
+                          ? 'text-white'
+                          : 'text-gray-400 hover:text-white'
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+
                 {/* Wallet Info */}
                 {walletAddress && (
-                  <div className="hidden sm:flex items-center space-x-2 bg-gray-800 rounded-lg px-3 py-1">
+                  <div className="hidden sm:flex items-center space-x-2 bg-gray-800 border border-gray-700 rounded-lg px-3 py-1">
                     <Wallet className="h-4 w-4 text-gray-400" />
                     <button
                       onClick={copyWalletAddress}
-                      className="text-sm font-mono text-gray-300 hover:text-blue-400 transition-colors"
+                      className="text-sm font-mono text-gray-300 hover:text-white transition-colors"
                     >
                       {formatAddress(walletAddress)}
                     </button>
-                    <Copy className="h-3 w-3 text-gray-400" />
                   </div>
                 )}
 
@@ -136,10 +134,10 @@ export const Navbar: React.FC = () => {
                     variant="ghost"
                     size="sm"
                     onClick={() => setShowProfile(!showProfile)}
-                    className="p-2 text-gray-300 hover:text-white"
+                    className="p-2 text-gray-400 hover:text-white"
                   >
                     <img
-                      src={user.avatar || `https://ui-avatars.com/api/?name=${user.name}&background=0ea5e9&color=fff`}
+                      src={user.avatar || `https://ui-avatars.com/api/?name=${user.name}&background=374151&color=fff`}
                       alt={user.name}
                       className="h-8 w-8 rounded-full"
                     />
@@ -151,7 +149,7 @@ export const Navbar: React.FC = () => {
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="absolute right-0 mt-2 w-64 bg-gray-800 rounded-lg shadow-xl border border-gray-700 py-1"
+                        className="absolute right-0 mt-2 w-64 bg-gray-800 border border-gray-700 rounded-lg shadow-xl py-1"
                       >
                         <div className="px-4 py-3 border-b border-gray-700">
                           <p className="text-sm font-medium text-white">
@@ -160,44 +158,6 @@ export const Navbar: React.FC = () => {
                           <p className="text-xs text-gray-400">
                             {user.email}
                           </p>
-                          {walletAddress && (
-                            <div className="mt-2 flex items-center space-x-2">
-                              <Wallet className="h-3 w-3 text-gray-400" />
-                              <button
-                                onClick={copyWalletAddress}
-                                className="text-xs font-mono text-gray-400 hover:text-blue-400"
-                              >
-                                {formatAddress(walletAddress)}
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                        
-                        <Link
-                          to="/profile"
-                          className="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-700"
-                        >
-                          <User className="h-4 w-4 mr-2" />
-                          Profile
-                        </Link>
-                        
-                        <Link
-                          to="/settings"
-                          className="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-700"
-                        >
-                          <Settings className="h-4 w-4 mr-2" />
-                          Settings
-                        </Link>
-                        
-                        <div className="border-t border-gray-700 mt-1">
-                          <div className="px-4 py-2">
-                            <div className="text-xs text-gray-500 mb-1">
-                              Powered by Tomo
-                            </div>
-                            <Badge variant="success" size="sm">
-                              Gasless Enabled
-                            </Badge>
-                          </div>
                         </div>
                         
                         <button
@@ -233,7 +193,7 @@ export const Navbar: React.FC = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsOpen(!isOpen)}
-                className="p-2 text-gray-300 hover:text-white"
+                className="p-2 text-gray-400 hover:text-white"
               >
                 {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </Button>
@@ -251,6 +211,7 @@ export const Navbar: React.FC = () => {
               className="md:hidden"
             >
               <div className="px-2 pt-2 pb-3 space-y-1 border-t border-gray-800">
+                {/* Main Navigation */}
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
@@ -262,13 +223,14 @@ export const Navbar: React.FC = () => {
                   </Link>
                 ))}
                 
+                {/* User Navigation */}
                 {user && userNavigation.map((item) => (
                   <Link
                     key={item.name}
                     to={item.href}
                     className={`block px-3 py-2 text-base font-medium rounded-md ${
                       isActive(item.href)
-                        ? 'text-blue-400 bg-gray-800'
+                        ? 'text-white bg-gray-800'
                         : 'text-gray-300 hover:text-white hover:bg-gray-800'
                     }`}
                     onClick={() => setIsOpen(false)}
@@ -276,21 +238,6 @@ export const Navbar: React.FC = () => {
                     {item.name}
                   </Link>
                 ))}
-                
-                {/* Mobile Wallet Info */}
-                {walletAddress && (
-                  <div className="px-3 py-2 border-t border-gray-800">
-                    <div className="text-xs text-gray-500 mb-1">
-                      Wallet Address
-                    </div>
-                    <button
-                      onClick={copyWalletAddress}
-                      className="text-sm font-mono text-gray-300 hover:text-blue-400"
-                    >
-                      {formatAddress(walletAddress)}
-                    </button>
-                  </div>
-                )}
               </div>
             </motion.div>
           )}

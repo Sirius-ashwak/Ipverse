@@ -12,84 +12,132 @@ import {
   Users,
   TrendingUp,
   Github,
-  ExternalLink,
   Play,
   Code,
   Database,
   FileText,
   Music,
   Image as ImageIcon,
-  Video
+  Video,
+  Layers,
+  Network,
+  Cpu
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
-import { Badge } from '../components/ui/Badge';
 import { useAuth } from '../contexts/AuthContext';
 
 export const HomePage: React.FC = () => {
   const { user } = useAuth();
 
-  const integrations = [
-    { name: 'Story Protocol', description: 'Connect your IP agent', icon: Shield, category: 'Blockchain' },
-    { name: 'Crossmint', description: 'Connect your NFT agent', icon: Zap, category: 'NFT' },
-    { name: 'Alchemy', description: 'Connect your Web3 agent', icon: Globe, category: 'Infrastructure' },
-    { name: 'OpenAI', description: 'Connect your AI agent', icon: Brain, category: 'AI' },
-    { name: 'Gelato', description: 'Connect your automation agent', icon: TrendingUp, category: 'Automation' },
-    { name: 'Fleek', description: 'Connect your storage agent', icon: Database, category: 'Storage' },
-    { name: 'Yakoa', description: 'Connect your detection agent', icon: CheckCircle, category: 'Detection' },
-    { name: 'Zapper', description: 'Connect your analytics agent', icon: TrendingUp, category: 'Analytics' },
-    { name: 'deBridge', description: 'Connect your bridge agent', icon: ArrowRight, category: 'Bridge' },
+  const features = [
+    {
+      icon: Shield,
+      title: 'IP Protection',
+      description: 'Register and protect your intellectual property with blockchain-based verification.',
+      color: 'text-blue-400',
+    },
+    {
+      icon: Brain,
+      title: 'AI Agents',
+      description: 'Intelligent agents handle licensing, negotiation, and infringement detection.',
+      color: 'text-purple-400',
+    },
+    {
+      icon: Zap,
+      title: 'Smart Licensing',
+      description: 'Automated licensing with smart contracts and cross-chain compatibility.',
+      color: 'text-yellow-400',
+    },
+    {
+      icon: Globe,
+      title: 'Global Marketplace',
+      description: 'Discover and license IP assets from creators worldwide.',
+      color: 'text-green-400',
+    },
   ];
 
-  const categories = [
-    { name: 'All', count: integrations.length },
-    { name: 'AI', count: integrations.filter(i => i.category === 'AI').length },
-    { name: 'Blockchain', count: integrations.filter(i => i.category === 'Blockchain').length },
-    { name: 'NFT', count: integrations.filter(i => i.category === 'NFT').length },
-    { name: 'Analytics', count: integrations.filter(i => i.category === 'Analytics').length },
-    { name: 'Storage', count: integrations.filter(i => i.category === 'Storage').length },
+  const stats = [
+    { label: 'Available APIs', value: '13,000+', icon: Network, highlight: true },
+    { label: 'IP Assets Registered', value: '50K+', icon: Shield },
+    { label: 'Active Creators', value: '12K+', icon: Users },
+    { label: 'AI Negotiations', value: '25K+', icon: Brain },
+  ];
+
+  const integrations = [
+    { name: 'Story Protocol', description: 'Connect your IP agent', icon: '📚', category: 'Blockchain' },
+    { name: 'Crossmint', description: 'Connect your NFT agent', icon: '🎨', category: 'NFT' },
+    { name: 'Alchemy', description: 'Connect your Web3 agent', icon: '⚡', category: 'Infrastructure' },
+    { name: 'thirdweb', description: 'Connect your contract agent', icon: '🔗', category: 'Smart Contracts' },
+    { name: 'Gelato', description: 'Connect your automation agent', icon: '🤖', category: 'Automation' },
+    { name: 'Fleek', description: 'Connect your hosting agent', icon: '☁️', category: 'Hosting' },
+    { name: 'Yakoa', description: 'Connect your detection agent', icon: '🔍', category: 'Detection' },
+    { name: 'Zapper', description: 'Connect your portfolio agent', icon: '📊', category: 'Analytics' },
+    { name: 'deBridge', description: 'Connect your bridge agent', icon: '🌉', category: 'Cross-chain' },
+    { name: 'OpenAI', description: 'Connect your AI agent', icon: '🧠', category: 'AI' },
+    { name: 'Anthropic', description: 'Connect your Claude agent', icon: '🤖', category: 'AI' },
+    { name: 'Vercel', description: 'Connect your deployment agent', icon: '▲', category: 'Deployment' },
+  ];
+
+  const apiCategories = [
+    { name: 'Blockchain & Web3', count: '2,500+', icon: Layers, color: 'text-blue-400' },
+    { name: 'AI & Machine Learning', count: '1,800+', icon: Brain, color: 'text-purple-400' },
+    { name: 'Payment & Finance', count: '1,200+', icon: TrendingUp, color: 'text-green-400' },
+    { name: 'Storage & Database', count: '900+', icon: Database, color: 'text-yellow-400' },
+    { name: 'Communication', count: '800+', icon: Network, color: 'text-red-400' },
+    { name: 'Analytics & Monitoring', count: '700+', icon: Cpu, color: 'text-indigo-400' },
+    { name: 'Content & Media', count: '600+', icon: ImageIcon, color: 'text-pink-400' },
+    { name: 'Security & Auth', count: '500+', icon: Shield, color: 'text-orange-400' },
+    { name: 'Development Tools', count: '400+', icon: Code, color: 'text-cyan-400' },
+    { name: 'Other Services', count: '3,600+', icon: Globe, color: 'text-gray-400' },
   ];
 
   const assetTypes = [
-    { id: 'image', name: 'Images', icon: ImageIcon, count: 1250 },
-    { id: 'audio', name: 'Audio', icon: Music, count: 890 },
-    { id: 'video', name: 'Video', icon: Video, count: 650 },
-    { id: 'text', name: 'Text', icon: FileText, count: 2100 },
-    { id: 'dataset', name: 'Datasets', icon: Database, count: 450 },
-    { id: 'code', name: 'Code', icon: Code, count: 780 },
+    { name: 'Images', icon: ImageIcon, count: '15K+' },
+    { name: 'Audio', icon: Music, count: '8K+' },
+    { name: 'Videos', icon: Video, count: '5K+' },
+    { name: 'Text', icon: FileText, count: '12K+' },
+    { name: 'Datasets', icon: Database, count: '3K+' },
+    { name: 'Code', icon: Code, count: '7K+' },
   ];
 
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center space-x-4 mb-8">
-              <Badge variant="secondary" className="bg-orange-500/20 text-orange-400 border-orange-500/30">
-                Built with AI 🤖
-              </Badge>
-              <Badge variant="secondary" className="bg-blue-500/20 text-blue-400 border-blue-500/30 flex items-center">
-                <Github className="h-3 w-3 mr-1" />
-                Open Source
-              </Badge>
-            </div>
-            
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-black opacity-50" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
+          <div className="text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
+              className="mb-8"
             >
+              <div className="flex items-center justify-center space-x-4 mb-6">
+                <div className="flex items-center space-x-2 bg-orange-500/10 border border-orange-500/20 rounded-full px-4 py-2">
+                  <span className="text-orange-400 text-sm font-medium">Built with AI 🧠</span>
+                </div>
+                <div className="flex items-center space-x-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-2">
+                  <Github className="h-4 w-4 text-blue-400" />
+                  <span className="text-blue-400 text-sm font-medium">Open Source</span>
+                </div>
+              </div>
+              
               <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Build agentic IP management.{' '}
+                Build IP automations.{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                   Fast.
                 </span>
               </h1>
+              
               <p className="text-xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
-                Connect AI agents to Web3 infrastructure with human-verifiable IP protection, 
-                streaming royalties, and SDKs for Story Protocol, Crossmint, and more.
+                Connect AI agents to{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-bold text-2xl">
+                  13,000+ IP management APIs
+                </span>{' '}
+                with human-verifiable calls, streaming execution,
+                and SDKs for Story Protocol, Crossmint, and more.
               </p>
             </motion.div>
 
@@ -101,18 +149,18 @@ export const HomePage: React.FC = () => {
             >
               {user ? (
                 <Link to="/dashboard" className="inline-block">
-                  <Button size="lg" className="px-8 bg-white text-black hover:bg-gray-100">
+                  <Button size="lg" className="px-8 w-full sm:w-auto bg-white text-black hover:bg-gray-100">
                     Go to Dashboard
                   </Button>
                 </Link>
               ) : (
                 <>
                   <Link to="/login" className="inline-block">
-                    <Button size="lg" className="px-8 bg-white text-black hover:bg-gray-100">
+                    <Button size="lg" className="px-8 w-full sm:w-auto bg-white text-black hover:bg-gray-100">
                       Start building
                     </Button>
                   </Link>
-                  <Button variant="outline" size="lg" className="px-8 border-gray-600 text-gray-300 hover:bg-gray-800">
+                  <Button variant="ghost" size="lg" className="px-8 w-full sm:w-auto text-white border-gray-600 hover:bg-gray-800">
                     <Play className="h-4 w-4 mr-2" />
                     See demo
                   </Button>
@@ -127,52 +175,37 @@ export const HomePage: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="max-w-4xl mx-auto"
             >
-              <div className="bg-gray-900 rounded-lg border border-gray-800 overflow-hidden">
+              <div className="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden">
                 <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
                   <div className="flex space-x-2">
                     <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                     <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                     <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                   </div>
-                  <span className="text-sm text-gray-400">typescript</span>
-                  <div className="flex space-x-2">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-xs text-gray-400">TypeScript</span>
                     <button className="text-gray-400 hover:text-white">
-                      <ExternalLink className="h-4 w-4" />
+                      <Code className="h-4 w-4" />
                     </button>
                   </div>
                 </div>
                 <div className="p-6 text-left">
-                  <pre className="text-sm text-gray-300 leading-relaxed">
-                    <code>
-{`import { useIPVerse } from "@ipverse/sdk";
-import { Button } from "@/components/ui/button";
+                  <pre className="text-sm text-gray-300 overflow-x-auto">
+                    <code>{`import { StoryProtocol } from '@story-protocol/sdk'
+import { CrossmintSDK } from '@crossmint/client-sdk'
+import { IPVerse, createIPAgent } from '@ipverse/sdk'
 
-export function IPProtectionAgent() {
-  const { registerIP, deployAgent } = useIPVerse({
-    storyProtocol: "YOUR_STORY_KEY",
-    crossmint: "YOUR_CROSSMINT_KEY",
-  });
+// Initialize IPVerse client
+const ipverse = new IPVerse({
+  apiKey: "YOUR_IPVERSE_API_KEY",
+  network: "mainnet"
+})
 
-  const handleProtect = async () => {
-    const asset = await registerIP({
-      title: "My Digital Art",
-      type: "image",
-      royalty: 10
-    });
-    
-    await deployAgent("infringement-detector", {
-      assetId: asset.id,
-      monitoring: true
-    });
-  };
-
-  return (
-    <Button onClick={handleProtect}>
-      Protect IP Asset
-    </Button>
-  );
-}`}
-                    </code>
+// Set up AI agent
+const agent = await createIPAgent({
+  name: "LicenseBot Pro",
+  capabilities: ["negotiate", "detect", "analyze"]
+})`}</code>
                   </pre>
                 </div>
               </div>
@@ -181,7 +214,70 @@ export function IPProtectionAgent() {
         </div>
       </section>
 
-      {/* Available Integrations Section */}
+      {/* API Stats Highlight */}
+      <section className="py-16 bg-gradient-to-r from-blue-900/10 to-purple-900/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">
+                13,000+ APIs
+              </span>{' '}
+              at Your Fingertips
+            </h2>
+            <p className="text-xl text-gray-400">
+              Connect to any service, platform, or tool with our comprehensive API ecosystem
+            </p>
+          </div>
+
+          {/* API Categories Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12">
+            {apiCategories.map((category, index) => (
+              <motion.div
+                key={category.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-gray-800/50 border border-gray-700 rounded-lg p-4 text-center hover:border-gray-600 transition-colors"
+              >
+                <category.icon className={`h-8 w-8 ${category.color} mx-auto mb-2`} />
+                <h3 className="text-sm font-semibold text-white mb-1">{category.name}</h3>
+                <p className="text-lg font-bold text-gray-300">{category.count}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <div className="flex justify-center mb-4">
+                  <stat.icon className={`h-8 w-8 ${stat.highlight ? 'text-yellow-400' : 'text-blue-400'}`} />
+                </div>
+                <div className={`text-3xl font-bold mb-2 ${
+                  stat.highlight 
+                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400' 
+                    : 'text-white'
+                }`}>
+                  {stat.value}
+                </div>
+                <div className="text-sm text-gray-400">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Available Integrations */}
       <section className="py-20 bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -189,21 +285,26 @@ export function IPProtectionAgent() {
               Available Integrations ({integrations.length})
             </h2>
             <p className="text-xl text-gray-400">
-              Connect to the Web3 ecosystem. New platforms added regularly.
+              Connect to the world. New platforms added regularly from our{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-semibold">
+                13,000+ API library
+              </span>
             </p>
           </div>
 
           {/* Category Filters */}
           <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {categories.map((category) => (
-              <Button
-                key={category.name}
-                variant="outline"
-                size="sm"
-                className="border-gray-700 text-gray-300 hover:bg-gray-800"
+            {['All', 'Blockchain', 'NFT', 'Infrastructure', 'Smart Contracts', 'Automation', 'Hosting', 'Detection', 'Analytics', 'Cross-chain', 'AI'].map((category) => (
+              <button
+                key={category}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  category === 'All' 
+                    ? 'bg-white text-black' 
+                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                }`}
               >
-                {category.name} ({category.count})
-              </Button>
+                {category} {category === 'All' && `(${integrations.length})`}
+              </button>
             ))}
           </div>
 
@@ -213,12 +314,12 @@ export function IPProtectionAgent() {
               <input
                 type="text"
                 placeholder="Search integrations..."
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           </div>
 
-          {/* Integrations Grid */}
+          {/* Integration Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {integrations.map((integration, index) => (
               <motion.div
@@ -227,31 +328,53 @@ export function IPProtectionAgent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
+                className="bg-gray-800 border border-gray-700 rounded-lg p-6 hover:border-gray-600 transition-colors"
               >
-                <Card className="p-6 bg-gray-800 border-gray-700 hover:border-gray-600 transition-colors">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-2 rounded-lg">
-                      <integration.icon className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-white">
-                        {integration.name}
-                      </h3>
-                      <p className="text-sm text-gray-400">
-                        {integration.description}
-                      </p>
+                <div className="flex items-start space-x-4">
+                  <div className="text-3xl">{integration.icon}</div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-white mb-1">
+                      {integration.name}
+                    </h3>
+                    <p className="text-gray-400 text-sm mb-3">
+                      {integration.description}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-gray-500 bg-gray-700 px-2 py-1 rounded">
+                        {integration.category}
+                      </span>
+                      <button className="text-blue-400 hover:text-blue-300 text-sm font-medium">
+                        Learn more →
+                      </button>
                     </div>
                   </div>
-                  <p className="text-gray-300 text-sm mb-4">
-                    {integration.name} is a powerful platform that enables seamless integration 
-                    with your IP management workflow through automated agents.
-                  </p>
-                  <Button variant="ghost" size="sm" className="text-blue-400 hover:text-blue-300">
-                    Learn more →
-                  </Button>
-                </Card>
+                </div>
               </motion.div>
             ))}
+          </div>
+
+          {/* Show More APIs CTA */}
+          <div className="text-center mt-12">
+            <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-gray-700 rounded-lg p-8">
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Need a specific API?
+              </h3>
+              <p className="text-gray-400 mb-6">
+                Browse our complete catalog of{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-semibold">
+                  13,000+ APIs
+                </span>{' '}
+                or request a new integration
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button className="bg-white text-black hover:bg-gray-100">
+                  Browse All APIs
+                </Button>
+                <Button variant="outline" className="text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white">
+                  Request Integration
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -260,9 +383,9 @@ export function IPProtectionAgent() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Products</h2>
+            <h2 className="text-5xl font-bold mb-4">Products</h2>
             <p className="text-xl text-gray-400">
-              Three tools, one goal: "Protect IP assets fast."
+              Three tools, one goal: 'Get real work done fast.'
             </p>
           </div>
 
@@ -275,26 +398,29 @@ export function IPProtectionAgent() {
               viewport={{ once: true }}
               className="text-center"
             >
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
-                <div className="text-6xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                  #
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-white">IPProtect</h3>
-                <p className="text-gray-400 mb-2">Every IP asset,</p>
-                <p className="text-gray-400 mb-6">protected the first time</p>
-                <div className="text-sm text-gray-500 mb-8">
-                  <p>Blockchain verification • AI detection</p>
-                  <p>Story Protocol based</p>
-                </div>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  Register any IP asset with a single transaction. IPProtect gives your content instant 
-                  blockchain verification and AI-powered protection, hassle-free.
+              <div className="mb-8">
+                <div className="text-6xl font-bold text-gray-600 mb-4">#</div>
+                <h3 className="text-4xl font-bold mb-4">IPProtect</h3>
+                <p className="text-lg text-gray-400 mb-2">
+                  Every IP registration,
+                  <br />
+                  right the first time
+                </p>
+                <p className="text-sm text-gray-500">
+                  Full schemas • scope intelligence
+                  <br />
+                  safety baked in
+                </p>
+              </div>
+              <div className="bg-gray-900 border border-gray-700 rounded-lg p-6 text-left">
+                <p className="text-gray-300 mb-4">
+                  Register any IP with a single command. IPProtect gives your agent instant 
+                  access to every blockchain network, hassle-free.
                 </p>
               </div>
             </motion.div>
 
-            {/* AgentKit */}
+            {/* AIAgents */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -302,26 +428,29 @@ export function IPProtectionAgent() {
               viewport={{ once: true }}
               className="text-center"
             >
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-blue-500"></div>
-                <div className="text-6xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400">
-                  #
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-white">AgentKit</h3>
-                <p className="text-gray-400 mb-2">Instant agents,</p>
-                <p className="text-gray-400 mb-6">that never stop working</p>
-                <div className="text-sm text-gray-500 mb-8">
-                  <p>AI workflows • auto negotiation</p>
-                  <p>24/7 monitoring</p>
-                </div>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  Deploy intelligent agents for licensing and infringement detection. AgentKit handles 
-                  negotiations and monitoring so you don't have to.
+              <div className="mb-8">
+                <div className="text-6xl font-bold text-gray-600 mb-4">#</div>
+                <h3 className="text-4xl font-bold mb-4">AIAgents</h3>
+                <p className="text-lg text-gray-400 mb-2">
+                  Instant negotiation,
+                  <br />
+                  licenses that never expire
+                </p>
+                <p className="text-sm text-gray-500">
+                  Smart flows • auto rotation
+                  <br />
+                  AI store-as-a-Service
+                </p>
+              </div>
+              <div className="bg-gray-900 border border-gray-700 rounded-lg p-6 text-left">
+                <p className="text-gray-300 mb-4">
+                  Deploy intelligent agents to handle licensing and negotiations effortlessly. 
+                  AIAgents manages smart contracts and royalties so you don't have to.
                 </p>
               </div>
             </motion.div>
 
-            {/* MarketPlace */}
+            {/* SmartKit */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -329,21 +458,30 @@ export function IPProtectionAgent() {
               viewport={{ once: true }}
               className="text-center"
             >
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500"></div>
-                <div className="text-6xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                  #
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-white">MarketPlace</h3>
-                <p className="text-gray-400 mb-2">From discovery to</p>
-                <p className="text-gray-400 mb-6">live licensing in seconds</p>
-                <div className="text-sm text-gray-500 mb-8">
-                  <p>Global marketplace • instant licensing</p>
-                  <p>cross-chain support</p>
-                </div>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  Discover and license IP assets globally. MarketPlace creates instant 
-                  licensing agreements—no complex contracts needed.
+              <div className="mb-8">
+                <div className="text-6xl font-bold text-gray-600 mb-4">#</div>
+                <h3 className="text-4xl font-bold mb-4">SmartKit</h3>
+                <p className="text-lg text-gray-400 mb-2">
+                  From plain English to
+                  <br />
+                  live integration in seconds
+                </p>
+                <p className="text-sm text-gray-500">
+                  Unlimited integrations •{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-semibold">
+                    13,000+ actions
+                  </span>
+                  <br />
+                  zero config
+                </p>
+              </div>
+              <div className="bg-gray-900 border border-gray-700 rounded-lg p-6 text-left">
+                <p className="text-gray-300 mb-4">
+                  Describe what you want to build and SmartKit creates the integration for 
+                  you—no docs or configs needed. Access to{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-semibold">
+                    13,000+ APIs
+                  </span>.
                 </p>
               </div>
             </motion.div>
@@ -351,43 +489,29 @@ export function IPProtectionAgent() {
         </div>
       </section>
 
-      {/* Asset Types Section */}
+      {/* Asset Types */}
       <section className="py-20 bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Supported Asset Types</h2>
             <p className="text-xl text-gray-400">
-              Protect any type of intellectual property with specialized agents
+              Protect and monetize any type of intellectual property
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {assetTypes.map((type, index) => (
               <motion.div
-                key={type.id}
+                key={type.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
+                className="text-center p-6 bg-gray-800 border border-gray-700 rounded-lg hover:border-gray-600 transition-colors"
               >
-                <Card className="p-6 bg-gray-800 border-gray-700 hover:border-gray-600 transition-colors">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center space-x-3">
-                      <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-2 rounded-lg">
-                        <type.icon className="h-6 w-6 text-white" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-white">
-                        {type.name}
-                      </h3>
-                    </div>
-                    <Badge variant="secondary" className="bg-gray-700 text-gray-300">
-                      {type.count.toLocaleString()}
-                    </Badge>
-                  </div>
-                  <p className="text-gray-400 text-sm">
-                    Specialized protection and licensing for {type.name.toLowerCase()} assets
-                  </p>
-                </Card>
+                <type.icon className="h-8 w-8 text-blue-400 mx-auto mb-3" />
+                <h3 className="text-lg font-semibold text-white mb-1">{type.name}</h3>
+                <p className="text-sm text-gray-400">{type.count}</p>
               </motion.div>
             ))}
           </div>
@@ -395,27 +519,26 @@ export function IPProtectionAgent() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
+      <section className="py-20 bg-gradient-to-r from-blue-900/20 to-purple-900/20">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-white mb-4">
-            Ready to Build the Future of IP?
+            Ready to Protect Your Ideas?
           </h2>
-          <p className="text-xl text-blue-100 mb-8">
-            Join thousands of creators building with agentic IP management.
+          <p className="text-xl text-gray-300 mb-8">
+            Join thousands of creators who trust IPVerse with their intellectual property.
+            Access{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-semibold">
+              13,000+ APIs
+            </span>{' '}
+            instantly.
           </p>
           {!user && (
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/login" className="inline-block">
-                <Button size="lg" className="px-8 bg-white text-blue-600 hover:bg-gray-100">
-                  Start building
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Button variant="outline" size="lg" className="px-8 border-white text-white hover:bg-white/10">
-                <Github className="mr-2 h-5 w-5" />
-                View on GitHub
+            <Link to="/login" className="inline-block">
+              <Button size="lg" className="px-8 bg-white text-black hover:bg-gray-100">
+                Start Your Free Trial
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-            </div>
+            </Link>
           )}
         </div>
       </section>
