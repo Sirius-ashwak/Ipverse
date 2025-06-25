@@ -8,13 +8,13 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
+    <div className="min-h-screen bg-black text-white transition-colors">
       <Navbar />
       <main>{children}</main>
       <Toaster
         position="top-right"
         toastOptions={{
-          className: 'dark:bg-gray-800 dark:text-white',
+          className: 'bg-gray-800 text-white border border-gray-700',
           duration: 4000,
         }}
       />
