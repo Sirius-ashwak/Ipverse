@@ -60,51 +60,64 @@ export const HomePage: React.FC = () => {
     { label: 'AI Negotiations', value: '25K+', icon: Brain },
   ];
 
+  // Available Connectors data matching the reference image
   const connectorCategories = [
     { name: 'All', count: 113, active: true },
-    { name: 'AI', count: 37, icon: Brain },
-    { name: 'Blockchain', count: 18, icon: Database },
-    { name: 'Communication', count: 12, icon: MessageSquare },
-    { name: 'Payments', count: 8, icon: CreditCard },
-    { name: 'Storage', count: 15, icon: Cloud },
+    { name: 'Accounting', count: 6 },
+    { name: 'AI', count: 37 },
+    { name: 'ATS', count: 1 },
+    { name: 'Communication', count: 5 },
+    { name: 'CRM', count: 12 },
+    { name: 'Database', count: 3 },
+    { name: 'ECommerce', count: 6 },
+    { name: 'HR & Payroll', count: 1 },
+    { name: 'Logistics', count: 4 },
+    { name: 'Marketing', count: 1 },
+    { name: 'Payments', count: 2 },
+    { name: 'POS', count: 1 },
+    { name: 'Productivity', count: 7 },
+    { name: 'Software', count: 1 },
+    { name: 'Storage', count: 5 },
+    { name: 'Ticketing', count: 3 },
+    { name: 'Tools', count: 18 },
   ];
 
   const featuredConnectors = [
     {
-      name: 'Story Protocol',
-      description: 'IP registration and licensing on blockchain',
-      category: 'Blockchain',
-      logo: '📚',
+      name: 'ActiveCampaign',
+      description: 'ActiveCampaign is a customer experience automation platform that combines email...',
+      logo: '📧',
+      category: 'Marketing',
     },
     {
-      name: 'Crossmint',
-      description: 'Walletless NFT minting and management',
-      category: 'Blockchain',
-      logo: '🎨',
-    },
-    {
-      name: 'OpenAI',
-      description: 'AI-powered content analysis and generation',
-      category: 'AI',
-      logo: '🧠',
-    },
-    {
-      name: 'Alchemy',
-      description: 'Blockchain infrastructure and APIs',
-      category: 'Blockchain',
-      logo: '⚡',
-    },
-    {
-      name: 'Tomo',
-      description: 'Social login and wallet abstraction',
-      category: 'Authentication',
-      logo: '🔐',
-    },
-    {
-      name: 'thirdweb',
-      description: 'Smart contract deployment and management',
-      category: 'Blockchain',
+      name: 'Affinity.co',
+      description: 'Affinity is a relationship intelligence CRM that automatically captures and analyzes your...',
       logo: '🔗',
+      category: 'CRM',
+    },
+    {
+      name: 'AgentQL',
+      description: 'AgentQL is a natural language interface that allows users to query their data using plain...',
+      logo: '🤖',
+      category: 'AI',
+    },
+    {
+      name: 'Ahrefs',
+      description: 'Ahrefs is a comprehensive SEO toolset that helps you grow your search traffic...',
+      logo: '📊',
+      category: 'Marketing',
+    },
+    {
+      name: 'Airtable',
+      description: 'Airtable is a cloud collaboration service that combines the features of a database...',
+      logo: '📋',
+      category: 'Database',
+    },
+    {
+      name: 'Anthropic',
+      description: 'Anthropic develops AI safety research and builds helpful, harmless, and honest AI...',
+      logo: '🧠',
+      category: 'AI',
     },
   ];
 
@@ -208,8 +221,8 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Available Connectors Section */}
-      <section className="py-20 bg-gray-900">
+      {/* Available Connectors Section - Matching Reference Image */}
+      <section className="py-20 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -220,23 +233,24 @@ export const HomePage: React.FC = () => {
             </p>
           </div>
 
-          {/* Category Filters */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {/* Category Pills - Matching Reference Layout */}
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
             {connectorCategories.map((category, index) => (
               <motion.div
                 key={category.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
               >
-                <Button
-                  variant={category.active ? 'primary' : 'outline'}
-                  size="sm"
-                  className={category.active ? '' : 'text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white'}
+                <button
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    category.active
+                      ? 'bg-white text-black'
+                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white border border-gray-700'
+                  }`}
                 >
-                  {category.icon && <category.icon className="h-4 w-4 mr-2" />}
                   {category.name} ({category.count})
-                </Button>
+                </button>
               </motion.div>
             ))}
           </div>
@@ -248,12 +262,12 @@ export const HomePage: React.FC = () => {
               <input
                 type="text"
                 placeholder="Search connectors..."
-                className="w-full pl-12 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-12 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
           </div>
 
-          {/* Featured Connectors Grid */}
+          {/* Connectors Grid - Matching Reference Design */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredConnectors.map((connector, index) => (
               <motion.div
@@ -262,43 +276,39 @@ export const HomePage: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card hover className="p-6">
+                <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-gray-700 transition-all">
                   <div className="flex items-start space-x-4">
-                    <div className="text-3xl">{connector.logo}</div>
+                    <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center text-2xl">
+                      {connector.logo}
+                    </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <h3 className="text-lg font-semibold text-white">
                           {connector.name}
                         </h3>
-                        <Badge variant="secondary" size="sm">
-                          {connector.category}
-                        </Badge>
                       </div>
-                      <p className="text-gray-400 text-sm mb-4">
+                      <p className="text-gray-400 text-sm mb-4 leading-relaxed">
                         {connector.description}
                       </p>
-                      <Button variant="outline" size="sm" className="text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white">
-                        Connect your AI agent
-                      </Button>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded">
+                          Connect your AI agent
+                        </span>
+                        <button className="text-blue-400 hover:text-blue-300 text-sm font-medium flex items-center">
+                          Learn more <ArrowRight className="ml-1 h-3 w-3" />
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </Card>
+                </div>
               </motion.div>
             ))}
-          </div>
-
-          {/* View All Button */}
-          <div className="text-center mt-12">
-            <Button variant="outline" size="lg" className="text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white">
-              View All 113 Connectors
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -337,7 +347,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 bg-gray-900">
+      <section className="py-20 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -394,7 +404,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
