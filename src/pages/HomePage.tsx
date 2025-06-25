@@ -58,7 +58,7 @@ export const HomePage: React.FC = () => {
   ];
 
   const stats = [
-    { label: 'Available APIs', value: '13,000+', icon: Network, highlight: true },
+    { label: 'Partner Integrations', value: '10+', icon: Network, highlight: true },
     { label: 'IP Assets Registered', value: '50K+', icon: Shield },
     { label: 'Active Creators', value: '12K+', icon: Users },
     { label: 'AI Negotiations', value: '25K+', icon: Brain },
@@ -75,21 +75,6 @@ export const HomePage: React.FC = () => {
     { name: 'Zapper', description: 'Connect your portfolio agent', icon: '📊', category: 'Analytics' },
     { name: 'deBridge', description: 'Connect your bridge agent', icon: '🌉', category: 'Cross-chain' },
     { name: 'OpenAI', description: 'Connect your AI agent', icon: '🧠', category: 'AI' },
-    { name: 'Anthropic', description: 'Connect your Claude agent', icon: '🤖', category: 'AI' },
-    { name: 'Vercel', description: 'Connect your deployment agent', icon: '▲', category: 'Deployment' },
-  ];
-
-  const apiCategories = [
-    { name: 'Blockchain & Web3', count: '2,500+', icon: Layers, color: 'text-blue-400' },
-    { name: 'AI & Machine Learning', count: '1,800+', icon: Brain, color: 'text-purple-400' },
-    { name: 'Payment & Finance', count: '1,200+', icon: TrendingUp, color: 'text-green-400' },
-    { name: 'Storage & Database', count: '900+', icon: Database, color: 'text-yellow-400' },
-    { name: 'Communication', count: '800+', icon: Network, color: 'text-red-400' },
-    { name: 'Analytics & Monitoring', count: '700+', icon: Cpu, color: 'text-indigo-400' },
-    { name: 'Content & Media', count: '600+', icon: ImageIcon, color: 'text-pink-400' },
-    { name: 'Security & Auth', count: '500+', icon: Shield, color: 'text-orange-400' },
-    { name: 'Development Tools', count: '400+', icon: Code, color: 'text-cyan-400' },
-    { name: 'Other Services', count: '3,600+', icon: Globe, color: 'text-gray-400' },
   ];
 
   const assetTypes = [
@@ -134,7 +119,7 @@ export const HomePage: React.FC = () => {
               <p className="text-xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
                 Connect AI agents to{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-bold text-2xl">
-                  13,000+ IP management APIs
+                  10+ IP management APIs
                 </span>{' '}
                 with human-verifiable calls, streaming execution,
                 and SDKs for Story Protocol, Crossmint, and more.
@@ -214,37 +199,19 @@ const agent = await createIPAgent({
         </div>
       </section>
 
-      {/* API Stats Highlight */}
+      {/* Stats Highlight */}
       <section className="py-16 bg-gradient-to-r from-blue-900/10 to-purple-900/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">
-                13,000+ APIs
+                10+ Partner APIs
               </span>{' '}
-              at Your Fingertips
+              Ready to Use
             </h2>
             <p className="text-xl text-gray-400">
-              Connect to any service, platform, or tool with our comprehensive API ecosystem
+              Connect to leading Web3 and AI services with our curated integrations
             </p>
-          </div>
-
-          {/* API Categories Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12">
-            {apiCategories.map((category, index) => (
-              <motion.div
-                key={category.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-gray-800/50 border border-gray-700 rounded-lg p-4 text-center hover:border-gray-600 transition-colors"
-              >
-                <category.icon className={`h-8 w-8 ${category.color} mx-auto mb-2`} />
-                <h3 className="text-sm font-semibold text-white mb-1">{category.name}</h3>
-                <p className="text-lg font-bold text-gray-300">{category.count}</p>
-              </motion.div>
-            ))}
           </div>
 
           {/* Stats Grid */}
@@ -287,7 +254,7 @@ const agent = await createIPAgent({
             <p className="text-xl text-gray-400">
               Connect to the world. New platforms added regularly from our{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-semibold">
-                13,000+ API library
+                growing partner ecosystem
               </span>
             </p>
           </div>
@@ -306,17 +273,6 @@ const agent = await createIPAgent({
                 {category} {category === 'All' && `(${integrations.length})`}
               </button>
             ))}
-          </div>
-
-          {/* Search */}
-          <div className="max-w-md mx-auto mb-12">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search integrations..."
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
           </div>
 
           {/* Integration Grid */}
@@ -353,22 +309,22 @@ const agent = await createIPAgent({
             ))}
           </div>
 
-          {/* Show More APIs CTA */}
+          {/* Roadmap CTA */}
           <div className="text-center mt-12">
             <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-gray-700 rounded-lg p-8">
               <h3 className="text-2xl font-bold text-white mb-4">
                 Need a specific API?
               </h3>
               <p className="text-gray-400 mb-6">
-                Browse our complete catalog of{' '}
+                We're constantly adding new integrations to our{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-semibold">
-                  13,000+ APIs
-                </span>{' '}
-                or request a new integration
+                  partner ecosystem
+                </span>
+                . Request a new integration or contribute to our open-source project.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button className="bg-white text-black hover:bg-gray-100">
-                  Browse All APIs
+                  View Roadmap
                 </Button>
                 <Button variant="outline" className="text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white">
                   Request Integration
@@ -469,7 +425,7 @@ const agent = await createIPAgent({
                 <p className="text-sm text-gray-500">
                   Unlimited integrations •{' '}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-semibold">
-                    13,000+ actions
+                    10+ partners
                   </span>
                   <br />
                   zero config
@@ -480,7 +436,7 @@ const agent = await createIPAgent({
                   Describe what you want to build and SmartKit creates the integration for 
                   you—no docs or configs needed. Access to{' '}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-semibold">
-                    13,000+ APIs
+                    10+ partner APIs
                   </span>.
                 </p>
               </div>
@@ -528,7 +484,7 @@ const agent = await createIPAgent({
             Join thousands of creators who trust IPVerse with their intellectual property.
             Access{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-semibold">
-              13,000+ APIs
+              10+ partner APIs
             </span>{' '}
             instantly.
           </p>
