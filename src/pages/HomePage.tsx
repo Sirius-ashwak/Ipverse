@@ -8,7 +8,12 @@ import {
   Github,
   Star,
   ExternalLink,
-  Play
+  Play,
+  Search,
+  Cpu,
+  Globe,
+  Zap,
+  Layers
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { useAuth } from '../contexts/AuthContext';
@@ -188,22 +193,22 @@ async function runAgent() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                icon: '🔧',
+                icon: Cpu,
                 title: 'LLM-First',
                 description: 'Built from the ground up for large language models and AI agents'
               },
               {
-                icon: '🌐',
+                icon: Globe,
                 title: '13,000+ APIs',
                 description: 'Connect to thousands of services with natural language'
               },
               {
-                icon: '⚡',
+                icon: Zap,
                 title: 'Fast & Reliable',
                 description: 'Streaming execution with human-verifiable calls'
               },
               {
-                icon: '📚',
+                icon: Layers,
                 title: 'Open + Extensible',
                 description: 'SDKs for LangChain, Vercel, and more'
               }
@@ -216,7 +221,9 @@ async function runAgent() {
                 viewport={{ once: true }}
                 className="bg-gray-900/50 backdrop-blur border border-gray-800/50 rounded-2xl p-10 text-center hover:border-gray-700/50 transition-all group hover:bg-gray-900/70"
               >
-                <div className="text-5xl mb-8 group-hover:scale-110 transition-transform">{feature.icon}</div>
+                <div className="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:bg-gray-700 transition-colors">
+                  <feature.icon className="h-8 w-8 text-white" />
+                </div>
                 <h3 className="text-2xl font-bold text-white mb-6">
                   {feature.title}
                 </h3>
@@ -282,10 +289,11 @@ async function runAgent() {
           {/* Search Bar */}
           <div className="max-w-3xl mx-auto mb-16">
             <div className="relative">
+              <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search connectors..."
-                className="w-full px-8 py-6 bg-gray-900/50 backdrop-blur border border-gray-800 rounded-2xl text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
+                className="w-full pl-16 pr-8 py-6 bg-gray-900/50 backdrop-blur border border-gray-800 rounded-2xl text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
               />
             </div>
           </div>
@@ -338,10 +346,10 @@ async function runAgent() {
                 className="bg-gray-900/50 backdrop-blur border border-gray-800/50 rounded-2xl p-8 hover:border-gray-700/50 transition-all group hover:bg-gray-900/70"
               >
                 <div className="flex items-start space-x-6">
-                  <div className="w-16 h-16 bg-gray-800 rounded-xl flex items-center justify-center text-3xl group-hover:bg-gray-700 transition-colors">
+                  <div className="w-16 h-16 bg-gray-800 rounded-xl flex items-center justify-center text-3xl group-hover:bg-gray-700 transition-colors flex-shrink-0">
                     {connector.logo}
                   </div>
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-3">
                       <h3 className="text-xl font-bold text-white">
                         {connector.name}
@@ -387,10 +395,11 @@ async function runAgent() {
                   <button className="text-gray-400 hover:text-white text-2xl">×</button>
                 </div>
                 <div className="relative mb-6">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <input
                     type="text"
                     placeholder="Search"
-                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white text-sm placeholder-gray-400"
+                    className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white text-sm placeholder-gray-400"
                   />
                 </div>
                 <div className="grid grid-cols-3 gap-4">
