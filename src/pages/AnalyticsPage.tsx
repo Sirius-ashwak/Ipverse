@@ -64,55 +64,55 @@ export const AnalyticsPage: React.FC = () => {
       value: '$15,750',
       change: '+23.5%',
       icon: DollarSign,
-      color: 'text-green-400',
-      bgColor: 'bg-green-500/20',
+      color: 'text-green-600',
+      bgColor: 'bg-green-100 dark:bg-green-900/20',
     },
     {
       title: 'Active Licenses',
       value: '89',
       change: '+12.3%',
       icon: Shield,
-      color: 'text-blue-400',
-      bgColor: 'bg-blue-500/20',
+      color: 'text-blue-600',
+      bgColor: 'bg-blue-100 dark:bg-blue-900/20',
     },
     {
       title: 'Total Views',
       value: '24.5K',
       change: '+18.7%',
       icon: Eye,
-      color: 'text-purple-400',
-      bgColor: 'bg-purple-500/20',
+      color: 'text-purple-600',
+      bgColor: 'bg-purple-100 dark:bg-purple-900/20',
     },
     {
       title: 'New Licensees',
       value: '156',
       change: '+31.2%',
       icon: Users,
-      color: 'text-orange-400',
-      bgColor: 'bg-orange-500/20',
+      color: 'text-orange-600',
+      bgColor: 'bg-orange-100 dark:bg-orange-900/20',
     },
   ];
 
   return (
-    <div className="min-h-screen bg-black py-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-white mb-2">
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
                 Analytics Dashboard
               </h1>
-              <p className="text-gray-400">
+              <p className="text-gray-600 dark:text-gray-400">
                 Track your IP portfolio performance and revenue insights
               </p>
             </div>
             <div className="flex space-x-3">
-              <Button variant="outline" className="text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white">
+              <Button variant="outline">
                 <Download className="h-4 w-4 mr-2" />
                 Export Report
               </Button>
-              <Button variant="outline" className="text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white">
+              <Button variant="outline">
                 <Calendar className="h-4 w-4 mr-2" />
                 Last 30 Days
               </Button>
@@ -132,13 +132,13 @@ export const AnalyticsPage: React.FC = () => {
               <Card className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-400">
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
                       {stat.title}
                     </p>
-                    <p className="text-2xl font-bold text-white">
+                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
                       {stat.value}
                     </p>
-                    <p className="text-sm text-green-400 mt-1">
+                    <p className="text-sm text-green-600 dark:text-green-400 mt-1">
                       {stat.change} from last month
                     </p>
                   </div>
@@ -156,7 +156,7 @@ export const AnalyticsPage: React.FC = () => {
           <div className="lg:col-span-2">
             <Card className="p-6">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-semibold text-white">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
                   Revenue & Licenses
                 </h2>
                 <Badge variant="success">
@@ -166,18 +166,11 @@ export const AnalyticsPage: React.FC = () => {
               </div>
               <ResponsiveContainer width="100%" height={300}>
                 <AreaChart data={revenueData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                  <XAxis dataKey="month" stroke="#9CA3AF" />
-                  <YAxis yAxisId="left" stroke="#9CA3AF" />
-                  <YAxis yAxisId="right" orientation="right" stroke="#9CA3AF" />
-                  <Tooltip 
-                    contentStyle={{ 
-                      backgroundColor: '#1F2937', 
-                      border: '1px solid #374151',
-                      borderRadius: '8px',
-                      color: '#F9FAFB'
-                    }} 
-                  />
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis yAxisId="left" />
+                  <YAxis yAxisId="right" orientation="right" />
+                  <Tooltip />
                   <Legend />
                   <Area
                     yAxisId="left"
@@ -205,7 +198,7 @@ export const AnalyticsPage: React.FC = () => {
           {/* Asset Type Distribution */}
           <div>
             <Card className="p-6">
-              <h2 className="text-xl font-semibold text-white mb-6">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
                 Asset Distribution
               </h2>
               <ResponsiveContainer width="100%" height={300}>
@@ -223,14 +216,7 @@ export const AnalyticsPage: React.FC = () => {
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Pie>
-                  <Tooltip 
-                    contentStyle={{ 
-                      backgroundColor: '#1F2937', 
-                      border: '1px solid #374151',
-                      borderRadius: '8px',
-                      color: '#F9FAFB'
-                    }} 
-                  />
+                  <Tooltip />
                 </PieChart>
               </ResponsiveContainer>
               <div className="mt-4 space-y-2">
@@ -241,11 +227,11 @@ export const AnalyticsPage: React.FC = () => {
                         className="w-3 h-3 rounded-full mr-2"
                         style={{ backgroundColor: item.color }}
                       />
-                      <span className="text-sm text-gray-400">
+                      <span className="text-sm text-gray-600 dark:text-gray-400">
                         {item.name}
                       </span>
                     </div>
-                    <span className="text-sm font-medium text-white">
+                    <span className="text-sm font-medium text-gray-900 dark:text-white">
                       {item.value}%
                     </span>
                   </div>
@@ -258,10 +244,10 @@ export const AnalyticsPage: React.FC = () => {
         {/* Performance Table */}
         <Card className="p-6">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-white">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
               Top Performing Assets
             </h2>
-            <Button variant="outline" size="sm" className="text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white">
+            <Button variant="outline" size="sm">
               View All Assets
             </Button>
           </div>
@@ -269,20 +255,20 @@ export const AnalyticsPage: React.FC = () => {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-gray-700">
-                  <th className="text-left py-3 px-4 font-medium text-white">
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-white">
                     Asset
                   </th>
-                  <th className="text-left py-3 px-4 font-medium text-white">
+                  <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-white">
                     Views
                   </th>
-                  <th className="text-left py-3 px-4 font-medium text-white">
+                  <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-white">
                     Licenses
                   </th>
-                  <th className="text-left py-3 px-4 font-medium text-white">
+                  <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-white">
                     Revenue
                   </th>
-                  <th className="text-left py-3 px-4 font-medium text-white">
+                  <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-white">
                     Performance
                   </th>
                 </tr>
@@ -294,36 +280,36 @@ export const AnalyticsPage: React.FC = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className="border-b border-gray-800 hover:bg-gray-800/50"
+                    className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800"
                   >
                     <td className="py-4 px-4">
                       <div className="flex items-center">
-                        <div className="bg-blue-500/20 text-blue-400 rounded-full w-8 h-8 flex items-center justify-center text-xs font-medium mr-3">
+                        <div className="bg-primary-100 dark:bg-primary-900/20 text-primary-600 rounded-full w-8 h-8 flex items-center justify-center text-xs font-medium mr-3">
                           {index + 1}
                         </div>
-                        <span className="font-medium text-white">
+                        <span className="font-medium text-gray-900 dark:text-white">
                           {asset.asset}
                         </span>
                       </div>
                     </td>
-                    <td className="py-4 px-4 text-gray-400">
+                    <td className="py-4 px-4 text-gray-600 dark:text-gray-400">
                       {asset.views.toLocaleString()}
                     </td>
-                    <td className="py-4 px-4 text-gray-400">
+                    <td className="py-4 px-4 text-gray-600 dark:text-gray-400">
                       {asset.licenses}
                     </td>
-                    <td className="py-4 px-4 text-gray-400">
+                    <td className="py-4 px-4 text-gray-600 dark:text-gray-400">
                       ${asset.revenue}
                     </td>
                     <td className="py-4 px-4">
                       <div className="flex items-center">
-                        <div className="w-16 bg-gray-700 rounded-full h-2 mr-2">
+                        <div className="w-16 bg-gray-200 dark:bg-gray-700 rounded-full h-2 mr-2">
                           <div
                             className="bg-green-500 h-2 rounded-full"
                             style={{ width: `${Math.min((asset.revenue / 1200) * 100, 100)}%` }}
                           />
                         </div>
-                        <TrendingUp className="h-4 w-4 text-green-400" />
+                        <TrendingUp className="h-4 w-4 text-green-500" />
                       </div>
                     </td>
                   </motion.tr>
