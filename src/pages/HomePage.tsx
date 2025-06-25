@@ -21,7 +21,8 @@ import {
   Video,
   Layers,
   Network,
-  Cpu
+  Cpu,
+  ExternalLink
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
@@ -65,16 +66,86 @@ export const HomePage: React.FC = () => {
   ];
 
   const integrations = [
-    { name: 'Story Protocol', description: 'Connect your IP agent', icon: '📚', category: 'Blockchain' },
-    { name: 'Crossmint', description: 'Connect your NFT agent', icon: '🎨', category: 'NFT' },
-    { name: 'Alchemy', description: 'Connect your Web3 agent', icon: '⚡', category: 'Infrastructure' },
-    { name: 'thirdweb', description: 'Connect your contract agent', icon: '🔗', category: 'Smart Contracts' },
-    { name: 'Gelato', description: 'Connect your automation agent', icon: '🤖', category: 'Automation' },
-    { name: 'Fleek', description: 'Connect your hosting agent', icon: '☁️', category: 'Hosting' },
-    { name: 'Yakoa', description: 'Connect your detection agent', icon: '🔍', category: 'Detection' },
-    { name: 'Zapper', description: 'Connect your portfolio agent', icon: '📊', category: 'Analytics' },
-    { name: 'deBridge', description: 'Connect your bridge agent', icon: '🌉', category: 'Cross-chain' },
-    { name: 'OpenAI', description: 'Connect your AI agent', icon: '🧠', category: 'AI' },
+    { 
+      name: 'Story Protocol', 
+      description: 'Connect your IP agent', 
+      icon: '📚', 
+      category: 'Blockchain',
+      docsUrl: 'https://docs.story.foundation/',
+      features: ['IP Registration', 'Licensing', 'Royalty Management']
+    },
+    { 
+      name: 'Crossmint', 
+      description: 'Connect your NFT agent', 
+      icon: '🎨', 
+      category: 'NFT',
+      docsUrl: 'https://docs.crossmint.com/',
+      features: ['Walletless NFT Minting', 'StoryKit Integration', 'Gasless Transactions']
+    },
+    { 
+      name: 'Alchemy', 
+      description: 'Connect your Web3 agent', 
+      icon: '⚡', 
+      category: 'Infrastructure',
+      docsUrl: 'https://docs.alchemy.com/',
+      features: ['RPC Services', 'Web3 APIs', 'Multi-chain Support']
+    },
+    { 
+      name: 'thirdweb', 
+      description: 'Connect your contract agent', 
+      icon: '🔗', 
+      category: 'Smart Contracts',
+      docsUrl: 'https://portal.thirdweb.com/',
+      features: ['Contract Deployment', 'SDK Integration', 'Gas Optimization']
+    },
+    { 
+      name: 'Gelato', 
+      description: 'Connect your automation agent', 
+      icon: '🤖', 
+      category: 'Automation',
+      docsUrl: 'https://docs.gelato.network/',
+      features: ['Automated Licensing', 'Royalty Payouts', 'Event-driven Actions']
+    },
+    { 
+      name: 'Fleek', 
+      description: 'Connect your hosting agent', 
+      icon: '☁️', 
+      category: 'Hosting',
+      docsUrl: 'https://docs.fleek.co/',
+      features: ['Agent Hosting', 'Persistent State', 'High Availability']
+    },
+    { 
+      name: 'Yakoa', 
+      description: 'Connect your detection agent', 
+      icon: '🔍', 
+      category: 'Detection',
+      docsUrl: '#',
+      features: ['Duplicate Detection', 'Originality Verification', 'Infringement Alerts']
+    },
+    { 
+      name: 'Zapper', 
+      description: 'Connect your portfolio agent', 
+      icon: '📊', 
+      category: 'Analytics',
+      docsUrl: 'https://docs.zapper.fi/',
+      features: ['Portfolio Tracking', 'Revenue Analytics', 'Performance Metrics']
+    },
+    { 
+      name: 'deBridge', 
+      description: 'Connect your bridge agent', 
+      icon: '🌉', 
+      category: 'Cross-chain',
+      docsUrl: 'https://docs.debridge.finance/',
+      features: ['Multi-chain Support', 'Cross-chain Payments', 'Bridge Integration']
+    },
+    { 
+      name: 'OpenAI', 
+      description: 'Connect your AI agent', 
+      icon: '🧠', 
+      category: 'AI',
+      docsUrl: 'https://platform.openai.com/docs',
+      features: ['Natural Language Processing', 'AI Agent Intelligence', 'Automated Decision Making']
+    },
   ];
 
   const assetTypes = [
@@ -85,6 +156,16 @@ export const HomePage: React.FC = () => {
     { name: 'Datasets', icon: Database, count: '3K+' },
     { name: 'Code', icon: Code, count: '7K+' },
   ];
+
+  const handleLearnMore = (integration: typeof integrations[0]) => {
+    if (integration.docsUrl === '#') {
+      // For integrations without docs, show a modal or toast
+      alert(`${integration.name} integration coming soon! Features include: ${integration.features.join(', ')}`);
+    } else {
+      // Open external documentation
+      window.open(integration.docsUrl, '_blank');
+    }
+  };
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -295,12 +376,29 @@ const agent = await createIPAgent({
                     <p className="text-gray-400 text-sm mb-3">
                       {integration.description}
                     </p>
+                    
+                    {/* Features List */}
+                    <div className="mb-4">
+                      <div className="text-xs text-gray-500 mb-1">Key Features:</div>
+                      <div className="space-y-1">
+                        {integration.features.slice(0, 2).map((feature, idx) => (
+                          <div key={idx} className="text-xs text-gray-400">
+                            • {feature}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-gray-500 bg-gray-700 px-2 py-1 rounded">
                         {integration.category}
                       </span>
-                      <button className="text-blue-400 hover:text-blue-300 text-sm font-medium">
-                        Learn more →
+                      <button 
+                        onClick={() => handleLearnMore(integration)}
+                        className="text-blue-400 hover:text-blue-300 text-sm font-medium flex items-center"
+                      >
+                        Learn more
+                        {integration.docsUrl !== '#' && <ExternalLink className="h-3 w-3 ml-1" />}
                       </button>
                     </div>
                   </div>
