@@ -105,88 +105,88 @@ export const HomePage: React.FC = () => {
     {
       name: 'ActiveCampaign',
       description: 'ActiveCampaign is a customer experience automation platform that combines email marketing, marketing automation, sales automation, and CRM for powerful segmentation and personalization across social, email, messaging, chat, and text.',
-      icon: '📧',
+      iconBg: 'bg-blue-500',
+      iconText: 'AC',
       category: 'Marketing',
-      color: 'bg-blue-500'
     },
     {
       name: 'Affinity.co',
       description: 'Affinity is a relationship intelligence CRM that automatically captures and analyzes your team\'s network to help you leverage warm introductions and build stronger relationships.',
-      icon: '🔗',
+      iconBg: 'bg-purple-500',
+      iconText: 'AF',
       category: 'CRM',
-      color: 'bg-purple-500'
     },
     {
       name: 'AgentQL',
       description: 'AgentQL is a natural language interface that allows users to query their data using plain English, making data analysis accessible to everyone without requiring SQL knowledge.',
-      icon: '🤖',
+      iconBg: 'bg-green-500',
+      iconText: 'AQ',
       category: 'AI',
-      color: 'bg-green-500'
     },
     // Row 2
     {
       name: 'Ahrefs',
       description: 'Ahrefs is a comprehensive SEO toolset that helps you grow your search traffic, research your competitors and monitor your niche.',
-      icon: '📊',
+      iconBg: 'bg-orange-500',
+      iconText: 'AH',
       category: 'Tools',
-      color: 'bg-orange-500'
     },
     {
       name: 'Airtable',
       description: 'Airtable is a cloud collaboration service that combines the features of a database with the simplicity of a spreadsheet.',
-      icon: '📋',
+      iconBg: 'bg-yellow-500',
+      iconText: 'AT',
       category: 'Database',
-      color: 'bg-yellow-500'
     },
     {
       name: 'Anthropic',
       description: 'Anthropic develops AI safety research and builds AI systems that are safe, beneficial, and understandable.',
-      icon: '🧠',
+      iconBg: 'bg-red-500',
+      iconText: 'AN',
       category: 'AI',
-      color: 'bg-red-500'
     },
     // Additional connectors
     {
       name: 'Story Protocol',
       description: 'Story Protocol is the IP infrastructure for the internet, enabling programmable IP licensing and royalty distribution.',
-      icon: '📚',
+      iconBg: 'bg-indigo-500',
+      iconText: 'SP',
       category: 'Tools',
-      color: 'bg-indigo-500'
     },
     {
       name: 'Crossmint',
       description: 'Crossmint enables walletless NFT minting and management, making Web3 accessible to mainstream users.',
-      icon: '🎨',
+      iconBg: 'bg-pink-500',
+      iconText: 'CM',
       category: 'Tools',
-      color: 'bg-pink-500'
     },
     {
       name: 'Alchemy',
       description: 'Alchemy provides the leading blockchain development platform powering millions of users in 99% of countries worldwide.',
-      icon: '⚡',
+      iconBg: 'bg-blue-600',
+      iconText: 'AL',
       category: 'Tools',
-      color: 'bg-blue-600'
     },
     {
       name: 'thirdweb',
       description: 'thirdweb is a complete web3 development framework that provides everything you need to connect your apps and games to decentralized networks.',
-      icon: '🌐',
+      iconBg: 'bg-purple-600',
+      iconText: '3W',
       category: 'Tools',
-      color: 'bg-purple-600'
     },
     {
       name: 'OpenAI',
       description: 'OpenAI is an AI research and deployment company whose mission is to ensure that artificial general intelligence benefits all of humanity.',
-      icon: '🤖',
+      iconBg: 'bg-green-600',
+      iconText: 'OA',
       category: 'AI',
-      color: 'bg-green-600'
     },
     {
       name: 'Gelato',
       description: 'Gelato is a Web3 automation platform that enables developers to automate smart contract executions on various blockchains.',
-      icon: '🍦',
+      iconBg: 'bg-cyan-500',
+      iconText: 'GL',
       category: 'Tools',
-      color: 'bg-cyan-500'
     }
   ];
 
@@ -316,7 +316,7 @@ export const HomePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Connectors Grid */}
+          {/* Connectors Grid - EXACT MATCH TO YOUR IMAGE */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredConnectors.map((connector, index) => (
               <motion.div
@@ -326,13 +326,16 @@ export const HomePage: React.FC = () => {
                 transition={{ duration: 0.3, delay: index * 0.05 }}
                 className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-gray-600 transition-all group"
               >
-                {/* Header */}
+                {/* Header with Icon and Title - EXACT LAYOUT */}
                 <div className="flex items-start space-x-4 mb-4">
-                  <div className={`w-12 h-12 ${connector.color} rounded-lg flex items-center justify-center text-white text-xl font-bold flex-shrink-0`}>
-                    {connector.icon}
+                  {/* Circular Icon - EXACT MATCH */}
+                  <div className={`w-12 h-12 ${connector.iconBg} rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0`}>
+                    {connector.iconText}
                   </div>
+                  
+                  {/* Title and Subtitle - EXACT MATCH */}
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-semibold text-white mb-1">
+                    <h3 className="text-lg font-semibold text-white mb-1 leading-tight">
                       {connector.name}
                     </h3>
                     <p className="text-sm text-gray-400">
@@ -341,14 +344,15 @@ export const HomePage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Description */}
-                <p className="text-gray-400 text-sm mb-4 line-clamp-3">
+                {/* Description - EXACT MATCH */}
+                <p className="text-gray-400 text-sm mb-4 leading-relaxed line-clamp-3">
                   {connector.description}
                 </p>
 
-                {/* Learn More Link */}
-                <button className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors group-hover:underline">
-                  Learn more →
+                {/* Learn More Link - EXACT MATCH */}
+                <button className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors group-hover:underline flex items-center">
+                  Learn more
+                  <ArrowRight className="ml-1 h-3 w-3" />
                 </button>
               </motion.div>
             ))}
