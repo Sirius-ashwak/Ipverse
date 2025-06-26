@@ -10,6 +10,7 @@ import { RegisterPage } from './pages/RegisterPage';
 import { DiscoverPage } from './pages/DiscoverPage';
 import { AIAgentsPage } from './pages/AIAgentsPage';
 import { AnalyticsPage } from './pages/AnalyticsPage';
+import { DocsPage } from './pages/DocsPage';
 import { useAuth } from './contexts/AuthContext';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -32,6 +33,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/discover" element={<DiscoverPage />} />
+      <Route path="/docs" element={<DocsPage />} />
       <Route
         path="/dashboard"
         element={

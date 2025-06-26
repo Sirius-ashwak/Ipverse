@@ -33,7 +33,7 @@ export const Navbar: React.FC = () => {
   const navigation = [
     { name: 'Company', href: '/company' },
     { name: 'Pricing', href: '/pricing' },
-    { name: 'Docs', href: '/docs', external: true },
+    { name: 'Docs', href: '/docs' },
   ];
 
   const userNavigation = user ? [
@@ -86,10 +86,14 @@ export const Navbar: React.FC = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className="flex items-center text-gray-300 hover:text-white transition-colors"
+                className={`flex items-center transition-colors ${
+                  isActive(item.href)
+                    ? 'text-white'
+                    : 'text-gray-300 hover:text-white'
+                }`}
               >
                 {item.name}
-                {item.external && <ExternalLink className="h-3 w-3 ml-1" />}
+                {item.name === 'Docs' && <ExternalLink className="h-3 w-3 ml-1" />}
               </Link>
             ))}
           </div>
@@ -216,7 +220,11 @@ export const Navbar: React.FC = () => {
                   <Link
                     key={item.name}
                     to={item.href}
-                    className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800 rounded-md"
+                    className={`block px-3 py-2 text-base font-medium rounded-md ${
+                      isActive(item.href)
+                        ? 'text-white bg-gray-800'
+                        : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                    }`}
                     onClick={() => setIsOpen(false)}
                   >
                     {item.name}
