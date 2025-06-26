@@ -150,7 +150,7 @@ export const CompanyPage: React.FC = () => {
             </h1>
             <p className="text-xl text-gray-400 mb-8 max-w-4xl mx-auto">
               IPVerse is our submission for the <strong>Surreal World Assets Buildathon</strong> by Story Protocol. 
-              We're building on the World's IP Blockchain to democratize intellectual property protection through 
+              We're building on the World\'s IP Blockchain to democratize intellectual property protection through 
               AI and Web3 technology.
             </p>
             
