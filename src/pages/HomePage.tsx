@@ -22,10 +22,14 @@ import {
   Layers,
   Network,
   Cpu,
-  ExternalLink
+  ExternalLink,
+  Trophy,
+  Calendar,
+  Award
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
+import { Badge } from '../components/ui/Badge';
 import { useAuth } from '../contexts/AuthContext';
 
 export const HomePage: React.FC = () => {
@@ -60,9 +64,9 @@ export const HomePage: React.FC = () => {
 
   const stats = [
     { label: 'Partner Integrations', value: '10+', icon: Network, highlight: true },
-    { label: 'IP Assets Registered', value: '50K+', icon: Shield },
-    { label: 'Active Creators', value: '12K+', icon: Users },
-    { label: 'AI Negotiations', value: '25K+', icon: Brain },
+    { label: 'AI Agents', value: '4', icon: Brain },
+    { label: 'Buildathon Track', value: 'AI Agents', icon: Trophy },
+    { label: 'Development Time', value: '5 Weeks', icon: Calendar },
   ];
 
   const integrations = [
@@ -182,12 +186,12 @@ export const HomePage: React.FC = () => {
             >
               <div className="flex items-center justify-center space-x-4 mb-6">
                 <div className="flex items-center space-x-2 bg-purple-500/10 border border-purple-500/20 rounded-full px-4 py-2">
-                  <Shield className="h-4 w-4 text-purple-400" />
-                  <span className="text-purple-400 text-sm font-medium">IP Protection First</span>
+                  <Trophy className="h-4 w-4 text-purple-400" />
+                  <span className="text-purple-400 text-sm font-medium">Surreal World Assets Buildathon</span>
                 </div>
                 <div className="flex items-center space-x-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-2">
-                  <Github className="h-4 w-4 text-blue-400" />
-                  <span className="text-blue-400 text-sm font-medium">Open Source</span>
+                  <Award className="h-4 w-4 text-blue-400" />
+                  <span className="text-blue-400 text-sm font-medium">AI Agents Track</span>
                 </div>
               </div>
               
@@ -199,13 +203,28 @@ export const HomePage: React.FC = () => {
               </h1>
               
               <p className="text-xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
-                Connect AI agents to{' '}
+                Our submission for the{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-bold">
+                  Surreal World Assets Buildathon
+                </span>{' '}
+                by Encode. Connect AI agents to{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-bold text-2xl">
                   10+ IP management APIs
                 </span>{' '}
                 with human-verifiable calls, streaming execution,
                 and SDKs for Story Protocol, Crossmint, and more.
               </p>
+
+              <div className="flex items-center justify-center space-x-6 mb-8">
+                <div className="flex items-center space-x-2 text-gray-400">
+                  <Calendar className="h-4 w-4" />
+                  <span className="text-sm">20 May - 26 June, 2025</span>
+                </div>
+                <div className="flex items-center space-x-2 text-gray-400">
+                  <Trophy className="h-4 w-4" />
+                  <span className="text-sm">$55k+ Prize Pool</span>
+                </div>
+              </div>
             </motion.div>
 
             <motion.div
@@ -224,12 +243,17 @@ export const HomePage: React.FC = () => {
                 <>
                   <Link to="/login" className="inline-block">
                     <Button size="lg" className="px-8 w-full sm:w-auto bg-blue-600 text-white hover:bg-blue-700 border-0 shadow-lg font-semibold">
-                      GET STARTED
+                      TRY THE DEMO
                     </Button>
                   </Link>
-                  <Button variant="outline" size="lg" className="px-8 w-full sm:w-auto text-white border-2 border-white hover:bg-white hover:text-black font-semibold">
-                    <Play className="h-4 w-4 mr-2" />
-                    See demo
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="px-8 w-full sm:w-auto text-white border-2 border-white hover:bg-white hover:text-black font-semibold"
+                    onClick={() => window.open('https://www.encode.club/surreal-world-assets', '_blank')}
+                  >
+                    <Trophy className="h-4 w-4 mr-2" />
+                    View Buildathon
                   </Button>
                 </>
               )}
@@ -262,13 +286,13 @@ export const HomePage: React.FC = () => {
 import { CrossmintSDK } from '@crossmint/client-sdk'
 import { IPVerse, createIPAgent } from '@ipverse/sdk'
 
-// Initialize IPVerse client
+// Initialize IPVerse client for Buildathon
 const ipverse = new IPVerse({
-  apiKey: "YOUR_IPVERSE_API_KEY",
-  network: "mainnet"
+  apiKey: "BUILDATHON_DEMO_KEY",
+  network: "story-protocol"
 })
 
-// Set up AI agent
+// Deploy AI agent for IP management
 const agent = await createIPAgent({
   name: "LicenseBot Pro",
   capabilities: ["negotiate", "detect", "analyze"]
@@ -281,18 +305,18 @@ const agent = await createIPAgent({
         </div>
       </section>
 
-      {/* Stats Highlight */}
-      <section className="py-16 bg-gradient-to-r from-blue-900/10 to-purple-900/10">
+      {/* Buildathon Highlight */}
+      <section className="py-16 bg-gradient-to-r from-purple-900/10 to-blue-900/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">
-                10+ Partner APIs
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                Surreal World Assets Buildathon
               </span>{' '}
-              Ready to Use
+              Submission
             </h2>
             <p className="text-xl text-gray-400">
-              Connect to leading Web3 and AI services with our curated integrations
+              Building on Story Protocol's IP blockchain with AI agents and comprehensive partner integrations
             </p>
           </div>
 
@@ -322,6 +346,58 @@ const agent = await createIPAgent({
                 </div>
               </motion.div>
             ))}
+          </div>
+
+          {/* Buildathon Info Card */}
+          <div className="mt-12">
+            <Card className="p-8 bg-gradient-to-r from-purple-900/20 to-blue-900/20 border-purple-500/30">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    AI Agents Track Submission
+                  </h3>
+                  <p className="text-gray-300 mb-6">
+                    IPVerse demonstrates the power of AI agents in IP management, featuring autonomous 
+                    licensing negotiation, real-time infringement detection, and intelligent market analysis.
+                  </p>
+                  <div className="flex space-x-4">
+                    <Button 
+                      className="bg-purple-600 text-white hover:bg-purple-700 border-0"
+                      onClick={() => window.open('https://www.encode.club/surreal-world-assets', '_blank')}
+                    >
+                      <Trophy className="h-4 w-4 mr-2" />
+                      View Buildathon
+                    </Button>
+                    <Button 
+                      variant="outline"
+                      className="text-white border-gray-600 hover:bg-gray-700 hover:text-white hover:border-gray-500"
+                      onClick={() => window.open('https://github.com/your-team/ipverse', '_blank')}
+                    >
+                      <Github className="h-4 w-4 mr-2" />
+                      Source Code
+                    </Button>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center p-4 bg-gray-800/50 rounded-lg">
+                    <div className="text-2xl font-bold text-purple-400 mb-1">Encode</div>
+                    <div className="text-sm text-gray-400">Organizer</div>
+                  </div>
+                  <div className="text-center p-4 bg-gray-800/50 rounded-lg">
+                    <div className="text-2xl font-bold text-blue-400 mb-1">Story</div>
+                    <div className="text-sm text-gray-400">Partner</div>
+                  </div>
+                  <div className="text-center p-4 bg-gray-800/50 rounded-lg">
+                    <div className="text-2xl font-bold text-green-400 mb-1">$55k+</div>
+                    <div className="text-sm text-gray-400">Prizes</div>
+                  </div>
+                  <div className="text-center p-4 bg-gray-800/50 rounded-lg">
+                    <div className="text-2xl font-bold text-yellow-400 mb-1">5 Weeks</div>
+                    <div className="text-sm text-gray-400">Duration</div>
+                  </div>
+                </div>
+              </div>
+            </Card>
           </div>
         </div>
       </section>
@@ -412,21 +488,28 @@ const agent = await createIPAgent({
           <div className="text-center mt-12">
             <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-gray-700 rounded-lg p-8">
               <h3 className="text-2xl font-bold text-white mb-4">
-                Need a specific API?
+                Built for the Buildathon
               </h3>
               <p className="text-gray-400 mb-6">
-                We're constantly adding new integrations to our{' '}
+                This comprehensive integration showcase demonstrates our commitment to the{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-semibold">
-                  partner ecosystem
+                  Story Protocol ecosystem
                 </span>
-                . Request a new integration or contribute to our open-source project.
+                . Every integration serves a purpose in our AI-powered IP management vision.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-blue-600 text-white hover:bg-blue-700 border-0 shadow-lg font-semibold">
-                  VIEW ROADMAP
+                <Button 
+                  className="bg-blue-600 text-white hover:bg-blue-700 border-0 shadow-lg font-semibold"
+                  onClick={() => window.open('https://www.encode.club/surreal-world-assets', '_blank')}
+                >
+                  VIEW BUILDATHON
                 </Button>
-                <Button variant="outline" className="text-white border-2 border-white hover:bg-white hover:text-black font-semibold">
-                  Request Integration
+                <Button 
+                  variant="outline" 
+                  className="text-white border-2 border-white hover:bg-white hover:text-black font-semibold"
+                  onClick={() => window.open('https://github.com/your-team/ipverse', '_blank')}
+                >
+                  Source Code
                 </Button>
               </div>
             </div>
@@ -577,23 +660,33 @@ const agent = await createIPAgent({
       <section className="py-20 bg-gradient-to-r from-blue-900/20 to-purple-900/20">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-white mb-4">
-            Ready to Protect Your Ideas?
+            Experience the Future of IP Management
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            Join thousands of creators who trust IPVerse with their intellectual property.
-            Access{' '}
+            Try our buildathon submission and see how AI agents can revolutionize intellectual property protection.
+            Built for the{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-semibold">
-              10+ partner APIs
-            </span>{' '}
-            instantly.
+              Story Protocol ecosystem
+            </span>.
           </p>
           {!user && (
-            <Link to="/login" className="inline-block">
-              <Button size="lg" className="px-8 bg-blue-600 text-white hover:bg-blue-700 border-0 shadow-lg font-semibold">
-                START BUILDING
-                <ArrowRight className="ml-2 h-5 w-5" />
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/login" className="inline-block">
+                <Button size="lg" className="px-8 bg-blue-600 text-white hover:bg-blue-700 border-0 shadow-lg font-semibold">
+                  TRY THE DEMO
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="px-8 text-white border-2 border-white hover:bg-white hover:text-black font-semibold"
+                onClick={() => window.open('https://www.encode.club/surreal-world-assets', '_blank')}
+              >
+                <Trophy className="h-4 w-4 mr-2" />
+                View Buildathon
               </Button>
-            </Link>
+            </div>
           )}
         </div>
       </section>
