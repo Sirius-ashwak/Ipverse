@@ -185,8 +185,8 @@ Our AI agents operate 24/7, handling complex IP management tasks that traditiona
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-team/ipverse.git
-cd ipverse
+git clone https://github.com/Sirius-ashwak/Ipverse.git
+cd Ipverse
 
 # Install dependencies
 npm install
@@ -268,10 +268,12 @@ The application uses the following partner integrations:
 
 ## 👥 Team
 
-**Team Pixels** - Passionate builders creating the future of IP management
+**Sirius** - Passionate builder creating the future of IP management for the Surreal World Assets Buildathon
 
 ## 📞 Contact & Support
 
+- **GitHub**: [https://github.com/Sirius-ashwak/Ipverse](https://github.com/Sirius-ashwak/Ipverse)
+- **LinkedIn**: [Mohamed Ashwak M](https://www.linkedin.com/in/mohamed-ashwak-m-b8835a262/)
 - **Documentation**: [Tomo SDK Docs](https://docs.tomo.inc/tomo-sdk/tomoevmkit)
 - **Telegram Support**: [Join our community](https://t.me/+Ax7Q0xguPJgyMTU0)
 - **Email**: connect@tomo.inc
