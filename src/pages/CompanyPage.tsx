@@ -32,7 +32,7 @@ export const CompanyPage: React.FC = () => {
       bio: 'Visionary leader and blockchain pioneer. Founded IPVerse to democratize IP protection for creators worldwide.',
       avatar: 'https://images.pexels.com/photos/1169754/pexels-photo-1169754.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=2', // Star image
       social: {
-        linkedin: '#',
+        linkedin: 'https://www.linkedin.com/in/mohamed-ashwak-m-b8835a262/',
         twitter: '#',
         github: 'https://github.com/Sirius-ashwak'
       }
@@ -342,7 +342,12 @@ export const CompanyPage: React.FC = () => {
                 <p className="text-gray-400 text-sm mb-4">{team[0].bio}</p>
                 
                 <div className="flex justify-center space-x-3">
-                  <Button variant="ghost" size="sm" className="p-2">
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="p-2"
+                    onClick={() => window.open(team[0].social.linkedin, '_blank')}
+                  >
                     <Linkedin className="h-4 w-4 text-gray-400 hover:text-purple-400" />
                   </Button>
                   <Button variant="ghost" size="sm" className="p-2">
