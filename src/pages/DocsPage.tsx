@@ -24,7 +24,9 @@ import {
   Settings,
   Shield,
   Brain,
-  Globe
+  Globe,
+  Copy,
+  Check
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
@@ -33,6 +35,7 @@ export const DocsPage: React.FC = () => {
   const [selectedSection, setSelectedSection] = useState('welcome');
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedSections, setExpandedSections] = useState<string[]>(['get-started', 'products']);
+  const [copiedCode, setCopiedCode] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const sidebarSections = [
@@ -114,6 +117,36 @@ export const DocsPage: React.FC = () => {
         : [...prev, sectionId]
     );
   };
+
+  const copyToClipboard = (text: string, id: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedCode(id);
+    setTimeout(() => setCopiedCode(null), 2000);
+  };
+
+  const CodeBlock = ({ children, language = 'bash', id }: { children: string; language?: string; id: string }) => (
+    <div className="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden mb-6">
+      <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
+        <div className="flex space-x-2">
+          <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+          <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+        </div>
+        <div className="flex items-center space-x-2">
+          <div className="text-xs text-gray-400">{language}</div>
+          <button 
+            onClick={() => copyToClipboard(children, id)}
+            className="text-gray-400 hover:text-white transition-colors"
+          >
+            {copiedCode === id ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+          </button>
+        </div>
+      </div>
+      <pre className="text-gray-300 text-sm p-4 overflow-x-auto">
+        <code>{children}</code>
+      </pre>
+    </div>
+  );
 
   const renderContent = () => {
     switch (selectedSection) {
@@ -264,17 +297,8 @@ export const DocsPage: React.FC = () => {
               </ul>
 
               <h2 className="text-2xl font-bold text-white mb-4">Step 1: Clone and Setup</h2>
-              <div className="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden mb-6">
-                <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
-                  <div className="flex space-x-2">
-                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  </div>
-                  <div className="text-xs text-gray-400">Terminal</div>
-                </div>
-                <pre className="text-gray-300 text-sm p-4 overflow-x-auto">
-                  <code>{`# Clone the repository
+              <CodeBlock id="clone-setup" language="Terminal">
+{`# Clone the repository
 git clone https://github.com/your-team/ipverse.git
 cd ipverse
 
@@ -282,31 +306,20 @@ cd ipverse
 npm install
 
 # Copy environment template
-cp .env.example .env.local`}</code>
-                </pre>
-              </div>
+cp .env.example .env.local`}
+              </CodeBlock>
 
               <h2 className="text-2xl font-bold text-white mb-4">Step 2: Configure Environment</h2>
               <p className="text-gray-300 mb-4">Edit <code className="bg-gray-700 px-2 py-1 rounded text-blue-300">.env.local</code> with your API keys:</p>
-              <div className="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden mb-6">
-                <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
-                  <div className="flex space-x-2">
-                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  </div>
-                  <div className="text-xs text-gray-400">.env.local</div>
-                </div>
-                <pre className="text-gray-300 text-sm p-4 overflow-x-auto">
-                  <code>{`# Essential for core functionality
+              <CodeBlock id="env-config" language=".env.local">
+{`# Essential for core functionality
 VITE_TOMO_CLIENT_ID=xDsx8PcJd6QrpkgejZRWi9WpyTQ2FvCZOOmG2Ry4brFQxlil77Y3Rfg5XGTEFl5MWOfc6VOzDHku84Cye7l7pwnr
 
 # Optional: Add your own API keys for full functionality
 VITE_OPENAI_API_KEY=your_openai_api_key_here
 VITE_ALCHEMY_API_KEY=your_alchemy_api_key_here
-VITE_STORY_PROTOCOL_API_KEY=your_story_protocol_api_key_here`}</code>
-                </pre>
-              </div>
+VITE_STORY_PROTOCOL_API_KEY=your_story_protocol_api_key_here`}
+              </CodeBlock>
 
               <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 mb-6">
                 <p className="text-blue-200 text-sm">
@@ -315,19 +328,9 @@ VITE_STORY_PROTOCOL_API_KEY=your_story_protocol_api_key_here`}</code>
               </div>
 
               <h2 className="text-2xl font-bold text-white mb-4">Step 3: Start Development Server</h2>
-              <div className="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden mb-6">
-                <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
-                  <div className="flex space-x-2">
-                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  </div>
-                  <div className="text-xs text-gray-400">Terminal</div>
-                </div>
-                <pre className="text-gray-300 text-sm p-4">
-                  <code>npm run dev</code>
-                </pre>
-              </div>
+              <CodeBlock id="dev-server" language="Terminal">
+npm run dev
+              </CodeBlock>
               <p className="text-gray-300 mb-6">
                 Open <a href="http://localhost:5173" className="text-blue-400 hover:text-blue-300 underline">http://localhost:5173</a> in your browser.
               </p>
@@ -352,10 +355,34 @@ VITE_STORY_PROTOCOL_API_KEY=your_story_protocol_api_key_here`}</code>
                 </div>
               </div>
 
+              <h2 className="text-2xl font-bold text-white mb-4">Step 5: Register Your First IP Asset</h2>
+              <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 mb-6">
+                <ol className="text-gray-300 space-y-2">
+                  <li>1. Go to <strong className="text-white">Dashboard</strong> → <strong className="text-white">Register New IP</strong></li>
+                  <li>2. Choose your asset type (Image, Audio, Video, Text, Dataset, Code)</li>
+                  <li>3. Fill in the details:
+                    <ul className="ml-4 mt-2 space-y-1">
+                      <li>• <strong className="text-white">Title</strong>: "My First Digital Creation"</li>
+                      <li>• <strong className="text-white">Description</strong>: Describe your work</li>
+                      <li>• <strong className="text-white">Tags</strong>: Add relevant keywords</li>
+                      <li>• <strong className="text-white">Royalty</strong>: Set your percentage (default: 10%)</li>
+                    </ul>
+                  </li>
+                  <li>4. Click <strong className="text-blue-400">"Analyze with AI"</strong> - Our AI agents will:
+                    <ul className="ml-4 mt-2 space-y-1">
+                      <li>• Analyze market potential</li>
+                      <li>• Check for infringement</li>
+                      <li>• Suggest optimization</li>
+                    </ul>
+                  </li>
+                  <li>5. Click <strong className="text-green-400">"Register Asset"</strong> to complete blockchain registration</li>
+                </ol>
+              </div>
+
               <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-green-300 mb-2">🎉 Congratulations!</h3>
-                <p className="text-green-200">Your IPVerse development environment is now ready. You can start building with our AI + Web3 IP management platform!</p>
-                <div className="mt-4 flex space-x-3">
+                <p className="text-green-200 mb-4">Your IP is now protected and ready to monetize.</p>
+                <div className="flex space-x-3">
                   <Button 
                     size="sm" 
                     className="bg-green-600 text-white hover:bg-green-700 border-0"
@@ -397,13 +424,8 @@ VITE_STORY_PROTOCOL_API_KEY=your_story_protocol_api_key_here`}</code>
                 Create a <code className="bg-gray-700 px-2 py-1 rounded text-blue-300">.env.local</code> file with the following variables:
               </p>
               
-              <div className="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden mb-6">
-                <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
-                  <div className="text-xs text-gray-400">.env.local</div>
-                  <button className="text-gray-400 hover:text-white text-xs">Copy</button>
-                </div>
-                <pre className="text-gray-300 text-sm p-4 overflow-x-auto">
-                  <code>{`# Core Configuration
+              <CodeBlock id="local-env" language=".env.local">
+{`# Core Configuration
 VITE_TOMO_CLIENT_ID=xDsx8PcJd6QrpkgejZRWi9WpyTQ2FvCZOOmG2Ry4brFQxlil77Y3Rfg5XGTEFl5MWOfc6VOzDHku84Cye7l7pwnr
 VITE_OPENAI_API_KEY=your_openai_api_key_here
 VITE_ALCHEMY_API_KEY=your_alchemy_api_key_here
@@ -415,9 +437,8 @@ VITE_THIRDWEB_CLIENT_ID=your_thirdweb_client_id_here
 
 # Development Settings
 VITE_DEBUG_MODE=true
-VITE_MOCK_APIS=true`}</code>
-                </pre>
-              </div>
+VITE_MOCK_APIS=true`}
+              </CodeBlock>
 
               <h3 className="text-xl font-semibold text-white mb-3">Available Scripts</h3>
               <div className="space-y-4 mb-6">
@@ -560,14 +581,26 @@ VITE_MOCK_APIS=true`}</code>
 
               <div className="grid md:grid-cols-2 gap-4 mb-8">
                 {[
-                  { name: 'Story Protocol', desc: 'IP Registration', color: 'blue' },
-                  { name: 'Crossmint', desc: 'NFT Minting', color: 'green' },
-                  { name: 'thirdweb', desc: 'Smart Contracts', color: 'purple' },
-                  { name: 'Gelato', desc: 'Automation', color: 'yellow' }
+                  { name: 'Story Protocol', desc: 'IP Registration', color: 'blue', url: 'https://docs.story.foundation/' },
+                  { name: 'Crossmint', desc: 'NFT Minting', color: 'green', url: 'https://docs.crossmint.com/' },
+                  { name: 'thirdweb', desc: 'Smart Contracts', color: 'purple', url: 'https://portal.thirdweb.com/' },
+                  { name: 'Gelato', desc: 'Automation', color: 'yellow', url: 'https://docs.gelato.network/' }
                 ].map((api, index) => (
-                  <div key={index} className="bg-gray-800 border border-gray-700 rounded-lg p-4">
-                    <h4 className="font-semibold text-white mb-1">{api.name}</h4>
-                    <p className="text-gray-400 text-sm">{api.desc}</p>
+                  <div key={index} className="bg-gray-800 border border-gray-700 rounded-lg p-4 hover:border-gray-600 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">{api.name}</h4>
+                        <p className="text-gray-400 text-sm">{api.desc}</p>
+                      </div>
+                      <Button 
+                        variant="ghost" 
+                        size="sm"
+                        onClick={() => window.open(api.url, '_blank')}
+                        className="text-gray-400 hover:text-white"
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                      </Button>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -585,11 +618,236 @@ VITE_MOCK_APIS=true`}</code>
           </div>
         );
 
+      case 'ipprotect':
+        return (
+          <div className="max-w-4xl">
+            <div className="mb-8">
+              <div className="text-sm text-blue-400 mb-2">Products</div>
+              <h1 className="text-4xl font-bold text-white mb-4">IPProtect</h1>
+              <p className="text-xl text-gray-400">Every IP registration, right the first time</p>
+            </div>
+
+            <div className="prose prose-invert max-w-none">
+              <p className="text-gray-300 mb-8 text-lg leading-relaxed">
+                IPProtect gives your agent instant access to every blockchain network, hassle-free. Register any IP with a single command.
+              </p>
+
+              <h2 className="text-2xl font-bold text-white mb-4">Key Features</h2>
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-white mb-2">🔗 Multi-Chain Support</h3>
+                  <p className="text-gray-400 text-sm">Register IP on Ethereum, Polygon, and other major blockchains</p>
+                </div>
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-white mb-2">⚡ Instant Registration</h3>
+                  <p className="text-gray-400 text-sm">Complete IP registration in seconds, not hours</p>
+                </div>
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-white mb-2">🛡️ Immutable Records</h3>
+                  <p className="text-gray-400 text-sm">Blockchain-based proof of ownership and creation</p>
+                </div>
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-white mb-2">📋 Full Schemas</h3>
+                  <p className="text-gray-400 text-sm">Comprehensive metadata and licensing information</p>
+                </div>
+              </div>
+
+              <h2 className="text-2xl font-bold text-white mb-4">Usage Example</h2>
+              <CodeBlock id="ipprotect-usage" language="TypeScript">
+{`import { IPProtect } from '@ipverse/sdk'
+
+const ipprotect = new IPProtect({
+  apiKey: process.env.IPVERSE_API_KEY
+})
+
+// Register IP asset
+const registration = await ipprotect.register({
+  title: "My Digital Artwork",
+  type: "image",
+  creator: "0x1234...",
+  metadata: {
+    description: "Abstract digital art piece",
+    tags: ["digital-art", "abstract"],
+    royaltyPercentage: 10
+  }
+})
+
+console.log('IP registered:', registration.id)
+console.log('Blockchain TX:', registration.transactionHash)`}
+              </CodeBlock>
+
+              <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-green-300 mb-2">✨ Safety Baked In</h3>
+                <p className="text-green-200">
+                  IPProtect includes built-in validation, duplicate detection, and automatic compliance checks to ensure your IP registration is bulletproof.
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'aiagents':
+        return (
+          <div className="max-w-4xl">
+            <div className="mb-8">
+              <div className="text-sm text-blue-400 mb-2">Products</div>
+              <h1 className="text-4xl font-bold text-white mb-4">AIAgents</h1>
+              <p className="text-xl text-gray-400">Instant negotiation, licenses that never expire</p>
+            </div>
+
+            <div className="prose prose-invert max-w-none">
+              <p className="text-gray-300 mb-8 text-lg leading-relaxed">
+                Deploy intelligent agents to handle licensing and negotiations effortlessly. AIAgents manages smart contracts and royalties so you don't have to.
+              </p>
+
+              <h2 className="text-2xl font-bold text-white mb-4">Agent Types</h2>
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-white mb-2">🤝 LicenseBot Pro</h3>
+                  <p className="text-gray-400 text-sm">Automated licensing negotiation and contract generation</p>
+                </div>
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-white mb-2">🔍 InfringementGuard</h3>
+                  <p className="text-gray-400 text-sm">Real-time monitoring and infringement detection</p>
+                </div>
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-white mb-2">📊 MarketAnalyzer</h3>
+                  <p className="text-gray-400 text-sm">Market trend analysis and pricing optimization</p>
+                </div>
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-white mb-2">💡 CreatorAssist</h3>
+                  <p className="text-gray-400 text-sm">IP registration guidance and optimization</p>
+                </div>
+              </div>
+
+              <h2 className="text-2xl font-bold text-white mb-4">Deploy an Agent</h2>
+              <CodeBlock id="aiagents-deploy" language="TypeScript">
+{`import { AIAgents } from '@ipverse/sdk'
+
+const agents = new AIAgents({
+  apiKey: process.env.IPVERSE_API_KEY
+})
+
+// Deploy a licensing agent
+const agent = await agents.deploy({
+  type: 'negotiator',
+  name: 'LicenseBot Pro',
+  capabilities: ['negotiate', 'analyze', 'generate'],
+  config: {
+    maxRoyalty: 15,
+    autoApprove: true,
+    languages: ['en', 'es', 'fr']
+  }
+})
+
+// Start negotiation
+const negotiation = await agent.negotiate({
+  assetId: 'asset_123',
+  licenseeId: 'user_456',
+  terms: {
+    usage: 'commercial',
+    duration: '2 years',
+    territory: 'global'
+  }
+})`}
+              </CodeBlock>
+
+              <div className="bg-purple-500/10 border border-purple-500/20 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-purple-300 mb-2">🔄 Smart Flows</h3>
+                <p className="text-purple-200">
+                  AIAgents automatically handles license renewals, royalty distributions, and contract updates. Set it once, earn forever.
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'smartkit':
+        return (
+          <div className="max-w-4xl">
+            <div className="mb-8">
+              <div className="text-sm text-blue-400 mb-2">Products</div>
+              <h1 className="text-4xl font-bold text-white mb-4">SmartKit</h1>
+              <p className="text-xl text-gray-400">From plain English to live integration in seconds</p>
+            </div>
+
+            <div className="prose prose-invert max-w-none">
+              <p className="text-gray-300 mb-8 text-lg leading-relaxed">
+                Describe what you want to build and SmartKit creates the integration for you—no docs or configs needed. Access to{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-semibold">
+                  10+ partner APIs
+                </span>.
+              </p>
+
+              <h2 className="text-2xl font-bold text-white mb-4">Available Integrations</h2>
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+                {[
+                  { name: 'Story Protocol', icon: '📚' },
+                  { name: 'Crossmint', icon: '🎨' },
+                  { name: 'Alchemy', icon: '⚡' },
+                  { name: 'thirdweb', icon: '🔗' },
+                  { name: 'Gelato', icon: '🤖' },
+                  { name: 'Fleek', icon: '☁️' },
+                  { name: 'OpenAI', icon: '🧠' },
+                  { name: 'Yakoa', icon: '🔍' },
+                  { name: 'Zapper', icon: '📊' },
+                  { name: 'deBridge', icon: '🌉' }
+                ].map((integration, index) => (
+                  <div key={index} className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center">
+                    <div className="text-2xl mb-2">{integration.icon}</div>
+                    <div className="text-sm text-gray-300 font-medium">{integration.name}</div>
+                  </div>
+                ))}
+              </div>
+
+              <h2 className="text-2xl font-bold text-white mb-4">Natural Language Integration</h2>
+              <CodeBlock id="smartkit-usage" language="TypeScript">
+{`import { SmartKit } from '@ipverse/sdk'
+
+const smartkit = new SmartKit({
+  apiKey: process.env.IPVERSE_API_KEY
+})
+
+// Describe what you want in plain English
+const integration = await smartkit.create({
+  description: "I want to register IP on Story Protocol and mint an NFT on Crossmint when someone licenses my digital art",
+  triggers: ["license_created"],
+  actions: ["register_ip", "mint_nft"],
+  conditions: {
+    assetType: "image",
+    minRoyalty: 5
+  }
+})
+
+// SmartKit automatically generates the integration
+console.log('Integration created:', integration.id)
+console.log('Webhook URL:', integration.webhookUrl)`}
+              </CodeBlock>
+
+              <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-yellow-300 mb-2">⚡ Zero Config</h3>
+                <p className="text-yellow-200">
+                  SmartKit handles all the complex API configurations, authentication, and error handling. Just describe what you want and it works.
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+
+      // Add more cases for other sections...
       default:
         return (
           <div className="max-w-4xl">
-            <h1 className="text-4xl font-bold text-white mb-4">Documentation</h1>
-            <p className="text-xl text-gray-400">Select a topic from the sidebar to get started.</p>
+            <h1 className="text-4xl font-bold text-white mb-4">Coming Soon</h1>
+            <p className="text-xl text-gray-400">This section is under development. Check back soon!</p>
+            <div className="mt-8">
+              <Button 
+                onClick={() => setSelectedSection('welcome')}
+                className="bg-blue-600 text-white hover:bg-blue-700 border-0"
+              >
+                Back to Welcome
+              </Button>
+            </div>
           </div>
         );
     }
