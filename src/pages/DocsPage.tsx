@@ -854,7 +854,7 @@ console.log('Webhook URL:', integration.webhookUrl)`}
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black text-white">
       {/* Header */}
       <div className="border-b border-gray-800 bg-black/95 backdrop-blur-sm sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -900,7 +900,7 @@ console.log('Webhook URL:', integration.webhookUrl)`}
                 variant="ghost" 
                 size="sm" 
                 className="text-gray-400 hover:text-white"
-                onClick={() => window.open('https://github.com/your-team/ipverse', '_blank')}
+                onClick={() => window.open('https://github.com/Sirius-ashwak/Ipverse', '_blank')}
               >
                 <Github className="h-4 w-4 mr-1" />
                 GitHub
@@ -987,7 +987,7 @@ console.log('Webhook URL:', integration.webhookUrl)`}
         </div>
 
         {/* Main Content */}
-        <div className="flex-1">
+        <div className="flex-1 bg-black">
           <div className="p-8">
             <motion.div
               key={selectedSection}
