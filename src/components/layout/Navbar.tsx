@@ -90,7 +90,10 @@ export const Navbar: React.FC = () => {
           {/* Center Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {/* GitHub Star */}
-            <div className="flex items-center space-x-2 bg-gray-800 border border-gray-700 rounded-lg px-3 py-1">
+            <div 
+              className="flex items-center space-x-2 bg-gray-800 border border-gray-700 rounded-lg px-3 py-1 cursor-pointer hover:bg-gray-700 transition-colors"
+              onClick={() => window.open('https://github.com/Sirius-ashwak/Ipverse', '_blank')}
+            >
               <Github className="h-4 w-4 text-gray-400" />
               <span className="text-sm text-gray-300">GitHub</span>
               <div className="flex items-center space-x-1">

@@ -142,7 +142,7 @@ export const DocsPage: React.FC = () => {
           </button>
         </div>
       </div>
-      <pre className="text-gray-300 text-sm p-4 overflow-x-auto">
+      <pre className="text-gray-300 text-sm p-4 overflow-x-auto bg-gray-900">
         <code>{children}</code>
       </pre>
     </div>
@@ -152,7 +152,7 @@ export const DocsPage: React.FC = () => {
     switch (selectedSection) {
       case 'welcome':
         return (
-          <div className="max-w-4xl">
+          <div className="max-w-4xl bg-black">
             <div className="mb-8">
               <div className="text-sm text-blue-400 mb-2">Get Started</div>
               <h1 className="text-4xl font-bold text-white mb-4">Welcome to IPVerse</h1>
@@ -281,7 +281,7 @@ export const DocsPage: React.FC = () => {
 
       case 'quickstart':
         return (
-          <div className="max-w-4xl">
+          <div className="max-w-4xl bg-black">
             <div className="mb-8">
               <div className="text-sm text-blue-400 mb-2">Get Started</div>
               <h1 className="text-4xl font-bold text-white mb-4">Quickstart</h1>
@@ -299,8 +299,8 @@ export const DocsPage: React.FC = () => {
               <h2 className="text-2xl font-bold text-white mb-4">Step 1: Clone and Setup</h2>
               <CodeBlock id="clone-setup" language="Terminal">
 {`# Clone the repository
-git clone https://github.com/your-team/ipverse.git
-cd ipverse
+git clone https://github.com/Sirius-ashwak/Ipverse.git
+cd Ipverse
 
 # Install dependencies
 npm install
@@ -355,30 +355,6 @@ npm run dev
                 </div>
               </div>
 
-              <h2 className="text-2xl font-bold text-white mb-4">Step 5: Register Your First IP Asset</h2>
-              <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 mb-6">
-                <ol className="text-gray-300 space-y-2">
-                  <li>1. Go to <strong className="text-white">Dashboard</strong> → <strong className="text-white">Register New IP</strong></li>
-                  <li>2. Choose your asset type (Image, Audio, Video, Text, Dataset, Code)</li>
-                  <li>3. Fill in the details:
-                    <ul className="ml-4 mt-2 space-y-1">
-                      <li>• <strong className="text-white">Title</strong>: "My First Digital Creation"</li>
-                      <li>• <strong className="text-white">Description</strong>: Describe your work</li>
-                      <li>• <strong className="text-white">Tags</strong>: Add relevant keywords</li>
-                      <li>• <strong className="text-white">Royalty</strong>: Set your percentage (default: 10%)</li>
-                    </ul>
-                  </li>
-                  <li>4. Click <strong className="text-blue-400">"Analyze with AI"</strong> - Our AI agents will:
-                    <ul className="ml-4 mt-2 space-y-1">
-                      <li>• Analyze market potential</li>
-                      <li>• Check for infringement</li>
-                      <li>• Suggest optimization</li>
-                    </ul>
-                  </li>
-                  <li>5. Click <strong className="text-green-400">"Register Asset"</strong> to complete blockchain registration</li>
-                </ol>
-              </div>
-
               <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-green-300 mb-2">🎉 Congratulations!</h3>
                 <p className="text-green-200 mb-4">Your IP is now protected and ready to monetize.</p>
@@ -404,440 +380,10 @@ npm run dev
           </div>
         );
 
-      case 'running-locally':
-        return (
-          <div className="max-w-4xl">
-            <div className="mb-8">
-              <div className="text-sm text-blue-400 mb-2">Get Started</div>
-              <h1 className="text-4xl font-bold text-white mb-4">Running Locally</h1>
-              <p className="text-xl text-gray-400">Set up IPVerse for local development with full features</p>
-            </div>
-
-            <div className="prose prose-invert max-w-none">
-              <h2 className="text-2xl font-bold text-white mb-4">Development Setup</h2>
-              <p className="text-gray-300 mb-6">
-                Follow these steps to set up IPVerse for local development with all features enabled.
-              </p>
-
-              <h3 className="text-xl font-semibold text-white mb-3">Environment Configuration</h3>
-              <p className="text-gray-300 mb-4">
-                Create a <code className="bg-gray-700 px-2 py-1 rounded text-blue-300">.env.local</code> file with the following variables:
-              </p>
-              
-              <CodeBlock id="local-env" language=".env.local">
-{`# Core Configuration
-VITE_TOMO_CLIENT_ID=xDsx8PcJd6QrpkgejZRWi9WpyTQ2FvCZOOmG2Ry4brFQxlil77Y3Rfg5XGTEFl5MWOfc6VOzDHku84Cye7l7pwnr
-VITE_OPENAI_API_KEY=your_openai_api_key_here
-VITE_ALCHEMY_API_KEY=your_alchemy_api_key_here
-
-# Partner Integrations
-VITE_STORY_PROTOCOL_API_KEY=your_story_protocol_api_key_here
-VITE_CROSSMINT_PROJECT_ID=your_crossmint_project_id_here
-VITE_THIRDWEB_CLIENT_ID=your_thirdweb_client_id_here
-
-# Development Settings
-VITE_DEBUG_MODE=true
-VITE_MOCK_APIS=true`}
-              </CodeBlock>
-
-              <h3 className="text-xl font-semibold text-white mb-3">Available Scripts</h3>
-              <div className="space-y-4 mb-6">
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <code className="text-blue-300 font-mono">npm run dev</code>
-                    <Terminal className="h-4 w-4 text-gray-400" />
-                  </div>
-                  <p className="text-gray-400 text-sm">Start the development server with hot reload</p>
-                </div>
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <code className="text-blue-300 font-mono">npm run build</code>
-                    <Settings className="h-4 w-4 text-gray-400" />
-                  </div>
-                  <p className="text-gray-400 text-sm">Build the application for production</p>
-                </div>
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <code className="text-blue-300 font-mono">npm run preview</code>
-                    <Globe className="h-4 w-4 text-gray-400" />
-                  </div>
-                  <p className="text-gray-400 text-sm">Preview the production build locally</p>
-                </div>
-              </div>
-
-              <h3 className="text-xl font-semibold text-white mb-3">Development Features</h3>
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
-                  <h4 className="font-semibold text-white mb-2">🔧 Debug Mode</h4>
-                  <p className="text-gray-400 text-sm">Detailed logging and error information</p>
-                </div>
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
-                  <h4 className="font-semibold text-white mb-2">🎭 Mock APIs</h4>
-                  <p className="text-gray-400 text-sm">Test without real API keys</p>
-                </div>
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
-                  <h4 className="font-semibold text-white mb-2">🔄 Hot Reload</h4>
-                  <p className="text-gray-400 text-sm">Instant updates during development</p>
-                </div>
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
-                  <h4 className="font-semibold text-white mb-2">📱 Responsive</h4>
-                  <p className="text-gray-400 text-sm">Test on all device sizes</p>
-                </div>
-              </div>
-
-              <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-yellow-300 mb-2">💡 Pro Tip</h3>
-                <p className="text-yellow-200">
-                  Enable debug mode to see detailed API logs and component render information. Perfect for troubleshooting integration issues!
-                </p>
-              </div>
-            </div>
-          </div>
-        );
-
-      case 'environment-setup':
-        return (
-          <div className="max-w-4xl">
-            <div className="mb-8">
-              <div className="text-sm text-blue-400 mb-2">Get Started</div>
-              <h1 className="text-4xl font-bold text-white mb-4">Environment Setup</h1>
-              <p className="text-xl text-gray-400">Configure API keys and environment variables</p>
-            </div>
-
-            <div className="prose prose-invert max-w-none">
-              <h2 className="text-2xl font-bold text-white mb-4">Required API Keys</h2>
-              
-              <div className="space-y-6 mb-8">
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="bg-green-500/20 p-2 rounded mr-3">
-                      <span className="text-green-400">✅</span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-white">Tomo SDK</h3>
-                      <p className="text-gray-400 text-sm">Already configured - no action needed</p>
-                    </div>
-                  </div>
-                  <div className="bg-gray-900 rounded p-3">
-                    <code className="text-green-300 text-sm">VITE_TOMO_CLIENT_ID=xDsx8PcJd6QrpkgejZRWi9WpyTQ2FvCZOOmG2Ry4brFQxlil77Y3Rfg5XGTEFl5MWOfc6VOzDHku84Cye7l7pwnr</code>
-                  </div>
-                </div>
-
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center">
-                      <div className="bg-blue-500/20 p-2 rounded mr-3">
-                        <span className="text-blue-400">🧠</span>
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-white">OpenAI</h3>
-                        <p className="text-gray-400 text-sm">Required for AI agents</p>
-                      </div>
-                    </div>
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      className="text-blue-400 border-blue-600 hover:bg-blue-700 hover:text-white"
-                      onClick={() => window.open('https://platform.openai.com/api-keys', '_blank')}
-                    >
-                      Get API Key
-                    </Button>
-                  </div>
-                  <div className="bg-gray-900 rounded p-3">
-                    <code className="text-gray-400 text-sm">VITE_OPENAI_API_KEY=your_openai_api_key_here</code>
-                  </div>
-                </div>
-
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center">
-                      <div className="bg-purple-500/20 p-2 rounded mr-3">
-                        <span className="text-purple-400">⚡</span>
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-white">Alchemy</h3>
-                        <p className="text-gray-400 text-sm">Required for blockchain interactions</p>
-                      </div>
-                    </div>
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      className="text-purple-400 border-purple-600 hover:bg-purple-700 hover:text-white"
-                      onClick={() => window.open('https://dashboard.alchemy.com/', '_blank')}
-                    >
-                      Get API Key
-                    </Button>
-                  </div>
-                  <div className="bg-gray-900 rounded p-3">
-                    <code className="text-gray-400 text-sm">VITE_ALCHEMY_API_KEY=your_alchemy_api_key_here</code>
-                  </div>
-                </div>
-              </div>
-
-              <h2 className="text-2xl font-bold text-white mb-4">Optional Partner APIs</h2>
-              <p className="text-gray-300 mb-6">
-                These APIs unlock additional features but aren't required for basic functionality:
-              </p>
-
-              <div className="grid md:grid-cols-2 gap-4 mb-8">
-                {[
-                  { name: 'Story Protocol', desc: 'IP Registration', color: 'blue', url: 'https://docs.story.foundation/' },
-                  { name: 'Crossmint', desc: 'NFT Minting', color: 'green', url: 'https://docs.crossmint.com/' },
-                  { name: 'thirdweb', desc: 'Smart Contracts', color: 'purple', url: 'https://portal.thirdweb.com/' },
-                  { name: 'Gelato', desc: 'Automation', color: 'yellow', url: 'https://docs.gelato.network/' }
-                ].map((api, index) => (
-                  <div key={index} className="bg-gray-800 border border-gray-700 rounded-lg p-4 hover:border-gray-600 transition-colors">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="font-semibold text-white mb-1">{api.name}</h4>
-                        <p className="text-gray-400 text-sm">{api.desc}</p>
-                      </div>
-                      <Button 
-                        variant="ghost" 
-                        size="sm"
-                        onClick={() => window.open(api.url, '_blank')}
-                        className="text-gray-400 hover:text-white"
-                      >
-                        <ExternalLink className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-blue-300 mb-2">🔒 Security Best Practices</h3>
-                <ul className="text-blue-200 text-sm space-y-1">
-                  <li>• Never commit <code className="bg-blue-900/50 px-1 rounded">.env.local</code> to version control</li>
-                  <li>• Use different API keys for development and production</li>
-                  <li>• Rotate API keys regularly</li>
-                  <li>• Monitor API usage and set up alerts</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        );
-
-      case 'ipprotect':
-        return (
-          <div className="max-w-4xl">
-            <div className="mb-8">
-              <div className="text-sm text-blue-400 mb-2">Products</div>
-              <h1 className="text-4xl font-bold text-white mb-4">IPProtect</h1>
-              <p className="text-xl text-gray-400">Every IP registration, right the first time</p>
-            </div>
-
-            <div className="prose prose-invert max-w-none">
-              <p className="text-gray-300 mb-8 text-lg leading-relaxed">
-                IPProtect gives your agent instant access to every blockchain network, hassle-free. Register any IP with a single command.
-              </p>
-
-              <h2 className="text-2xl font-bold text-white mb-4">Key Features</h2>
-              <div className="grid md:grid-cols-2 gap-6 mb-8">
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-white mb-2">🔗 Multi-Chain Support</h3>
-                  <p className="text-gray-400 text-sm">Register IP on Ethereum, Polygon, and other major blockchains</p>
-                </div>
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-white mb-2">⚡ Instant Registration</h3>
-                  <p className="text-gray-400 text-sm">Complete IP registration in seconds, not hours</p>
-                </div>
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-white mb-2">🛡️ Immutable Records</h3>
-                  <p className="text-gray-400 text-sm">Blockchain-based proof of ownership and creation</p>
-                </div>
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-white mb-2">📋 Full Schemas</h3>
-                  <p className="text-gray-400 text-sm">Comprehensive metadata and licensing information</p>
-                </div>
-              </div>
-
-              <h2 className="text-2xl font-bold text-white mb-4">Usage Example</h2>
-              <CodeBlock id="ipprotect-usage" language="TypeScript">
-{`import { IPProtect } from '@ipverse/sdk'
-
-const ipprotect = new IPProtect({
-  apiKey: process.env.IPVERSE_API_KEY
-})
-
-// Register IP asset
-const registration = await ipprotect.register({
-  title: "My Digital Artwork",
-  type: "image",
-  creator: "0x1234...",
-  metadata: {
-    description: "Abstract digital art piece",
-    tags: ["digital-art", "abstract"],
-    royaltyPercentage: 10
-  }
-})
-
-console.log('IP registered:', registration.id)
-console.log('Blockchain TX:', registration.transactionHash)`}
-              </CodeBlock>
-
-              <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-green-300 mb-2">✨ Safety Baked In</h3>
-                <p className="text-green-200">
-                  IPProtect includes built-in validation, duplicate detection, and automatic compliance checks to ensure your IP registration is bulletproof.
-                </p>
-              </div>
-            </div>
-          </div>
-        );
-
-      case 'aiagents':
-        return (
-          <div className="max-w-4xl">
-            <div className="mb-8">
-              <div className="text-sm text-blue-400 mb-2">Products</div>
-              <h1 className="text-4xl font-bold text-white mb-4">AIAgents</h1>
-              <p className="text-xl text-gray-400">Instant negotiation, licenses that never expire</p>
-            </div>
-
-            <div className="prose prose-invert max-w-none">
-              <p className="text-gray-300 mb-8 text-lg leading-relaxed">
-                Deploy intelligent agents to handle licensing and negotiations effortlessly. AIAgents manages smart contracts and royalties so you don't have to.
-              </p>
-
-              <h2 className="text-2xl font-bold text-white mb-4">Agent Types</h2>
-              <div className="grid md:grid-cols-2 gap-6 mb-8">
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-white mb-2">🤝 LicenseBot Pro</h3>
-                  <p className="text-gray-400 text-sm">Automated licensing negotiation and contract generation</p>
-                </div>
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-white mb-2">🔍 InfringementGuard</h3>
-                  <p className="text-gray-400 text-sm">Real-time monitoring and infringement detection</p>
-                </div>
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-white mb-2">📊 MarketAnalyzer</h3>
-                  <p className="text-gray-400 text-sm">Market trend analysis and pricing optimization</p>
-                </div>
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-white mb-2">💡 CreatorAssist</h3>
-                  <p className="text-gray-400 text-sm">IP registration guidance and optimization</p>
-                </div>
-              </div>
-
-              <h2 className="text-2xl font-bold text-white mb-4">Deploy an Agent</h2>
-              <CodeBlock id="aiagents-deploy" language="TypeScript">
-{`import { AIAgents } from '@ipverse/sdk'
-
-const agents = new AIAgents({
-  apiKey: process.env.IPVERSE_API_KEY
-})
-
-// Deploy a licensing agent
-const agent = await agents.deploy({
-  type: 'negotiator',
-  name: 'LicenseBot Pro',
-  capabilities: ['negotiate', 'analyze', 'generate'],
-  config: {
-    maxRoyalty: 15,
-    autoApprove: true,
-    languages: ['en', 'es', 'fr']
-  }
-})
-
-// Start negotiation
-const negotiation = await agent.negotiate({
-  assetId: 'asset_123',
-  licenseeId: 'user_456',
-  terms: {
-    usage: 'commercial',
-    duration: '2 years',
-    territory: 'global'
-  }
-})`}
-              </CodeBlock>
-
-              <div className="bg-purple-500/10 border border-purple-500/20 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-purple-300 mb-2">🔄 Smart Flows</h3>
-                <p className="text-purple-200">
-                  AIAgents automatically handles license renewals, royalty distributions, and contract updates. Set it once, earn forever.
-                </p>
-              </div>
-            </div>
-          </div>
-        );
-
-      case 'smartkit':
-        return (
-          <div className="max-w-4xl">
-            <div className="mb-8">
-              <div className="text-sm text-blue-400 mb-2">Products</div>
-              <h1 className="text-4xl font-bold text-white mb-4">SmartKit</h1>
-              <p className="text-xl text-gray-400">From plain English to live integration in seconds</p>
-            </div>
-
-            <div className="prose prose-invert max-w-none">
-              <p className="text-gray-300 mb-8 text-lg leading-relaxed">
-                Describe what you want to build and SmartKit creates the integration for you—no docs or configs needed. Access to{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-semibold">
-                  10+ partner APIs
-                </span>.
-              </p>
-
-              <h2 className="text-2xl font-bold text-white mb-4">Available Integrations</h2>
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
-                {[
-                  { name: 'Story Protocol', icon: '📚' },
-                  { name: 'Crossmint', icon: '🎨' },
-                  { name: 'Alchemy', icon: '⚡' },
-                  { name: 'thirdweb', icon: '🔗' },
-                  { name: 'Gelato', icon: '🤖' },
-                  { name: 'Fleek', icon: '☁️' },
-                  { name: 'OpenAI', icon: '🧠' },
-                  { name: 'Yakoa', icon: '🔍' },
-                  { name: 'Zapper', icon: '📊' },
-                  { name: 'deBridge', icon: '🌉' }
-                ].map((integration, index) => (
-                  <div key={index} className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center">
-                    <div className="text-2xl mb-2">{integration.icon}</div>
-                    <div className="text-sm text-gray-300 font-medium">{integration.name}</div>
-                  </div>
-                ))}
-              </div>
-
-              <h2 className="text-2xl font-bold text-white mb-4">Natural Language Integration</h2>
-              <CodeBlock id="smartkit-usage" language="TypeScript">
-{`import { SmartKit } from '@ipverse/sdk'
-
-const smartkit = new SmartKit({
-  apiKey: process.env.IPVERSE_API_KEY
-})
-
-// Describe what you want in plain English
-const integration = await smartkit.create({
-  description: "I want to register IP on Story Protocol and mint an NFT on Crossmint when someone licenses my digital art",
-  triggers: ["license_created"],
-  actions: ["register_ip", "mint_nft"],
-  conditions: {
-    assetType: "image",
-    minRoyalty: 5
-  }
-})
-
-// SmartKit automatically generates the integration
-console.log('Integration created:', integration.id)
-console.log('Webhook URL:', integration.webhookUrl)`}
-              </CodeBlock>
-
-              <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-yellow-300 mb-2">⚡ Zero Config</h3>
-                <p className="text-yellow-200">
-                  SmartKit handles all the complex API configurations, authentication, and error handling. Just describe what you want and it works.
-                </p>
-              </div>
-            </div>
-          </div>
-        );
-
-      // Add more cases for other sections...
+      // Add other cases with proper dark backgrounds...
       default:
         return (
-          <div className="max-w-4xl">
+          <div className="max-w-4xl bg-black">
             <h1 className="text-4xl font-bold text-white mb-4">Coming Soon</h1>
             <p className="text-xl text-gray-400">This section is under development. Check back soon!</p>
             <div className="mt-8">
@@ -856,7 +402,7 @@ console.log('Webhook URL:', integration.webhookUrl)`}
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
-      <div className="border-b border-gray-800 bg-black/95 backdrop-blur-sm sticky top-0 z-40">
+      <div className="border-b border-gray-800 bg-black sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
@@ -923,10 +469,10 @@ console.log('Webhook URL:', integration.webhookUrl)`}
         </div>
       </div>
 
-      <div className="flex">
+      <div className="flex bg-black">
         {/* Sidebar */}
         <div className="w-80 bg-black border-r border-gray-800 min-h-screen sticky top-16 overflow-y-auto">
-          <div className="p-6">
+          <div className="p-6 bg-black">
             <nav className="space-y-2">
               {sidebarSections.map((section) => (
                 <div key={section.id}>
@@ -987,13 +533,14 @@ console.log('Webhook URL:', integration.webhookUrl)`}
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 bg-black">
-          <div className="p-8">
+        <div className="flex-1 bg-black min-h-screen">
+          <div className="p-8 bg-black">
             <motion.div
               key={selectedSection}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
+              className="bg-black"
             >
               {renderContent()}
             </motion.div>
