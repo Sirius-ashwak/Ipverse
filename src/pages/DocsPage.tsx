@@ -17,10 +17,13 @@ import {
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
+import { DocumentViewer } from '../components/docs/DocumentViewer';
+import { documentContent } from '../data/documentContent';
 
 export const DocsPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedDoc, setSelectedDoc] = useState<{ title: string; content: string; url?: string } | null>(null);
 
   const categories = [
     { id: 'all', name: 'All Docs', icon: Book },
@@ -38,6 +41,7 @@ export const DocsPage: React.FC = () => {
       icon: Zap,
       color: 'text-green-400',
       bgColor: 'bg-green-500/20',
+      contentKey: 'quickstart',
       url: 'https://github.com/your-team/ipverse/blob/main/docs/QUICKSTART.md',
       tags: ['beginner', 'setup', 'tutorial'],
       estimatedTime: '5 min read'
@@ -49,6 +53,7 @@ export const DocsPage: React.FC = () => {
       icon: Code,
       color: 'text-blue-400',
       bgColor: 'bg-blue-500/20',
+      contentKey: 'api',
       url: 'https://github.com/your-team/ipverse/blob/main/docs/API.md',
       tags: ['api', 'reference', 'endpoints'],
       estimatedTime: '15 min read'
@@ -60,6 +65,7 @@ export const DocsPage: React.FC = () => {
       icon: Globe,
       color: 'text-purple-400',
       bgColor: 'bg-purple-500/20',
+      contentKey: 'integrations',
       url: 'https://github.com/your-team/ipverse/blob/main/docs/INTEGRATIONS.md',
       tags: ['integrations', 'partners', 'setup'],
       estimatedTime: '20 min read'
@@ -71,6 +77,7 @@ export const DocsPage: React.FC = () => {
       icon: Settings,
       color: 'text-yellow-400',
       bgColor: 'bg-yellow-500/20',
+      contentKey: 'environment',
       url: 'https://github.com/your-team/ipverse/blob/main/ENVIRONMENT.md',
       tags: ['environment', 'configuration', 'api-keys'],
       estimatedTime: '10 min read'
@@ -82,6 +89,7 @@ export const DocsPage: React.FC = () => {
       icon: HelpCircle,
       color: 'text-red-400',
       bgColor: 'bg-red-500/20',
+      contentKey: 'troubleshooting',
       url: 'https://github.com/your-team/ipverse/blob/main/docs/TROUBLESHOOTING.md',
       tags: ['troubleshooting', 'support', 'debugging'],
       estimatedTime: '12 min read'
@@ -93,6 +101,7 @@ export const DocsPage: React.FC = () => {
       icon: Cpu,
       color: 'text-indigo-400',
       bgColor: 'bg-indigo-500/20',
+      contentKey: 'deployment',
       url: 'https://github.com/your-team/ipverse/blob/main/DEPLOYMENT.md',
       tags: ['deployment', 'production', 'hosting'],
       estimatedTime: '8 min read'
@@ -134,8 +143,18 @@ export const DocsPage: React.FC = () => {
     return matchesSearch && matchesCategory;
   });
 
-  const handleDocClick = (url: string) => {
-    window.open(url, '_blank');
+  const handleDocClick = (doc: typeof docs[0]) => {
+    const content = documentContent[doc.contentKey as keyof typeof documentContent];
+    if (content) {
+      setSelectedDoc({
+        title: doc.title,
+        content,
+        url: doc.url
+      });
+    } else {
+      // Fallback to external link
+      window.open(doc.url, '_blank');
+    }
   };
 
   return (
@@ -201,13 +220,13 @@ export const DocsPage: React.FC = () => {
                 >
                   <Card 
                     className="p-6 bg-gray-800 border-gray-700 hover:border-gray-600 transition-all cursor-pointer h-full"
-                    onClick={() => handleDocClick(doc.url)}
+                    onClick={() => handleDocClick(doc)}
                   >
                     <div className="flex items-start justify-between mb-4">
                       <div className={`p-3 rounded-lg ${doc.bgColor}`}>
                         <doc.icon className={`h-6 w-6 ${doc.color}`} />
                       </div>
-                      <ExternalLink className="h-4 w-4 text-gray-400" />
+                      <FileText className="h-4 w-4 text-gray-400" />
                     </div>
                     
                     <h3 className="text-lg font-semibold text-white mb-2">
@@ -344,6 +363,17 @@ export const DocsPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Document Viewer Modal */}
+      {selectedDoc && (
+        <DocumentViewer
+          title={selectedDoc.title}
+          content={selectedDoc.content}
+          isOpen={!!selectedDoc}
+          onClose={() => setSelectedDoc(null)}
+          githubUrl={selectedDoc.url}
+        />
+      )}
     </div>
   );
 };
