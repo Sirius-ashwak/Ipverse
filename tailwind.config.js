@@ -75,4 +75,5 @@ export default {
     },
   },
   plugins: [],
+  important: true, // This ensures Tailwind classes take precedence
 };

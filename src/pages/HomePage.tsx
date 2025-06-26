@@ -216,18 +216,18 @@ export const HomePage: React.FC = () => {
             >
               {user ? (
                 <Link to="/dashboard" className="inline-block">
-                  <Button size="lg" className="px-8 w-full sm:w-auto bg-blue-600 text-white hover:bg-blue-700 border-0 shadow-lg">
+                  <Button size="lg" className="px-8 w-full sm:w-auto">
                     Go to Dashboard
                   </Button>
                 </Link>
               ) : (
                 <>
                   <Link to="/login" className="inline-block">
-                    <Button size="lg" className="px-8 w-full sm:w-auto bg-blue-600 text-white hover:bg-blue-700 border-0 shadow-lg font-semibold">
+                    <Button size="lg" className="px-8 w-full sm:w-auto">
                       GET STARTED
                     </Button>
                   </Link>
-                  <Button variant="outline" size="lg" className="px-8 w-full sm:w-auto text-white border-2 border-white hover:bg-white hover:text-black font-semibold">
+                  <Button variant="outline" size="lg" className="px-8 w-full sm:w-auto">
                     <Play className="h-4 w-4 mr-2" />
                     See demo
                   </Button>
@@ -422,10 +422,10 @@ const agent = await createIPAgent({
                 . Request a new integration or contribute to our open-source project.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-blue-600 text-white hover:bg-blue-700 border-0 shadow-lg font-semibold">
+                <Button>
                   VIEW ROADMAP
                 </Button>
-                <Button variant="outline" className="text-white border-2 border-white hover:bg-white hover:text-black font-semibold">
+                <Button variant="outline">
                   Request Integration
                 </Button>
               </div>
@@ -589,7 +589,7 @@ const agent = await createIPAgent({
           </p>
           {!user && (
             <Link to="/login" className="inline-block">
-              <Button size="lg" className="px-8 bg-blue-600 text-white hover:bg-blue-700 border-0 shadow-lg font-semibold">
+              <Button size="lg" className="px-8">
                 START BUILDING
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>

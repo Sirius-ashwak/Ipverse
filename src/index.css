@@ -10,6 +10,11 @@
   body {
     @apply bg-black text-white;
   }
+  
+  /* Force button styles to override any conflicting styles */
+  button {
+    @apply border-0;
+  }
 }
 
 @layer components {
@@ -19,4 +24,24 @@
       linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
     background-size: 20px 20px;
   }
+  
+  /* Ensure buttons have proper styling */
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white border-0 !important;
+  }
+  
+  .btn-outline {
+    @apply border border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white bg-transparent !important;
+  }
+}
+
+/* Force override any conflicting styles */
+.button-override {
+  background-color: #2563eb !important;
+  color: white !important;
+  border: none !important;
+}
+
+.button-override:hover {
+  background-color: #1d4ed8 !important;
 }

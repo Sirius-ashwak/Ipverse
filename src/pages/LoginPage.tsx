@@ -77,8 +77,8 @@ export const LoginPage: React.FC = () => {
             </div>
 
             <Button
-              variant="outline"
-              className="w-full bg-blue-600 border-blue-600 text-white hover:bg-blue-700 hover:border-blue-700"
+              variant="primary"
+              className="w-full"
               onClick={() => handleSocialLogin('google')}
               disabled={isLoading}
             >
@@ -89,8 +89,8 @@ export const LoginPage: React.FC = () => {
             </Button>
             
             <Button
-              variant="outline"
-              className="w-full bg-blue-600 border-blue-600 text-white hover:bg-blue-700 hover:border-blue-700"
+              variant="primary"
+              className="w-full"
               onClick={() => handleSocialLogin('twitter')}
               disabled={isLoading}
             >
@@ -99,8 +99,8 @@ export const LoginPage: React.FC = () => {
             </Button>
 
             <Button
-              variant="outline"
-              className="w-full bg-blue-600 border-blue-600 text-white hover:bg-blue-700 hover:border-blue-700"
+              variant="primary"
+              className="w-full"
               onClick={() => handleSocialLogin('discord')}
               disabled={isLoading}
             >
@@ -142,7 +142,7 @@ export const LoginPage: React.FC = () => {
 
             <Button
               type="submit"
-              className="w-full bg-blue-600 text-white hover:bg-blue-700 border-0 shadow-lg font-semibold"
+              className="w-full"
               isLoading={isLoading}
             >
               {isLogin ? 'Sign in' : 'Create account'}
