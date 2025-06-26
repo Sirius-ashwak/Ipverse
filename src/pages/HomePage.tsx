@@ -215,18 +215,18 @@ export const HomePage: React.FC = () => {
             >
               {user ? (
                 <Link to="/dashboard" className="inline-block">
-                  <Button size="lg" className="px-8 w-full sm:w-auto bg-white text-black hover:bg-gray-100">
+                  <Button size="lg" className="px-8 w-full sm:w-auto bg-blue-600 text-white hover:bg-blue-700 border-0 shadow-lg">
                     Go to Dashboard
                   </Button>
                 </Link>
               ) : (
                 <>
                   <Link to="/login" className="inline-block">
-                    <Button size="lg" className="px-8 w-full sm:w-auto bg-white text-black hover:bg-gray-100">
-                      Start building
+                    <Button size="lg" className="px-8 w-full sm:w-auto bg-blue-600 text-white hover:bg-blue-700 border-0 shadow-lg font-semibold">
+                      GET STARTED
                     </Button>
                   </Link>
-                  <Button variant="ghost" size="lg" className="px-8 w-full sm:w-auto text-white border-gray-600 hover:bg-gray-800">
+                  <Button variant="outline" size="lg" className="px-8 w-full sm:w-auto text-white border-2 border-white hover:bg-white hover:text-black font-semibold">
                     <Play className="h-4 w-4 mr-2" />
                     See demo
                   </Button>
@@ -347,8 +347,8 @@ const agent = await createIPAgent({
                 key={category}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   category === 'All' 
-                    ? 'bg-white text-black' 
-                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                    ? 'bg-blue-600 text-white border-0' 
+                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-600'
                 }`}
               >
                 {category} {category === 'All' && `(${integrations.length})`}
@@ -421,10 +421,10 @@ const agent = await createIPAgent({
                 . Request a new integration or contribute to our open-source project.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-white text-black hover:bg-gray-100">
-                  View Roadmap
+                <Button className="bg-blue-600 text-white hover:bg-blue-700 border-0 shadow-lg font-semibold">
+                  VIEW ROADMAP
                 </Button>
-                <Button variant="outline" className="text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white">
+                <Button variant="outline" className="text-white border-2 border-white hover:bg-white hover:text-black font-semibold">
                   Request Integration
                 </Button>
               </div>
@@ -588,8 +588,8 @@ const agent = await createIPAgent({
           </p>
           {!user && (
             <Link to="/login" className="inline-block">
-              <Button size="lg" className="px-8 bg-white text-black hover:bg-gray-100">
-                Start Your Free Trial
+              <Button size="lg" className="px-8 bg-blue-600 text-white hover:bg-blue-700 border-0 shadow-lg font-semibold">
+                START BUILDING
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
