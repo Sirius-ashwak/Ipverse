@@ -216,16 +216,28 @@ export const HomePage: React.FC = () => {
             >
               {user ? (
                 <Link to="/dashboard" className="inline-block">
-                  <Button size="lg" className="px-8 w-full sm:w-auto">
+                  <button 
+                    className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg border-0 shadow-lg transition-all duration-200 text-lg"
+                    style={{ backgroundColor: '#2563eb', color: 'white', border: 'none' }}
+                  >
                     Go to Dashboard
-                  </Button>
+                  </button>
                 </Link>
               ) : (
                 <>
                   <Link to="/login" className="inline-block">
-                    <Button size="lg" className="px-8 w-full sm:w-auto">
+                    <button 
+                      className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg border-0 shadow-lg transition-all duration-200 text-lg"
+                      style={{ backgroundColor: '#2563eb', color: 'white', border: 'none' }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#1d4ed8';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '#2563eb';
+                      }}
+                    >
                       GET STARTED
-                    </Button>
+                    </button>
                   </Link>
                   <Button variant="outline" size="lg" className="px-8 w-full sm:w-auto">
                     <Play className="h-4 w-4 mr-2" />
@@ -589,10 +601,19 @@ const agent = await createIPAgent({
           </p>
           {!user && (
             <Link to="/login" className="inline-block">
-              <Button size="lg" className="px-8">
+              <button 
+                className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg border-0 shadow-lg transition-all duration-200 text-lg"
+                style={{ backgroundColor: '#2563eb', color: 'white', border: 'none' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#1d4ed8';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#2563eb';
+                }}
+              >
                 START BUILDING
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+                <ArrowRight className="ml-2 h-5 w-5 inline" />
+              </button>
             </Link>
           )}
         </div>

@@ -45,3 +45,16 @@
 .button-override:hover {
   background-color: #1d4ed8 !important;
 }
+
+/* Specific fix for Get Started buttons */
+button[style*="background-color: rgb(37, 99, 235)"],
+button[style*="background-color: #2563eb"] {
+  background-color: #2563eb !important;
+  color: white !important;
+  border: none !important;
+}
+
+button[style*="background-color: rgb(37, 99, 235)"]:hover,
+button[style*="background-color: #2563eb"]:hover {
+  background-color: #1d4ed8 !important;
+}
