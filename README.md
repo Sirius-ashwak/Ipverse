@@ -51,12 +51,6 @@ Our AI agents operate 24/7, handling complex IP management tasks that traditiona
 - **Cross-chain Support**: Multi-blockchain IP management and transfers
 - **Community Features**: Creator profiles and social interactions
 
-### 🔗 Available Connectors (113+)
-- **Comprehensive Integration Hub**: Connect to 113+ platforms and services
-- **Category-based Organization**: Blockchain, AI, Infrastructure, Communication, CRM, Database, and more
-- **Real-time Search**: Find and connect to the right tools instantly
-- **Partner Ecosystem**: Deep integrations with leading Web3 and traditional services
-
 ## 🏆 Partner Bounty Integrations
 
 ### ✅ Alchemy - Blockchain Infrastructure
@@ -116,7 +110,7 @@ Our AI agents operate 24/7, handling complex IP management tasks that traditiona
 
 ### Frontend
 - **React 18** with TypeScript for type-safe development
-- **Tailwind CSS** for responsive, modern UI design with dark theme
+- **Tailwind CSS** for responsive, modern UI design
 - **Framer Motion** for smooth animations and interactions
 - **React Router** for seamless navigation
 - **Recharts** for data visualization and analytics
@@ -134,12 +128,6 @@ Our AI agents operate 24/7, handling complex IP management tasks that traditiona
 - **Automated Workflows** via Gelato Functions
 
 ## 🎨 User Experience
-
-### Modern Dark Theme
-- **Professional Dark UI**: Sleek black background with gray accents
-- **High Contrast**: Optimized for readability and accessibility
-- **Consistent Branding**: Clean typography and spacing throughout
-- **Responsive Design**: Perfect experience across all devices
 
 ### Creator Journey
 1. **Sign Up**: Social login via Tomo SDK (Google/Twitter/Discord)
@@ -159,7 +147,6 @@ Our AI agents operate 24/7, handling complex IP management tasks that traditiona
 ### 🏠 Homepage
 - Hero section with platform overview
 - Feature highlights and benefits
-- Available Connectors showcase (113+ integrations)
 - Creator testimonials and success stories
 - Call-to-action for immediate onboarding
 
@@ -215,8 +202,6 @@ The application uses the following partner integrations:
 - **OpenAI API**: Powers AI agent intelligence
 - **Crossmint**: Handles NFT minting operations
 
-For detailed environment configuration, see [ENVIRONMENT.md](./ENVIRONMENT.md).
-
 ## 🎯 Problem Solved
 
 ### Traditional IP Management Challenges
@@ -261,37 +246,12 @@ For detailed environment configuration, see [ENVIRONMENT.md](./ENVIRONMENT.md).
 4. **Creator-Centric**: Designed specifically for content creators
 5. **Enterprise Ready**: Suitable for businesses of all sizes
 
-## 🚀 Deployment
-
-### Render Deployment (Recommended)
-The application is optimized for Render's static site hosting:
-
-```bash
-# Build command
-npm ci && npm run build
-
-# Publish directory
-dist
-
-# Node version
-18
-```
-
-For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).
-
-### Alternative Platforms
-- **Netlify**: Automatic deployments with SPA redirects
-- **Vercel**: Optimized for React applications
-- **GitHub Pages**: Free hosting for open source projects
-
 ## 🔮 Future Roadmap
 
-### Phase 1 (Current) ✅
+### Phase 1 (Current)
 - ✅ Core platform development
 - ✅ AI agent implementation
 - ✅ Partner integrations
-- ✅ Dark theme UI/UX
-- ✅ 113+ connector integrations
 - ✅ MVP launch
 
 ### Phase 2 (Q3 2025)
