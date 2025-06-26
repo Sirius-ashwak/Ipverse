@@ -23,9 +23,9 @@ import { Badge } from '../components/ui/Badge';
 export const CompanyPage: React.FC = () => {
   const team = [
     {
-      name: 'Alex Chen',
-      role: 'CEO & Co-founder',
-      bio: 'Former blockchain engineer at Ethereum Foundation. Passionate about democratizing IP protection.',
+      name: 'Sirius',
+      role: 'CEO & Founder',
+      bio: 'Visionary leader and blockchain pioneer. Founded IPVerse to democratize IP protection for creators worldwide.',
       avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=2',
       social: {
         linkedin: '#',
@@ -103,7 +103,7 @@ export const CompanyPage: React.FC = () => {
     {
       date: 'Q1 2024',
       title: 'Company Founded',
-      description: 'IPVerse was founded with the mission to democratize IP protection.'
+      description: 'IPVerse was founded by Sirius with the mission to democratize IP protection.'
     },
     {
       date: 'Q2 2024',
