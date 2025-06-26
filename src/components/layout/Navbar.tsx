@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -29,6 +29,7 @@ export const Navbar: React.FC = () => {
   const { isDark, toggleTheme } = useTheme();
   const { user, logout, walletAddress, walletBalance } = useAuth();
   const location = useLocation();
+  const profileRef = useRef<HTMLDivElement>(null);
 
   const navigation = [
     { name: 'Company', href: '/company' },
@@ -56,6 +57,23 @@ export const Navbar: React.FC = () => {
   const formatAddress = (address: string) => {
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
   };
+
+  // Handle click outside to close profile dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+        setShowProfile(false);
+      }
+    };
+
+    if (showProfile) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showProfile]);
 
   return (
     <nav className="bg-black border-b border-gray-800 sticky top-0 z-50">
@@ -133,7 +151,7 @@ export const Navbar: React.FC = () => {
                 )}
 
                 {/* Profile Dropdown */}
-                <div className="relative">
+                <div className="relative" ref={profileRef}>
                   <Button
                     variant="ghost"
                     size="sm"
@@ -165,7 +183,10 @@ export const Navbar: React.FC = () => {
                         </div>
                         
                         <button
-                          onClick={logout}
+                          onClick={() => {
+                            logout();
+                            setShowProfile(false);
+                          }}
                           className="flex items-center w-full px-4 py-2 text-sm text-red-400 hover:bg-gray-700"
                         >
                           <LogOut className="h-4 w-4 mr-2" />
