@@ -273,7 +273,7 @@ The application uses the following partner integrations:
 ## 📞 Contact & Support
 
 - **GitHub**: [https://github.com/Sirius-ashwak/Ipverse](https://github.com/Sirius-ashwak/Ipverse)
-- **LinkedIn**: [Mohamed Ashwak M](https://www.linkedin.com/in/mohamed-ashwak-m-b8835a262/)
+- **LinkedIn**: [Sirius](https://www.linkedin.com/in/mohamed-ashwak-m-b8835a262/)
 - **Documentation**: [Tomo SDK Docs](https://docs.tomo.inc/tomo-sdk/tomoevmkit)
 - **Telegram Support**: [Join our community](https://t.me/+Ax7Q0xguPJgyMTU0)
 - **Email**: connect@tomo.inc
