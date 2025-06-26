@@ -1,379 +1,475 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Book, 
-  Code, 
-  Zap, 
-  Settings, 
-  HelpCircle, 
-  ExternalLink,
-  ChevronRight,
-  Search,
+  Home,
+  Users,
+  BarChart3,
+  Plug,
+  Activity,
   FileText,
-  Cpu,
-  Shield,
-  Globe
+  Zap,
+  Rocket,
+  Code,
+  Database,
+  Music,
+  Image as ImageIcon,
+  Video,
+  Search,
+  Github,
+  ExternalLink,
+  ChevronDown,
+  ChevronRight
 } from 'lucide-react';
-import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
-import { Badge } from '../components/ui/Badge';
-import { DocumentViewer } from '../components/docs/DocumentViewer';
-import { documentContent } from '../data/documentContent';
 
 export const DocsPage: React.FC = () => {
+  const [selectedSection, setSelectedSection] = useState('welcome');
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedDoc, setSelectedDoc] = useState<{ title: string; content: string; url?: string } | null>(null);
+  const [expandedSections, setExpandedSections] = useState<string[]>(['get-started', 'products']);
 
-  const categories = [
-    { id: 'all', name: 'All Docs', icon: Book },
-    { id: 'getting-started', name: 'Getting Started', icon: Zap },
-    { id: 'api', name: 'API Reference', icon: Code },
-    { id: 'integrations', name: 'Integrations', icon: Globe },
-    { id: 'troubleshooting', name: 'Support', icon: HelpCircle },
-  ];
-
-  const docs = [
+  const sidebarSections = [
     {
-      title: 'Quick Start Guide',
-      description: 'Get up and running with IPVerse in just 5 minutes. Perfect for new users.',
-      category: 'getting-started',
-      icon: Zap,
-      color: 'text-green-400',
-      bgColor: 'bg-green-500/20',
-      contentKey: 'quickstart',
-      url: 'https://github.com/your-team/ipverse/blob/main/docs/QUICKSTART.md',
-      tags: ['beginner', 'setup', 'tutorial'],
-      estimatedTime: '5 min read'
+      id: 'homepage',
+      title: 'Homepage',
+      icon: Home,
+      type: 'single'
     },
     {
-      title: 'API Documentation',
-      description: 'Complete REST API reference with examples for all endpoints and integrations.',
-      category: 'api',
-      icon: Code,
-      color: 'text-blue-400',
-      bgColor: 'bg-blue-500/20',
-      contentKey: 'api',
-      url: 'https://github.com/your-team/ipverse/blob/main/docs/API.md',
-      tags: ['api', 'reference', 'endpoints'],
-      estimatedTime: '15 min read'
+      id: 'community',
+      title: 'Community',
+      icon: Users,
+      type: 'single'
     },
     {
-      title: 'Partner Integrations',
-      description: 'Setup guides for all 10+ partner APIs including Story Protocol, Crossmint, and more.',
-      category: 'integrations',
-      icon: Globe,
-      color: 'text-purple-400',
-      bgColor: 'bg-purple-500/20',
-      contentKey: 'integrations',
-      url: 'https://github.com/your-team/ipverse/blob/main/docs/INTEGRATIONS.md',
-      tags: ['integrations', 'partners', 'setup'],
-      estimatedTime: '20 min read'
+      id: 'changelog',
+      title: 'Changelog',
+      icon: BarChart3,
+      type: 'single'
     },
     {
-      title: 'Environment Configuration',
-      description: 'Complete guide to setting up API keys and environment variables.',
-      category: 'getting-started',
-      icon: Settings,
-      color: 'text-yellow-400',
-      bgColor: 'bg-yellow-500/20',
-      contentKey: 'environment',
-      url: 'https://github.com/your-team/ipverse/blob/main/ENVIRONMENT.md',
-      tags: ['environment', 'configuration', 'api-keys'],
-      estimatedTime: '10 min read'
+      id: 'connectors',
+      title: 'Connectors',
+      icon: Plug,
+      type: 'single'
     },
     {
-      title: 'Troubleshooting Guide',
-      description: 'Common issues and solutions to help you resolve problems quickly.',
-      category: 'troubleshooting',
-      icon: HelpCircle,
-      color: 'text-red-400',
-      bgColor: 'bg-red-500/20',
-      contentKey: 'troubleshooting',
-      url: 'https://github.com/your-team/ipverse/blob/main/docs/TROUBLESHOOTING.md',
-      tags: ['troubleshooting', 'support', 'debugging'],
-      estimatedTime: '12 min read'
+      id: 'status',
+      title: 'Status',
+      icon: Activity,
+      type: 'single'
     },
     {
-      title: 'Deployment Guide',
-      description: 'Deploy IPVerse to production platforms like Render, Netlify, and Vercel.',
-      category: 'getting-started',
-      icon: Cpu,
-      color: 'text-indigo-400',
-      bgColor: 'bg-indigo-500/20',
-      contentKey: 'deployment',
-      url: 'https://github.com/your-team/ipverse/blob/main/DEPLOYMENT.md',
-      tags: ['deployment', 'production', 'hosting'],
-      estimatedTime: '8 min read'
+      id: 'blog',
+      title: 'Blog',
+      icon: FileText,
+      type: 'single'
+    },
+    {
+      id: 'get-started',
+      title: 'Get Started',
+      type: 'section',
+      items: [
+        { id: 'welcome', title: 'Welcome to IPVerse', active: true },
+        { id: 'quickstart', title: 'Quickstart' },
+        { id: 'running-locally', title: 'Running Locally' }
+      ]
+    },
+    {
+      id: 'products',
+      title: 'Products',
+      type: 'section',
+      items: [
+        { id: 'ipprotect', title: 'IPProtect' },
+        { id: 'aiagents', title: 'AIAgents' },
+        { id: 'smartkit', title: 'SmartKit' }
+      ]
     }
   ];
 
-  const quickLinks = [
-    {
-      title: 'Story Protocol Integration',
-      description: 'Register IP on-chain',
-      url: 'https://docs.story.foundation/',
-      external: true
-    },
-    {
-      title: 'Crossmint NFT Minting',
-      description: 'Walletless NFT creation',
-      url: 'https://docs.crossmint.com/',
-      external: true
-    },
-    {
-      title: 'Alchemy Web3 APIs',
-      description: 'Blockchain infrastructure',
-      url: 'https://docs.alchemy.com/',
-      external: true
-    },
-    {
-      title: 'OpenAI API',
-      description: 'AI agent intelligence',
-      url: 'https://platform.openai.com/docs',
-      external: true
-    }
-  ];
+  const toggleSection = (sectionId: string) => {
+    setExpandedSections(prev => 
+      prev.includes(sectionId) 
+        ? prev.filter(id => id !== sectionId)
+        : [...prev, sectionId]
+    );
+  };
 
-  const filteredDocs = docs.filter(doc => {
-    const matchesSearch = doc.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         doc.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         doc.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
-    const matchesCategory = selectedCategory === 'all' || doc.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const renderContent = () => {
+    switch (selectedSection) {
+      case 'welcome':
+        return (
+          <div className="max-w-4xl">
+            <div className="mb-8">
+              <div className="text-sm text-blue-400 mb-2">Get Started</div>
+              <h1 className="text-4xl font-bold text-white mb-4">Welcome to IPVerse</h1>
+              <p className="text-xl text-gray-400">The AI + Web3 IP Management Platform</p>
+            </div>
 
-  const handleDocClick = (doc: typeof docs[0]) => {
-    const content = documentContent[doc.contentKey as keyof typeof documentContent];
-    if (content) {
-      setSelectedDoc({
-        title: doc.title,
-        content,
-        url: doc.url
-      });
-    } else {
-      // Fallback to external link
-      window.open(doc.url, '_blank');
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold text-white mb-6">Where to start</h2>
+              <p className="text-gray-300 mb-8 leading-relaxed">
+                IPVerse gives every creator instant, reliable access to the tools they need—no keys, no configs, no headaches. We 
+                provide powerful APIs and tools to build, deploy, and scale IP management with seamless access to over{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-semibold">
+                  10+ integrations
+                </span>. Here's how to get started:
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 hover:border-gray-600 transition-colors cursor-pointer">
+                  <div className="flex items-center mb-4">
+                    <div className="bg-blue-500/20 p-3 rounded-lg mr-4">
+                      <Zap className="h-6 w-6 text-blue-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-white">Quick Start Guide</h3>
+                      <p className="text-gray-400 text-sm">Set up your first integration in under 5 minutes</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 hover:border-gray-600 transition-colors cursor-pointer">
+                  <div className="flex items-center mb-4">
+                    <div className="bg-purple-500/20 p-3 rounded-lg mr-4">
+                      <Code className="h-6 w-6 text-purple-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-white">OneTool SDK</h3>
+                      <p className="text-gray-400 text-sm">Connect AI agents seamlessly to all APIs and tools</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold text-white mb-6">Core Features</h2>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                  <div className="bg-blue-500/20 p-3 rounded-lg w-fit mb-4">
+                    <ImageIcon className="h-6 w-6 text-blue-400" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">IP Protection</h3>
+                  <p className="text-gray-400 text-sm">Register and protect your intellectual property with blockchain-based verification.</p>
+                </div>
+
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                  <div className="bg-green-500/20 p-3 rounded-lg w-fit mb-4">
+                    <Rocket className="h-6 w-6 text-green-400" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">AI Agents</h3>
+                  <p className="text-gray-400 text-sm">Intelligent agents handle licensing, negotiation, and infringement detection.</p>
+                </div>
+
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                  <div className="bg-yellow-500/20 p-3 rounded-lg w-fit mb-4">
+                    <Zap className="h-6 w-6 text-yellow-400" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Smart Licensing</h3>
+                  <p className="text-gray-400 text-sm">Automated licensing with smart contracts and cross-chain compatibility.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold text-white mb-6">Partner Integrations</h2>
+              <p className="text-gray-300 mb-6">
+                Connect to leading Web3 and AI services with our curated integrations:
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                {[
+                  { name: 'Story Protocol', icon: '📚' },
+                  { name: 'Crossmint', icon: '🎨' },
+                  { name: 'Alchemy', icon: '⚡' },
+                  { name: 'thirdweb', icon: '🔗' },
+                  { name: 'Gelato', icon: '🤖' },
+                  { name: 'Fleek', icon: '☁️' },
+                  { name: 'OpenAI', icon: '🧠' },
+                  { name: 'Yakoa', icon: '🔍' },
+                  { name: 'Zapper', icon: '📊' },
+                  { name: 'deBridge', icon: '🌉' }
+                ].map((integration, index) => (
+                  <div key={index} className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center hover:border-gray-600 transition-colors">
+                    <div className="text-2xl mb-2">{integration.icon}</div>
+                    <div className="text-sm text-gray-300">{integration.name}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-gray-700 rounded-lg p-8">
+              <h3 className="text-xl font-bold text-white mb-4">Ready to get started?</h3>
+              <p className="text-gray-300 mb-6">
+                Join thousands of creators who trust IPVerse with their intellectual property.
+              </p>
+              <div className="flex space-x-4">
+                <Button className="bg-blue-600 text-white hover:bg-blue-700 border-0">
+                  Get Started
+                </Button>
+                <Button variant="outline" className="text-white border-gray-600 hover:bg-gray-700 hover:text-white hover:border-gray-500">
+                  View Examples
+                </Button>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'quickstart':
+        return (
+          <div className="max-w-4xl">
+            <div className="mb-8">
+              <div className="text-sm text-blue-400 mb-2">Get Started</div>
+              <h1 className="text-4xl font-bold text-white mb-4">Quickstart</h1>
+              <p className="text-xl text-gray-400">Get up and running with IPVerse in just 5 minutes</p>
+            </div>
+
+            <div className="prose prose-invert max-w-none">
+              <h2 className="text-2xl font-bold text-white mb-4">Prerequisites</h2>
+              <ul className="text-gray-300 mb-6">
+                <li>Node.js 18+ installed</li>
+                <li>Modern web browser</li>
+                <li>Internet connection</li>
+              </ul>
+
+              <h2 className="text-2xl font-bold text-white mb-4">Step 1: Clone and Setup</h2>
+              <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 mb-6">
+                <pre className="text-gray-300 text-sm overflow-x-auto">
+                  <code>{`# Clone the repository
+git clone https://github.com/your-team/ipverse.git
+cd ipverse
+
+# Install dependencies
+npm install
+
+# Copy environment template
+cp .env.example .env.local`}</code>
+                </pre>
+              </div>
+
+              <h2 className="text-2xl font-bold text-white mb-4">Step 2: Configure Environment</h2>
+              <p className="text-gray-300 mb-4">Edit <code className="bg-gray-700 px-2 py-1 rounded text-blue-300">.env.local</code> with your API keys:</p>
+              <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 mb-6">
+                <pre className="text-gray-300 text-sm overflow-x-auto">
+                  <code>{`# Essential for core functionality
+VITE_TOMO_CLIENT_ID=xDsx8PcJd6QrpkgejZRWi9WpyTQ2FvCZOOmG2Ry4brFQxlil77Y3Rfg5XGTEFl5MWOfc6VOzDHku84Cye7l7pwnr
+
+# Optional: Add your own API keys for full functionality
+VITE_OPENAI_API_KEY=your_openai_api_key_here
+VITE_ALCHEMY_API_KEY=your_alchemy_api_key_here`}</code>
+                </pre>
+              </div>
+
+              <h2 className="text-2xl font-bold text-white mb-4">Step 3: Start Development Server</h2>
+              <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 mb-6">
+                <pre className="text-gray-300 text-sm">
+                  <code>npm run dev</code>
+                </pre>
+              </div>
+              <p className="text-gray-300 mb-6">
+                Open <a href="http://localhost:5173" className="text-blue-400 hover:text-blue-300">http://localhost:5173</a> in your browser.
+              </p>
+
+              <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-blue-300 mb-2">🎉 Congratulations!</h3>
+                <p className="text-blue-200">Your IPVerse development environment is now ready. You can start building with our AI + Web3 IP management platform!</p>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'running-locally':
+        return (
+          <div className="max-w-4xl">
+            <div className="mb-8">
+              <div className="text-sm text-blue-400 mb-2">Get Started</div>
+              <h1 className="text-4xl font-bold text-white mb-4">Running Locally</h1>
+              <p className="text-xl text-gray-400">Set up IPVerse for local development</p>
+            </div>
+
+            <div className="prose prose-invert max-w-none">
+              <h2 className="text-2xl font-bold text-white mb-4">Development Setup</h2>
+              <p className="text-gray-300 mb-6">
+                Follow these steps to set up IPVerse for local development with all features enabled.
+              </p>
+
+              <h3 className="text-xl font-semibold text-white mb-3">Environment Configuration</h3>
+              <p className="text-gray-300 mb-4">
+                Create a <code className="bg-gray-700 px-2 py-1 rounded text-blue-300">.env.local</code> file with the following variables:
+              </p>
+              
+              <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 mb-6">
+                <pre className="text-gray-300 text-sm overflow-x-auto">
+                  <code>{`# Core Configuration
+VITE_TOMO_CLIENT_ID=xDsx8PcJd6QrpkgejZRWi9WpyTQ2FvCZOOmG2Ry4brFQxlil77Y3Rfg5XGTEFl5MWOfc6VOzDHku84Cye7l7pwnr
+VITE_OPENAI_API_KEY=your_openai_api_key_here
+VITE_ALCHEMY_API_KEY=your_alchemy_api_key_here
+
+# Partner Integrations
+VITE_STORY_PROTOCOL_API_KEY=your_story_protocol_api_key_here
+VITE_CROSSMINT_PROJECT_ID=your_crossmint_project_id_here
+VITE_THIRDWEB_CLIENT_ID=your_thirdweb_client_id_here
+
+# Development Settings
+VITE_DEBUG_MODE=true
+VITE_MOCK_APIS=true`}</code>
+                </pre>
+              </div>
+
+              <h3 className="text-xl font-semibold text-white mb-3">Available Scripts</h3>
+              <div className="space-y-4">
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
+                  <code className="text-blue-300">npm run dev</code>
+                  <p className="text-gray-400 text-sm mt-1">Start the development server with hot reload</p>
+                </div>
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
+                  <code className="text-blue-300">npm run build</code>
+                  <p className="text-gray-400 text-sm mt-1">Build the application for production</p>
+                </div>
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
+                  <code className="text-blue-300">npm run preview</code>
+                  <p className="text-gray-400 text-sm mt-1">Preview the production build locally</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      default:
+        return (
+          <div className="max-w-4xl">
+            <h1 className="text-4xl font-bold text-white mb-4">Documentation</h1>
+            <p className="text-xl text-gray-400">Select a topic from the sidebar to get started.</p>
+          </div>
+        );
     }
   };
 
   return (
-    <div className="min-h-screen bg-black py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-4xl font-bold text-white mb-4">
-              Documentation
-            </h1>
-            <p className="text-xl text-gray-400 mb-8">
-              Everything you need to build with IPVerse
-            </p>
-            
-            {/* Search */}
-            <div className="max-w-2xl mx-auto relative mb-8">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search documentation..."
-                className="w-full pl-12 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
+    <div className="min-h-screen bg-black">
+      {/* Header */}
+      <div className="border-b border-gray-800 bg-black/95 backdrop-blur-sm sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <div className="flex items-center space-x-8">
+              <div className="flex items-center space-x-2">
+                <div className="text-2xl font-bold text-white">#</div>
+                <span className="text-xl font-bold text-white">IPVerse</span>
+              </div>
+              
+              {/* Tabs */}
+              <div className="hidden md:flex space-x-8">
+                <button className="text-white border-b-2 border-white pb-4 text-sm font-medium">
+                  Documentation
+                </button>
+                <button className="text-gray-400 hover:text-white pb-4 text-sm font-medium">
+                  API Reference
+                </button>
+              </div>
             </div>
 
-            {/* Category Filters */}
-            <div className="flex flex-wrap justify-center gap-3">
-              {categories.map((category) => (
-                <Button
-                  key={category.id}
-                  variant={selectedCategory === category.id ? 'primary' : 'outline'}
-                  size="sm"
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={selectedCategory === category.id ? 
-                    'bg-blue-600 text-white border-0' : 
-                    'text-white border-gray-600 hover:bg-gray-700 hover:text-white hover:border-gray-500'
-                  }
-                >
-                  <category.icon className="h-4 w-4 mr-2" />
-                  {category.name}
-                </Button>
-              ))}
+            {/* Search and Actions */}
+            <div className="flex items-center space-x-4">
+              <div className="relative hidden md:block">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Search..."
+                  className="pl-10 pr-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent w-64"
+                />
+                <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                  <kbd className="px-2 py-1 text-xs text-gray-400 bg-gray-700 rounded">Ctrl K</kbd>
+                </div>
+              </div>
+              
+              <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
+                GitHub
+              </Button>
+              <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
+                Support
+              </Button>
+              <Button className="bg-white text-black hover:bg-gray-100">
+                Dashboard →
+              </Button>
             </div>
-          </motion.div>
-        </div>
-
-        <div className="grid lg:grid-cols-4 gap-8">
-          {/* Main Documentation */}
-          <div className="lg:col-span-3">
-            <div className="grid md:grid-cols-2 gap-6">
-              {filteredDocs.map((doc, index) => (
-                <motion.div
-                  key={doc.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Card 
-                    className="p-6 bg-gray-800 border-gray-700 hover:border-gray-600 transition-all cursor-pointer h-full"
-                    onClick={() => handleDocClick(doc)}
-                  >
-                    <div className="flex items-start justify-between mb-4">
-                      <div className={`p-3 rounded-lg ${doc.bgColor}`}>
-                        <doc.icon className={`h-6 w-6 ${doc.color}`} />
-                      </div>
-                      <FileText className="h-4 w-4 text-gray-400" />
-                    </div>
-                    
-                    <h3 className="text-lg font-semibold text-white mb-2">
-                      {doc.title}
-                    </h3>
-                    
-                    <p className="text-gray-400 text-sm mb-4 line-clamp-2">
-                      {doc.description}
-                    </p>
-                    
-                    <div className="flex items-center justify-between">
-                      <div className="flex flex-wrap gap-1">
-                        {doc.tags.slice(0, 2).map((tag) => (
-                          <Badge key={tag} variant="secondary" size="sm">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                      <span className="text-xs text-gray-500">
-                        {doc.estimatedTime}
-                      </span>
-                    </div>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-
-            {filteredDocs.length === 0 && (
-              <div className="text-center py-12">
-                <FileText className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-white mb-2">
-                  No documentation found
-                </h3>
-                <p className="text-gray-400">
-                  Try adjusting your search terms or category filter
-                </p>
-              </div>
-            )}
-          </div>
-
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Quick Links */}
-            <Card className="p-6 bg-gray-800 border-gray-700">
-              <h3 className="text-lg font-semibold text-white mb-4">
-                Partner Documentation
-              </h3>
-              <div className="space-y-3">
-                {quickLinks.map((link, index) => (
-                  <motion.button
-                    key={link.title}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    onClick={() => window.open(link.url, '_blank')}
-                    className="w-full text-left p-3 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors group"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="font-medium text-white group-hover:text-blue-400 transition-colors">
-                          {link.title}
-                        </div>
-                        <div className="text-sm text-gray-400">
-                          {link.description}
-                        </div>
-                      </div>
-                      <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-blue-400 transition-colors" />
-                    </div>
-                  </motion.button>
-                ))}
-              </div>
-            </Card>
-
-            {/* Getting Help */}
-            <Card className="p-6 bg-gray-800 border-gray-700">
-              <h3 className="text-lg font-semibold text-white mb-4">
-                Need Help?
-              </h3>
-              <div className="space-y-3">
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="w-full justify-start text-white border-gray-600 hover:bg-gray-700 hover:text-white hover:border-gray-500"
-                  onClick={() => window.open('https://github.com/your-team/ipverse/issues', '_blank')}
-                >
-                  <HelpCircle className="h-4 w-4 mr-2" />
-                  GitHub Issues
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="w-full justify-start text-white border-gray-600 hover:bg-gray-700 hover:text-white hover:border-gray-500"
-                  onClick={() => window.open('https://discord.gg/ipverse', '_blank')}
-                >
-                  <Globe className="h-4 w-4 mr-2" />
-                  Discord Community
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="w-full justify-start text-white border-gray-600 hover:bg-gray-700 hover:text-white hover:border-gray-500"
-                  onClick={() => window.open('mailto:docs@ipverse.app', '_blank')}
-                >
-                  <FileText className="h-4 w-4 mr-2" />
-                  Email Support
-                </Button>
-              </div>
-            </Card>
-
-            {/* Stats */}
-            <Card className="p-6 bg-gray-800 border-gray-700">
-              <h3 className="text-lg font-semibold text-white mb-4">
-                Documentation Stats
-              </h3>
-              <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Coverage</span>
-                  <span className="text-white font-medium">95%</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Code Examples</span>
-                  <span className="text-white font-medium">100+</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Integrations</span>
-                  <span className="text-white font-medium">10+</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Last Updated</span>
-                  <span className="text-white font-medium">Jan 2025</span>
-                </div>
-              </div>
-            </Card>
           </div>
         </div>
       </div>
 
-      {/* Document Viewer Modal */}
-      {selectedDoc && (
-        <DocumentViewer
-          title={selectedDoc.title}
-          content={selectedDoc.content}
-          isOpen={!!selectedDoc}
-          onClose={() => setSelectedDoc(null)}
-          githubUrl={selectedDoc.url}
-        />
-      )}
+      <div className="flex">
+        {/* Sidebar */}
+        <div className="w-80 bg-black border-r border-gray-800 min-h-screen sticky top-16 overflow-y-auto">
+          <div className="p-6">
+            <nav className="space-y-2">
+              {sidebarSections.map((section) => (
+                <div key={section.id}>
+                  {section.type === 'single' ? (
+                    <button
+                      onClick={() => setSelectedSection(section.id)}
+                      className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-left transition-colors ${
+                        selectedSection === section.id
+                          ? 'bg-gray-800 text-white'
+                          : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+                      }`}
+                    >
+                      <section.icon className="h-4 w-4" />
+                      <span className="text-sm font-medium">{section.title}</span>
+                    </button>
+                  ) : (
+                    <div>
+                      <button
+                        onClick={() => toggleSection(section.id)}
+                        className="w-full flex items-center justify-between px-3 py-2 text-left text-gray-400 hover:text-white transition-colors"
+                      >
+                        <span className="text-sm font-medium">{section.title}</span>
+                        {expandedSections.includes(section.id) ? (
+                          <ChevronDown className="h-4 w-4" />
+                        ) : (
+                          <ChevronRight className="h-4 w-4" />
+                        )}
+                      </button>
+                      
+                      {expandedSections.includes(section.id) && section.items && (
+                        <div className="ml-4 mt-1 space-y-1">
+                          {section.items.map((item) => (
+                            <button
+                              key={item.id}
+                              onClick={() => setSelectedSection(item.id)}
+                              className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                                selectedSection === item.id
+                                  ? 'bg-gray-800 text-white'
+                                  : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+                              }`}
+                            >
+                              {item.title}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </nav>
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1">
+          <div className="p-8">
+            <motion.div
+              key={selectedSection}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {renderContent()}
+            </motion.div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
