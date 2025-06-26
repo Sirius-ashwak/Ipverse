@@ -123,7 +123,7 @@ export const DashboardPage: React.FC = () => {
               </p>
             </div>
             <Link to="/register">
-              <Button className="hidden sm:flex bg-white text-black hover:bg-gray-100">
+              <Button className="hidden sm:flex bg-blue-600 text-white hover:bg-blue-700 border-0 shadow-lg font-semibold">
                 <PlusCircle className="h-5 w-5 mr-2" />
                 Register New IP
               </Button>
@@ -140,7 +140,7 @@ export const DashboardPage: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="p-6">
+              <Card className="p-6 bg-gray-800 border-gray-700">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-gray-400">
@@ -165,13 +165,13 @@ export const DashboardPage: React.FC = () => {
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Recent Activity */}
           <div className="lg:col-span-2">
-            <Card className="p-6">
+            <Card className="p-6 bg-gray-800 border-gray-700">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold text-white">
                   Recent Activity
                 </h2>
                 <Link to="/analytics">
-                  <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
+                  <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white hover:bg-gray-700">
                     View All
                   </Button>
                 </Link>
@@ -186,7 +186,7 @@ export const DashboardPage: React.FC = () => {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: index * 0.1 }}
-                      className="flex items-start space-x-3 p-4 bg-gray-800/50 rounded-lg"
+                      className="flex items-start space-x-3 p-4 bg-gray-700/50 rounded-lg border border-gray-600"
                     >
                       <div className={`p-2 rounded-full ${
                         activity.urgent 
@@ -231,31 +231,31 @@ export const DashboardPage: React.FC = () => {
 
           {/* Quick Actions */}
           <div className="space-y-6">
-            <Card className="p-6">
+            <Card className="p-6 bg-gray-800 border-gray-700">
               <h2 className="text-xl font-semibold text-white mb-4">
                 Quick Actions
               </h2>
               <div className="space-y-3">
                 <Link to="/register">
-                  <Button variant="outline" className="w-full justify-start text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white">
+                  <Button variant="outline" className="w-full justify-start text-white border-gray-600 hover:bg-gray-700 hover:text-white hover:border-gray-500">
                     <PlusCircle className="h-4 w-4 mr-2" />
                     Register New IP
                   </Button>
                 </Link>
                 <Link to="/agents">
-                  <Button variant="outline" className="w-full justify-start text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white">
+                  <Button variant="outline" className="w-full justify-start text-white border-gray-600 hover:bg-gray-700 hover:text-white hover:border-gray-500">
                     <Activity className="h-4 w-4 mr-2" />
                     Deploy AI Agent
                   </Button>
                 </Link>
                 <Link to="/discover">
-                  <Button variant="outline" className="w-full justify-start text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white">
+                  <Button variant="outline" className="w-full justify-start text-white border-gray-600 hover:bg-gray-700 hover:text-white hover:border-gray-500">
                     <Users className="h-4 w-4 mr-2" />
                     Browse Marketplace
                   </Button>
                 </Link>
                 <Link to="/analytics">
-                  <Button variant="outline" className="w-full justify-start text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white">
+                  <Button variant="outline" className="w-full justify-start text-white border-gray-600 hover:bg-gray-700 hover:text-white hover:border-gray-500">
                     <TrendingUp className="h-4 w-4 mr-2" />
                     View Analytics
                   </Button>
@@ -264,7 +264,7 @@ export const DashboardPage: React.FC = () => {
             </Card>
 
             {/* Top Assets */}
-            <Card className="p-6">
+            <Card className="p-6 bg-gray-800 border-gray-700">
               <h2 className="text-xl font-semibold text-white mb-4">
                 Top Performing Assets
               </h2>
