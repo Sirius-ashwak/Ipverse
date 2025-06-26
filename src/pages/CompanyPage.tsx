@@ -30,11 +30,11 @@ export const CompanyPage: React.FC = () => {
       name: 'Sirius',
       role: 'CEO & Founder',
       bio: 'Visionary leader and blockchain pioneer. Founded IPVerse to democratize IP protection for creators worldwide.',
-      avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=2',
+      avatar: 'https://images.pexels.com/photos/1169754/pexels-photo-1169754.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=2', // Star image
       social: {
         linkedin: '#',
         twitter: '#',
-        github: '#'
+        github: 'https://github.com/Sirius-ashwak'
       }
     }
   ];
@@ -182,7 +182,7 @@ export const CompanyPage: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button 
                 className="bg-purple-600 text-white hover:bg-purple-700 border-0"
-                onClick={() => window.open('https://github.com/your-team/ipverse', '_blank')}
+                onClick={() => window.open('https://github.com/Sirius-ashwak/Ipverse', '_blank')}
               >
                 <Github className="h-4 w-4 mr-2" />
                 View Source Code
@@ -348,7 +348,12 @@ export const CompanyPage: React.FC = () => {
                   <Button variant="ghost" size="sm" className="p-2">
                     <Twitter className="h-4 w-4 text-gray-400 hover:text-purple-400" />
                   </Button>
-                  <Button variant="ghost" size="sm" className="p-2">
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="p-2"
+                    onClick={() => window.open(team[0].social.github, '_blank')}
+                  >
                     <Github className="h-4 w-4 text-gray-400 hover:text-purple-400" />
                   </Button>
                 </div>
@@ -396,7 +401,7 @@ export const CompanyPage: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 className="bg-purple-600 text-white hover:bg-purple-700 border-0"
-                onClick={() => window.open('https://github.com/your-team/ipverse', '_blank')}
+                onClick={() => window.open('https://github.com/Sirius-ashwak/Ipverse', '_blank')}
               >
                 <Github className="h-4 w-4 mr-2" />
                 View Project Code
