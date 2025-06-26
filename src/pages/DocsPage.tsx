@@ -18,14 +18,22 @@ import {
   Github,
   ExternalLink,
   ChevronDown,
-  ChevronRight
+  ChevronRight,
+  BookOpen,
+  Terminal,
+  Settings,
+  Shield,
+  Brain,
+  Globe
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
+import { useNavigate } from 'react-router-dom';
 
 export const DocsPage: React.FC = () => {
   const [selectedSection, setSelectedSection] = useState('welcome');
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedSections, setExpandedSections] = useState<string[]>(['get-started', 'products']);
+  const navigate = useNavigate();
 
   const sidebarSections = [
     {
@@ -71,7 +79,8 @@ export const DocsPage: React.FC = () => {
       items: [
         { id: 'welcome', title: 'Welcome to IPVerse', active: true },
         { id: 'quickstart', title: 'Quickstart' },
-        { id: 'running-locally', title: 'Running Locally' }
+        { id: 'running-locally', title: 'Running Locally' },
+        { id: 'environment-setup', title: 'Environment Setup' }
       ]
     },
     {
@@ -82,6 +91,18 @@ export const DocsPage: React.FC = () => {
         { id: 'ipprotect', title: 'IPProtect' },
         { id: 'aiagents', title: 'AIAgents' },
         { id: 'smartkit', title: 'SmartKit' }
+      ]
+    },
+    {
+      id: 'integrations',
+      title: 'Integrations',
+      type: 'section',
+      items: [
+        { id: 'story-protocol', title: 'Story Protocol' },
+        { id: 'crossmint', title: 'Crossmint' },
+        { id: 'alchemy', title: 'Alchemy' },
+        { id: 'thirdweb', title: 'thirdweb' },
+        { id: 'openai', title: 'OpenAI' }
       ]
     }
   ];
@@ -116,7 +137,10 @@ export const DocsPage: React.FC = () => {
               </p>
 
               <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 hover:border-gray-600 transition-colors cursor-pointer">
+                <div 
+                  className="bg-gray-800 border border-gray-700 rounded-lg p-6 hover:border-gray-600 transition-colors cursor-pointer"
+                  onClick={() => setSelectedSection('quickstart')}
+                >
                   <div className="flex items-center mb-4">
                     <div className="bg-blue-500/20 p-3 rounded-lg mr-4">
                       <Zap className="h-6 w-6 text-blue-400" />
@@ -147,7 +171,7 @@ export const DocsPage: React.FC = () => {
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
                   <div className="bg-blue-500/20 p-3 rounded-lg w-fit mb-4">
-                    <ImageIcon className="h-6 w-6 text-blue-400" />
+                    <Shield className="h-6 w-6 text-blue-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">IP Protection</h3>
                   <p className="text-gray-400 text-sm">Register and protect your intellectual property with blockchain-based verification.</p>
@@ -155,7 +179,7 @@ export const DocsPage: React.FC = () => {
 
                 <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
                   <div className="bg-green-500/20 p-3 rounded-lg w-fit mb-4">
-                    <Rocket className="h-6 w-6 text-green-400" />
+                    <Brain className="h-6 w-6 text-green-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">AI Agents</h3>
                   <p className="text-gray-400 text-sm">Intelligent agents handle licensing, negotiation, and infringement detection.</p>
@@ -178,20 +202,21 @@ export const DocsPage: React.FC = () => {
               </p>
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 {[
-                  { name: 'Story Protocol', icon: '📚' },
-                  { name: 'Crossmint', icon: '🎨' },
-                  { name: 'Alchemy', icon: '⚡' },
-                  { name: 'thirdweb', icon: '🔗' },
-                  { name: 'Gelato', icon: '🤖' },
-                  { name: 'Fleek', icon: '☁️' },
-                  { name: 'OpenAI', icon: '🧠' },
-                  { name: 'Yakoa', icon: '🔍' },
-                  { name: 'Zapper', icon: '📊' },
-                  { name: 'deBridge', icon: '🌉' }
+                  { name: 'Story Protocol', icon: '📚', category: 'Blockchain' },
+                  { name: 'Crossmint', icon: '🎨', category: 'NFT' },
+                  { name: 'Alchemy', icon: '⚡', category: 'Infrastructure' },
+                  { name: 'thirdweb', icon: '🔗', category: 'Smart Contracts' },
+                  { name: 'Gelato', icon: '🤖', category: 'Automation' },
+                  { name: 'Fleek', icon: '☁️', category: 'Hosting' },
+                  { name: 'OpenAI', icon: '🧠', category: 'AI' },
+                  { name: 'Yakoa', icon: '🔍', category: 'Detection' },
+                  { name: 'Zapper', icon: '📊', category: 'Analytics' },
+                  { name: 'deBridge', icon: '🌉', category: 'Cross-chain' }
                 ].map((integration, index) => (
                   <div key={index} className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center hover:border-gray-600 transition-colors">
                     <div className="text-2xl mb-2">{integration.icon}</div>
-                    <div className="text-sm text-gray-300">{integration.name}</div>
+                    <div className="text-sm text-gray-300 font-medium">{integration.name}</div>
+                    <div className="text-xs text-gray-500 mt-1">{integration.category}</div>
                   </div>
                 ))}
               </div>
@@ -203,10 +228,17 @@ export const DocsPage: React.FC = () => {
                 Join thousands of creators who trust IPVerse with their intellectual property.
               </p>
               <div className="flex space-x-4">
-                <Button className="bg-blue-600 text-white hover:bg-blue-700 border-0">
+                <Button 
+                  className="bg-blue-600 text-white hover:bg-blue-700 border-0"
+                  onClick={() => navigate('/login')}
+                >
                   Get Started
                 </Button>
-                <Button variant="outline" className="text-white border-gray-600 hover:bg-gray-700 hover:text-white hover:border-gray-500">
+                <Button 
+                  variant="outline" 
+                  className="text-white border-gray-600 hover:bg-gray-700 hover:text-white hover:border-gray-500"
+                  onClick={() => setSelectedSection('quickstart')}
+                >
                   View Examples
                 </Button>
               </div>
@@ -225,15 +257,23 @@ export const DocsPage: React.FC = () => {
 
             <div className="prose prose-invert max-w-none">
               <h2 className="text-2xl font-bold text-white mb-4">Prerequisites</h2>
-              <ul className="text-gray-300 mb-6">
-                <li>Node.js 18+ installed</li>
-                <li>Modern web browser</li>
-                <li>Internet connection</li>
+              <ul className="text-gray-300 mb-6 space-y-1">
+                <li>• Node.js 18+ installed</li>
+                <li>• Modern web browser</li>
+                <li>• Internet connection</li>
               </ul>
 
               <h2 className="text-2xl font-bold text-white mb-4">Step 1: Clone and Setup</h2>
-              <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 mb-6">
-                <pre className="text-gray-300 text-sm overflow-x-auto">
+              <div className="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden mb-6">
+                <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
+                  <div className="flex space-x-2">
+                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  </div>
+                  <div className="text-xs text-gray-400">Terminal</div>
+                </div>
+                <pre className="text-gray-300 text-sm p-4 overflow-x-auto">
                   <code>{`# Clone the repository
 git clone https://github.com/your-team/ipverse.git
 cd ipverse
@@ -248,30 +288,90 @@ cp .env.example .env.local`}</code>
 
               <h2 className="text-2xl font-bold text-white mb-4">Step 2: Configure Environment</h2>
               <p className="text-gray-300 mb-4">Edit <code className="bg-gray-700 px-2 py-1 rounded text-blue-300">.env.local</code> with your API keys:</p>
-              <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 mb-6">
-                <pre className="text-gray-300 text-sm overflow-x-auto">
+              <div className="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden mb-6">
+                <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
+                  <div className="flex space-x-2">
+                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  </div>
+                  <div className="text-xs text-gray-400">.env.local</div>
+                </div>
+                <pre className="text-gray-300 text-sm p-4 overflow-x-auto">
                   <code>{`# Essential for core functionality
 VITE_TOMO_CLIENT_ID=xDsx8PcJd6QrpkgejZRWi9WpyTQ2FvCZOOmG2Ry4brFQxlil77Y3Rfg5XGTEFl5MWOfc6VOzDHku84Cye7l7pwnr
 
 # Optional: Add your own API keys for full functionality
 VITE_OPENAI_API_KEY=your_openai_api_key_here
-VITE_ALCHEMY_API_KEY=your_alchemy_api_key_here`}</code>
+VITE_ALCHEMY_API_KEY=your_alchemy_api_key_here
+VITE_STORY_PROTOCOL_API_KEY=your_story_protocol_api_key_here`}</code>
                 </pre>
               </div>
 
+              <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 mb-6">
+                <p className="text-blue-200 text-sm">
+                  <strong>Note:</strong> The Tomo Client ID is pre-configured for demo purposes. For production, get your own keys from each partner.
+                </p>
+              </div>
+
               <h2 className="text-2xl font-bold text-white mb-4">Step 3: Start Development Server</h2>
-              <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 mb-6">
-                <pre className="text-gray-300 text-sm">
+              <div className="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden mb-6">
+                <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
+                  <div className="flex space-x-2">
+                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  </div>
+                  <div className="text-xs text-gray-400">Terminal</div>
+                </div>
+                <pre className="text-gray-300 text-sm p-4">
                   <code>npm run dev</code>
                 </pre>
               </div>
               <p className="text-gray-300 mb-6">
-                Open <a href="http://localhost:5173" className="text-blue-400 hover:text-blue-300">http://localhost:5173</a> in your browser.
+                Open <a href="http://localhost:5173" className="text-blue-400 hover:text-blue-300 underline">http://localhost:5173</a> in your browser.
               </p>
 
-              <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-blue-300 mb-2">🎉 Congratulations!</h3>
-                <p className="text-blue-200">Your IPVerse development environment is now ready. You can start building with our AI + Web3 IP management platform!</p>
+              <h2 className="text-2xl font-bold text-white mb-4">Step 4: Create Your Account</h2>
+              <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 mb-6">
+                <ol className="text-gray-300 space-y-2">
+                  <li>1. Click <strong className="text-white">"Get Started"</strong> on the homepage</li>
+                  <li>2. Choose your preferred login method:
+                    <ul className="ml-4 mt-2 space-y-1">
+                      <li>• <strong className="text-green-400">Google</strong> (Recommended)</li>
+                      <li>• <strong className="text-blue-400">Twitter</strong></li>
+                      <li>• <strong className="text-purple-400">Discord</strong></li>
+                      <li>• <strong className="text-gray-400">Email</strong></li>
+                    </ul>
+                  </li>
+                </ol>
+                <div className="mt-4 p-3 bg-green-500/10 border border-green-500/20 rounded">
+                  <p className="text-green-200 text-sm">
+                    ✨ Your wallet is automatically created - no crypto knowledge required!
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-green-300 mb-2">🎉 Congratulations!</h3>
+                <p className="text-green-200">Your IPVerse development environment is now ready. You can start building with our AI + Web3 IP management platform!</p>
+                <div className="mt-4 flex space-x-3">
+                  <Button 
+                    size="sm" 
+                    className="bg-green-600 text-white hover:bg-green-700 border-0"
+                    onClick={() => navigate('/register')}
+                  >
+                    Register Your First IP
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="text-green-300 border-green-600 hover:bg-green-700 hover:text-white"
+                    onClick={() => setSelectedSection('running-locally')}
+                  >
+                    Advanced Setup
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -283,7 +383,7 @@ VITE_ALCHEMY_API_KEY=your_alchemy_api_key_here`}</code>
             <div className="mb-8">
               <div className="text-sm text-blue-400 mb-2">Get Started</div>
               <h1 className="text-4xl font-bold text-white mb-4">Running Locally</h1>
-              <p className="text-xl text-gray-400">Set up IPVerse for local development</p>
+              <p className="text-xl text-gray-400">Set up IPVerse for local development with full features</p>
             </div>
 
             <div className="prose prose-invert max-w-none">
@@ -297,8 +397,12 @@ VITE_ALCHEMY_API_KEY=your_alchemy_api_key_here`}</code>
                 Create a <code className="bg-gray-700 px-2 py-1 rounded text-blue-300">.env.local</code> file with the following variables:
               </p>
               
-              <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 mb-6">
-                <pre className="text-gray-300 text-sm overflow-x-auto">
+              <div className="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden mb-6">
+                <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
+                  <div className="text-xs text-gray-400">.env.local</div>
+                  <button className="text-gray-400 hover:text-white text-xs">Copy</button>
+                </div>
+                <pre className="text-gray-300 text-sm p-4 overflow-x-auto">
                   <code>{`# Core Configuration
 VITE_TOMO_CLIENT_ID=xDsx8PcJd6QrpkgejZRWi9WpyTQ2FvCZOOmG2Ry4brFQxlil77Y3Rfg5XGTEFl5MWOfc6VOzDHku84Cye7l7pwnr
 VITE_OPENAI_API_KEY=your_openai_api_key_here
@@ -316,19 +420,166 @@ VITE_MOCK_APIS=true`}</code>
               </div>
 
               <h3 className="text-xl font-semibold text-white mb-3">Available Scripts</h3>
-              <div className="space-y-4">
+              <div className="space-y-4 mb-6">
                 <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
-                  <code className="text-blue-300">npm run dev</code>
-                  <p className="text-gray-400 text-sm mt-1">Start the development server with hot reload</p>
+                  <div className="flex items-center justify-between mb-2">
+                    <code className="text-blue-300 font-mono">npm run dev</code>
+                    <Terminal className="h-4 w-4 text-gray-400" />
+                  </div>
+                  <p className="text-gray-400 text-sm">Start the development server with hot reload</p>
                 </div>
                 <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
-                  <code className="text-blue-300">npm run build</code>
-                  <p className="text-gray-400 text-sm mt-1">Build the application for production</p>
+                  <div className="flex items-center justify-between mb-2">
+                    <code className="text-blue-300 font-mono">npm run build</code>
+                    <Settings className="h-4 w-4 text-gray-400" />
+                  </div>
+                  <p className="text-gray-400 text-sm">Build the application for production</p>
                 </div>
                 <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
-                  <code className="text-blue-300">npm run preview</code>
-                  <p className="text-gray-400 text-sm mt-1">Preview the production build locally</p>
+                  <div className="flex items-center justify-between mb-2">
+                    <code className="text-blue-300 font-mono">npm run preview</code>
+                    <Globe className="h-4 w-4 text-gray-400" />
+                  </div>
+                  <p className="text-gray-400 text-sm">Preview the production build locally</p>
                 </div>
+              </div>
+
+              <h3 className="text-xl font-semibold text-white mb-3">Development Features</h3>
+              <div className="grid md:grid-cols-2 gap-4 mb-6">
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
+                  <h4 className="font-semibold text-white mb-2">🔧 Debug Mode</h4>
+                  <p className="text-gray-400 text-sm">Detailed logging and error information</p>
+                </div>
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
+                  <h4 className="font-semibold text-white mb-2">🎭 Mock APIs</h4>
+                  <p className="text-gray-400 text-sm">Test without real API keys</p>
+                </div>
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
+                  <h4 className="font-semibold text-white mb-2">🔄 Hot Reload</h4>
+                  <p className="text-gray-400 text-sm">Instant updates during development</p>
+                </div>
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
+                  <h4 className="font-semibold text-white mb-2">📱 Responsive</h4>
+                  <p className="text-gray-400 text-sm">Test on all device sizes</p>
+                </div>
+              </div>
+
+              <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-yellow-300 mb-2">💡 Pro Tip</h3>
+                <p className="text-yellow-200">
+                  Enable debug mode to see detailed API logs and component render information. Perfect for troubleshooting integration issues!
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'environment-setup':
+        return (
+          <div className="max-w-4xl">
+            <div className="mb-8">
+              <div className="text-sm text-blue-400 mb-2">Get Started</div>
+              <h1 className="text-4xl font-bold text-white mb-4">Environment Setup</h1>
+              <p className="text-xl text-gray-400">Configure API keys and environment variables</p>
+            </div>
+
+            <div className="prose prose-invert max-w-none">
+              <h2 className="text-2xl font-bold text-white mb-4">Required API Keys</h2>
+              
+              <div className="space-y-6 mb-8">
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="bg-green-500/20 p-2 rounded mr-3">
+                      <span className="text-green-400">✅</span>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-white">Tomo SDK</h3>
+                      <p className="text-gray-400 text-sm">Already configured - no action needed</p>
+                    </div>
+                  </div>
+                  <div className="bg-gray-900 rounded p-3">
+                    <code className="text-green-300 text-sm">VITE_TOMO_CLIENT_ID=xDsx8PcJd6QrpkgejZRWi9WpyTQ2FvCZOOmG2Ry4brFQxlil77Y3Rfg5XGTEFl5MWOfc6VOzDHku84Cye7l7pwnr</code>
+                  </div>
+                </div>
+
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center">
+                      <div className="bg-blue-500/20 p-2 rounded mr-3">
+                        <span className="text-blue-400">🧠</span>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white">OpenAI</h3>
+                        <p className="text-gray-400 text-sm">Required for AI agents</p>
+                      </div>
+                    </div>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="text-blue-400 border-blue-600 hover:bg-blue-700 hover:text-white"
+                      onClick={() => window.open('https://platform.openai.com/api-keys', '_blank')}
+                    >
+                      Get API Key
+                    </Button>
+                  </div>
+                  <div className="bg-gray-900 rounded p-3">
+                    <code className="text-gray-400 text-sm">VITE_OPENAI_API_KEY=your_openai_api_key_here</code>
+                  </div>
+                </div>
+
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center">
+                      <div className="bg-purple-500/20 p-2 rounded mr-3">
+                        <span className="text-purple-400">⚡</span>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white">Alchemy</h3>
+                        <p className="text-gray-400 text-sm">Required for blockchain interactions</p>
+                      </div>
+                    </div>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="text-purple-400 border-purple-600 hover:bg-purple-700 hover:text-white"
+                      onClick={() => window.open('https://dashboard.alchemy.com/', '_blank')}
+                    >
+                      Get API Key
+                    </Button>
+                  </div>
+                  <div className="bg-gray-900 rounded p-3">
+                    <code className="text-gray-400 text-sm">VITE_ALCHEMY_API_KEY=your_alchemy_api_key_here</code>
+                  </div>
+                </div>
+              </div>
+
+              <h2 className="text-2xl font-bold text-white mb-4">Optional Partner APIs</h2>
+              <p className="text-gray-300 mb-6">
+                These APIs unlock additional features but aren't required for basic functionality:
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-4 mb-8">
+                {[
+                  { name: 'Story Protocol', desc: 'IP Registration', color: 'blue' },
+                  { name: 'Crossmint', desc: 'NFT Minting', color: 'green' },
+                  { name: 'thirdweb', desc: 'Smart Contracts', color: 'purple' },
+                  { name: 'Gelato', desc: 'Automation', color: 'yellow' }
+                ].map((api, index) => (
+                  <div key={index} className="bg-gray-800 border border-gray-700 rounded-lg p-4">
+                    <h4 className="font-semibold text-white mb-1">{api.name}</h4>
+                    <p className="text-gray-400 text-sm">{api.desc}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-blue-300 mb-2">🔒 Security Best Practices</h3>
+                <ul className="text-blue-200 text-sm space-y-1">
+                  <li>• Never commit <code className="bg-blue-900/50 px-1 rounded">.env.local</code> to version control</li>
+                  <li>• Use different API keys for development and production</li>
+                  <li>• Rotate API keys regularly</li>
+                  <li>• Monitor API usage and set up alerts</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -352,7 +603,10 @@ VITE_MOCK_APIS=true`}</code>
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center space-x-8">
-              <div className="flex items-center space-x-2">
+              <div 
+                className="flex items-center space-x-2 cursor-pointer"
+                onClick={() => navigate('/')}
+              >
                 <div className="text-2xl font-bold text-white">#</div>
                 <span className="text-xl font-bold text-white">IPVerse</span>
               </div>
@@ -362,7 +616,7 @@ VITE_MOCK_APIS=true`}</code>
                 <button className="text-white border-b-2 border-white pb-4 text-sm font-medium">
                   Documentation
                 </button>
-                <button className="text-gray-400 hover:text-white pb-4 text-sm font-medium">
+                <button className="text-gray-400 hover:text-white pb-4 text-sm font-medium transition-colors">
                   API Reference
                 </button>
               </div>
@@ -377,20 +631,33 @@ VITE_MOCK_APIS=true`}</code>
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Search..."
-                  className="pl-10 pr-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent w-64"
+                  className="pl-10 pr-16 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent w-64 text-sm"
                 />
                 <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                  <kbd className="px-2 py-1 text-xs text-gray-400 bg-gray-700 rounded">Ctrl K</kbd>
+                  <kbd className="px-2 py-1 text-xs text-gray-400 bg-gray-700 rounded border border-gray-600">Ctrl K</kbd>
                 </div>
               </div>
               
-              <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="text-gray-400 hover:text-white"
+                onClick={() => window.open('https://github.com/your-team/ipverse', '_blank')}
+              >
+                <Github className="h-4 w-4 mr-1" />
                 GitHub
               </Button>
-              <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="text-gray-400 hover:text-white"
+              >
                 Support
               </Button>
-              <Button className="bg-white text-black hover:bg-gray-100">
+              <Button 
+                className="bg-white text-black hover:bg-gray-100"
+                onClick={() => navigate('/dashboard')}
+              >
                 Dashboard →
               </Button>
             </div>
@@ -432,7 +699,12 @@ VITE_MOCK_APIS=true`}</code>
                       </button>
                       
                       {expandedSections.includes(section.id) && section.items && (
-                        <div className="ml-4 mt-1 space-y-1">
+                        <motion.div 
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="ml-4 mt-1 space-y-1"
+                        >
                           {section.items.map((item) => (
                             <button
                               key={item.id}
@@ -446,7 +718,7 @@ VITE_MOCK_APIS=true`}</code>
                               {item.title}
                             </button>
                           ))}
-                        </div>
+                        </motion.div>
                       )}
                     </div>
                   )}
