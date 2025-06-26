@@ -208,9 +208,18 @@ export const Navbar: React.FC = () => {
                   </Button>
                 </Link>
                 <Link to="/login">
-                  <Button className="bg-white text-black hover:bg-gray-100">
+                  <button 
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg border-0 transition-all duration-200"
+                    style={{ backgroundColor: '#2563eb', color: 'white', border: 'none' }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#1d4ed8';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = '#2563eb';
+                    }}
+                  >
                     Get Started
-                  </Button>
+                  </button>
                 </Link>
               </div>
             )}
@@ -270,6 +279,22 @@ export const Navbar: React.FC = () => {
                     {item.name}
                   </Link>
                 ))}
+
+                {/* Mobile Get Started Button */}
+                {!user && (
+                  <Link
+                    to="/login"
+                    className="block px-3 py-2"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <button 
+                      className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg border-0 transition-all duration-200"
+                      style={{ backgroundColor: '#2563eb', color: 'white', border: 'none' }}
+                    >
+                      Get Started
+                    </button>
+                  </Link>
+                )}
               </div>
             </motion.div>
           )}
