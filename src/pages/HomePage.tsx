@@ -1,234 +1,391 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
-  ArrowRight,
-  Download,
-  Copy,
-  Github,
-  Star,
-  ExternalLink,
-  Play,
-  Search,
-  Cpu,
+  Brain, 
+  Shield, 
+  Zap, 
   Globe,
-  Zap,
-  Layers
+  ArrowRight,
+  CheckCircle,
+  Star,
+  Users,
+  TrendingUp,
+  Search,
+  Filter,
+  Database,
+  MessageSquare,
+  CreditCard,
+  Cloud
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
+import { Card } from '../components/ui/Card';
+import { Badge } from '../components/ui/Badge';
 import { useAuth } from '../contexts/AuthContext';
 
 export const HomePage: React.FC = () => {
   const { user } = useAuth();
-  const [activeTab, setActiveTab] = useState('Python');
 
-  const codeExamples = {
-    Python: `from langchain_openai import ChatOpenAI
-from langchain.agents import AgentType
-from pica_langchain import PicaClient, create_pica_agent
+  const features = [
+    {
+      icon: Shield,
+      title: 'IP Protection',
+      description: 'Register and protect your intellectual property with blockchain-based verification.',
+      color: 'text-blue-400',
+    },
+    {
+      icon: Brain,
+      title: 'AI Agents',
+      description: 'Intelligent agents handle licensing, negotiation, and infringement detection.',
+      color: 'text-purple-400',
+    },
+    {
+      icon: Zap,
+      title: 'Smart Licensing',
+      description: 'Automated licensing with smart contracts and cross-chain compatibility.',
+      color: 'text-yellow-400',
+    },
+    {
+      icon: Globe,
+      title: 'Global Marketplace',
+      description: 'Discover and license IP assets from creators worldwide.',
+      color: 'text-green-400',
+    },
+  ];
 
-# Initialize Pica client
-pica_client = PicaClient(secret="YOUR_PICA_SECRET", connectors=["**"])
+  const stats = [
+    { label: 'IP Assets Registered', value: '50K+', icon: Shield },
+    { label: 'Active Creators', value: '12K+', icon: Users },
+    { label: 'Total Royalties', value: '$2.5M+', icon: TrendingUp },
+    { label: 'AI Negotiations', value: '25K+', icon: Brain },
+  ];
 
-# Set up LLM
-llm = ChatOpenAI(temperature=0, model="gpt-4")
+  const connectorCategories = [
+    { name: 'All', count: 113, active: true },
+    { name: 'AI', count: 37, icon: Brain },
+    { name: 'Blockchain', count: 18, icon: Database },
+    { name: 'Communication', count: 12, icon: MessageSquare },
+    { name: 'Payments', count: 8, icon: CreditCard },
+    { name: 'Storage', count: 15, icon: Cloud },
+  ];
 
-# Create Pica agent
-agent = create_pica_agent(
-    llm=llm,
-    pica_client=pica_client,
-    agent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
-    verbose=True
-)
+  const featuredConnectors = [
+    {
+      name: 'Story Protocol',
+      description: 'IP registration and licensing on blockchain',
+      category: 'Blockchain',
+      logo: '📚',
+    },
+    {
+      name: 'Crossmint',
+      description: 'Walletless NFT minting and management',
+      category: 'Blockchain',
+      logo: '🎨',
+    },
+    {
+      name: 'OpenAI',
+      description: 'AI-powered content analysis and generation',
+      category: 'AI',
+      logo: '🧠',
+    },
+    {
+      name: 'Alchemy',
+      description: 'Blockchain infrastructure and APIs',
+      category: 'Blockchain',
+      logo: '⚡',
+    },
+    {
+      name: 'Tomo',
+      description: 'Social login and wallet abstraction',
+      category: 'Authentication',
+      logo: '🔐',
+    },
+    {
+      name: 'thirdweb',
+      description: 'Smart contract deployment and management',
+      category: 'Blockchain',
+      logo: '🔗',
+    },
+  ];
 
-# Run the agent
-result = agent.run("Send an email to john@example.com with the subject 'Meeting Tomorrow'")
-print(result)`,
-    TypeScript: `import { PicaClient } from '@pica/sdk';
-import { ChatOpenAI } from 'langchain/chat_models/openai';
-
-const pica = new PicaClient({
-  apiKey: process.env.PICA_API_KEY,
-  connectors: ['gmail', 'slack', 'notion']
-});
-
-const llm = new ChatOpenAI({
-  temperature: 0,
-  modelName: 'gpt-4'
-});
-
-async function runAgent() {
-  const result = await pica.execute({
-    prompt: "Schedule a meeting with the team for next week",
-    llm: llm
-  });
-  
-  return result;
-}`,
-    MCP: `{
-  "mcpServers": {
-    "pica": {
-      "command": "npx",
-      "args": ["@pica/mcp-server"],
-      "env": {
-        "PICA_API_KEY": "your-api-key"
-      }
-    }
-  }
-}`
-  };
+  const testimonials = [
+    {
+      name: 'Sarah Chen',
+      role: 'Digital Artist',
+      content: 'IPVerse made it incredibly easy to protect and monetize my digital art. The AI agents handle all the complex licensing automatically.',
+      avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2',
+    },
+    {
+      name: 'Marcus Johnson',
+      role: 'Music Producer',
+      content: 'The cross-chain licensing feature opened up new markets for my music. Revenue increased by 300% in just 6 months.',
+      avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2',
+    },
+    {
+      name: 'Dr. Elena Rodriguez',
+      role: 'AI Researcher',
+      content: 'Perfect platform for licensing our ML datasets. The verification process ensures quality and originality.',
+      avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2',
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-black pt-20 pb-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Badges */}
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center space-x-8 mb-16">
-              <div className="flex items-center space-x-2 text-orange-500 font-medium">
-                <span>Built with Rust</span>
-                <span>🦀</span>
-              </div>
-              <div className="flex items-center space-x-2 text-blue-400 font-medium">
-                <Github className="h-4 w-4" />
-                <span>Open Source</span>
-              </div>
-            </div>
-
-            {/* Main Headline */}
+      <section className="relative overflow-hidden bg-black">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="mb-16"
             >
-              <h1 className="text-7xl md:text-9xl font-bold text-white mb-8 leading-none tracking-tight">
-                Build agentic<br />
-                automations.<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                  Fast.
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+                The Future of{' '}
+                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  IP Management
                 </span>
               </h1>
-              <p className="text-xl md:text-2xl text-gray-400 mb-12 max-w-5xl mx-auto leading-relaxed">
-                Connect LLMs to 13,000+ APIs with human-verifiable calls, streaming execution,<br />
-                and SDKs for LangChain, Vercel, and more.
+              <p className="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
+                Register, protect, and monetize your intellectual property with AI-powered agents 
+                and decentralized infrastructure. Join the next generation of creators.
               </p>
             </motion.div>
 
-            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex items-center justify-center space-x-6 mb-20"
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
             >
-              <Button size="lg" className="px-10 py-4 bg-white text-black hover:bg-gray-100 font-semibold text-lg rounded-xl">
-                Start building
-              </Button>
-              <Button variant="ghost" size="lg" className="px-10 py-4 text-white hover:bg-gray-800 font-semibold text-lg rounded-xl border border-gray-700">
-                <Play className="h-5 w-5 mr-2" />
-                See demo
-              </Button>
+              {user ? (
+                <Link to="/dashboard" className="inline-block">
+                  <Button size="lg" className="px-8 w-full sm:w-auto bg-white text-black hover:bg-gray-100">
+                    Go to Dashboard
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+              ) : (
+                <>
+                  <Link to="/login" className="inline-block">
+                    <Button size="lg" className="px-8 w-full sm:w-auto bg-white text-black hover:bg-gray-100">
+                      Get Started Free
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Link>
+                  <Link to="/discover" className="inline-block">
+                    <Button variant="outline" size="lg" className="px-8 w-full sm:w-auto text-gray-300 border-gray-600 hover:bg-gray-800 hover:text-white">
+                      Explore Marketplace
+                    </Button>
+                  </Link>
+                </>
+              )}
             </motion.div>
 
-            {/* Code Example */}
+            {/* Stats */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="max-w-6xl mx-auto"
+              className="grid grid-cols-2 md:grid-cols-4 gap-8"
             >
-              <div className="bg-gray-900/50 backdrop-blur border border-gray-700/50 rounded-2xl overflow-hidden shadow-2xl">
-                {/* Code tabs */}
-                <div className="flex items-center justify-between bg-gray-800/50 px-8 py-4 border-b border-gray-700/50">
-                  <div className="flex space-x-2">
-                    {['Python', 'TypeScript', 'MCP'].map((tab) => (
-                      <button
-                        key={tab}
-                        onClick={() => setActiveTab(tab)}
-                        className={`px-6 py-3 text-sm font-semibold rounded-lg transition-all ${
-                          activeTab === tab
-                            ? 'bg-gray-700 text-white'
-                            : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
-                        }`}
-                      >
-                        {tab}
-                      </button>
-                    ))}
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="flex justify-center mb-2">
+                    <stat.icon className="h-8 w-8 text-blue-400" />
                   </div>
-                  <div className="flex space-x-3">
-                    <button className="p-2 text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-gray-700/50">
-                      <Download className="h-5 w-5" />
-                    </button>
-                    <button className="p-2 text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-gray-700/50">
-                      <Copy className="h-5 w-5" />
-                    </button>
+                  <div className="text-2xl font-bold text-white">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-gray-400">
+                    {stat.label}
                   </div>
                 </div>
-                
-                {/* Code content */}
-                <div className="p-10 text-left bg-gray-900/30">
-                  <pre className="text-sm text-gray-300 leading-relaxed overflow-x-auto">
-                    <code className="language-python">
-                      {codeExamples[activeTab as keyof typeof codeExamples]}
-                    </code>
-                  </pre>
-                </div>
-              </div>
+              ))}
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-24 bg-gray-950">
+      {/* Available Connectors Section */}
+      <section className="py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <p className="text-2xl text-gray-400 mb-20">
-              Everything you need to build powerful agentic applications
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Available Connectors (113)
+            </h2>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              Connect to the world. New platforms added regularly.
+            </p>
+          </div>
+
+          {/* Category Filters */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {connectorCategories.map((category, index) => (
+              <motion.div
+                key={category.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+              >
+                <Button
+                  variant={category.active ? 'primary' : 'outline'}
+                  size="sm"
+                  className={category.active ? '' : 'text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white'}
+                >
+                  {category.icon && <category.icon className="h-4 w-4 mr-2" />}
+                  {category.name} ({category.count})
+                </Button>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto mb-12">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search connectors..."
+                className="w-full pl-12 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+          </div>
+
+          {/* Featured Connectors Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredConnectors.map((connector, index) => (
+              <motion.div
+                key={connector.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card hover className="p-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="text-3xl">{connector.logo}</div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-lg font-semibold text-white">
+                          {connector.name}
+                        </h3>
+                        <Badge variant="secondary" size="sm">
+                          {connector.category}
+                        </Badge>
+                      </div>
+                      <p className="text-gray-400 text-sm mb-4">
+                        {connector.description}
+                      </p>
+                      <Button variant="outline" size="sm" className="text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white">
+                        Connect your AI agent
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* View All Button */}
+          <div className="text-center mt-12">
+            <Button variant="outline" size="lg" className="text-gray-300 border-gray-600 hover:bg-gray-700 hover:text-white">
+              View All 113 Connectors
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Powerful Features for Modern Creators
+            </h2>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              Everything you need to protect, manage, and monetize your intellectual property 
+              in the digital age.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: Cpu,
-                title: 'LLM-First',
-                description: 'Built from the ground up for large language models and AI agents'
-              },
-              {
-                icon: Globe,
-                title: '13,000+ APIs',
-                description: 'Connect to thousands of services with natural language'
-              },
-              {
-                icon: Zap,
-                title: 'Fast & Reliable',
-                description: 'Streaming execution with human-verifiable calls'
-              },
-              {
-                icon: Layers,
-                title: 'Open + Extensible',
-                description: 'SDKs for LangChain, Vercel, and more'
-              }
-            ].map((feature, index) => (
+            {features.map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-gray-900/50 backdrop-blur border border-gray-800/50 rounded-2xl p-10 text-center hover:border-gray-700/50 transition-all group hover:bg-gray-900/70"
               >
-                <div className="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:bg-gray-700 transition-colors">
-                  <feature.icon className="h-8 w-8 text-white" />
+                <Card hover className="p-6 text-center">
+                  <div className="flex justify-center mb-4">
+                    <feature.icon className={`h-12 w-12 ${feature.color}`} />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-400">
+                    {feature.description}
+                  </p>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-20 bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              How IPVerse Works
+            </h2>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              Simple steps to protect and monetize your intellectual property
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                step: '1',
+                title: 'Register Your IP',
+                description: 'Upload your creative work and let our AI generate comprehensive metadata and protection.',
+                icon: Shield,
+              },
+              {
+                step: '2',
+                title: 'AI Agent Management',
+                description: 'Deploy intelligent agents to handle licensing, negotiation, and infringement detection.',
+                icon: Brain,
+              },
+              {
+                step: '3',
+                title: 'Earn Royalties',
+                description: 'Automatically receive payments through smart contracts as your IP gets licensed and used.',
+                icon: TrendingUp,
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                  {item.step}
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-6">
-                  {feature.title}
+                <item.icon className="h-8 w-8 text-blue-400 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {item.title}
                 </h3>
-                <p className="text-gray-400 leading-relaxed text-lg">
-                  {feature.description}
+                <p className="text-gray-400">
+                  {item.description}
                 </p>
               </motion.div>
             ))}
@@ -236,265 +393,77 @@ async function runAgent() {
         </div>
       </section>
 
-      {/* Available Connectors Section */}
-      <section className="py-24 bg-black">
+      {/* Testimonials */}
+      <section className="py-20 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              Available Connectors (113)
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Trusted by Creators Worldwide
             </h2>
-            <p className="text-xl text-gray-400">
-              Connect to the world. New platforms added regularly.
+            <p className="text-lg text-gray-400">
+              See what our community says about IPVerse
             </p>
           </div>
 
-          {/* Category Pills */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {[
-              { name: 'All', count: 113, active: true },
-              { name: 'Accounting', count: 6 },
-              { name: 'AI', count: 37 },
-              { name: 'ATS', count: 1 },
-              { name: 'Communication', count: 5 },
-              { name: 'CRM', count: 12 },
-              { name: 'Database', count: 3 },
-              { name: 'ECommerce', count: 6 },
-              { name: 'HR & Payroll', count: 1 },
-              { name: 'Logistics', count: 4 },
-              { name: 'Marketing', count: 1 },
-              { name: 'Payments', count: 2 },
-              { name: 'POS', count: 1 },
-              { name: 'Productivity', count: 7 },
-              { name: 'Software', count: 1 },
-              { name: 'Storage', count: 5 },
-              { name: 'Ticketing', count: 3 },
-              { name: 'Tools', count: 18 }
-            ].map((category, index) => (
-              <motion.button
-                key={category.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.02 }}
-                className={`px-6 py-3 rounded-full text-sm font-semibold transition-all ${
-                  category.active
-                    ? 'bg-white text-black'
-                    : 'bg-gray-900 text-gray-300 hover:bg-gray-800 hover:text-white border border-gray-800'
-                }`}
-              >
-                {category.name} ({category.count})
-              </motion.button>
-            ))}
-          </div>
-
-          {/* Search Bar */}
-          <div className="max-w-3xl mx-auto mb-16">
-            <div className="relative">
-              <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search connectors..."
-                className="w-full pl-16 pr-8 py-6 bg-gray-900/50 backdrop-blur border border-gray-800 rounded-2xl text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
-              />
-            </div>
-          </div>
-
-          {/* Connectors Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                name: 'ActiveCampaign',
-                description: 'ActiveCampaign is a customer experience automation platform that combines email marketing, marketing automation, and CRM tools.',
-                logo: '📧',
-                category: 'Marketing'
-              },
-              {
-                name: 'Affinity.co',
-                description: 'Affinity is a relationship intelligence CRM that automatically captures and analyzes your team\'s network.',
-                logo: '🔗',
-                category: 'CRM'
-              },
-              {
-                name: 'AgentQL',
-                description: 'AgentQL is a natural language interface that allows users to query their data using plain English.',
-                logo: '🤖',
-                category: 'AI'
-              },
-              {
-                name: 'Ahrefs',
-                description: 'Ahrefs is a comprehensive SEO toolset that helps you grow your search traffic, research competitors and monitor your niche.',
-                logo: '📊',
-                category: 'Marketing'
-              },
-              {
-                name: 'Airtable',
-                description: 'Airtable is a cloud collaboration service that combines the features of a database with the simplicity of a spreadsheet.',
-                logo: '📋',
-                category: 'Productivity'
-              },
-              {
-                name: 'Anthropic',
-                description: 'Anthropic develops AI safety research and builds helpful, harmless, and honest AI systems.',
-                logo: '🧠',
-                category: 'AI'
-              }
-            ].map((connector, index) => (
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
               <motion.div
-                key={connector.name}
+                key={index}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-gray-900/50 backdrop-blur border border-gray-800/50 rounded-2xl p-8 hover:border-gray-700/50 transition-all group hover:bg-gray-900/70"
+                viewport={{ once: true }}
               >
-                <div className="flex items-start space-x-6">
-                  <div className="w-16 h-16 bg-gray-800 rounded-xl flex items-center justify-center text-3xl group-hover:bg-gray-700 transition-colors flex-shrink-0">
-                    {connector.logo}
+                <Card className="p-6">
+                  <div className="flex items-center mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                    ))}
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-xl font-bold text-white">
-                        {connector.name}
-                      </h3>
-                    </div>
-                    <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-                      {connector.description}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-gray-500 bg-gray-800 px-4 py-2 rounded-full">
-                        Connect your AI agent
-                      </span>
-                      <button className="text-blue-400 hover:text-blue-300 text-sm font-semibold flex items-center group-hover:translate-x-1 transition-transform">
-                        Learn more <ArrowRight className="ml-2 h-4 w-4" />
-                      </button>
+                  <p className="text-gray-400 mb-4">
+                    "{testimonial.content}"
+                  </p>
+                  <div className="flex items-center">
+                    <img
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      className="h-10 w-10 rounded-full mr-3"
+                    />
+                    <div>
+                      <div className="font-semibold text-white">
+                        {testimonial.name}
+                      </div>
+                      <div className="text-sm text-gray-400">
+                        {testimonial.role}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Card>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* MCP Section */}
-      <section className="py-24 bg-gray-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              MCP App Store-as-a-Service
-            </h2>
-            <p className="text-xl text-gray-400">
-              Launch and manage internal AI tools with full control.
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left side - Integrations panel */}
-            <div className="bg-gray-900/50 backdrop-blur border border-gray-800/50 rounded-2xl p-8">
-              <div className="bg-gray-800/50 rounded-xl p-6">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-white font-semibold text-lg">Integrations</h3>
-                  <button className="text-gray-400 hover:text-white text-2xl">×</button>
-                </div>
-                <div className="relative mb-6">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                  <input
-                    type="text"
-                    placeholder="Search"
-                    className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white text-sm placeholder-gray-400"
-                  />
-                </div>
-                <div className="grid grid-cols-3 gap-4">
-                  {[
-                    { name: 'ActiveCampaign', logo: '📧' },
-                    { name: 'Google', logo: '🔍' },
-                    { name: 'Anthropic', logo: '🧠' },
-                    { name: 'Airtable', logo: '📋' },
-                    { name: 'Figma', logo: '🎨' },
-                    { name: 'AgentQL', logo: '🤖' },
-                    { name: 'Retently', logo: '📊' },
-                    { name: 'Box', logo: '📦' },
-                    { name: 'ClearGPT', logo: '💬' },
-                    { name: 'Chargebee', logo: '💳' },
-                    { name: 'Clerk', logo: '🔐' },
-                    { name: 'Okta', logo: '🛡️' },
-                    { name: 'Canvas', logo: '🎯' },
-                    { name: 'Convertkit', logo: '📧' },
-                    { name: 'Diffbot', logo: '🤖' }
-                  ].map((app, index) => (
-                    <div key={index} className="bg-gray-700/50 rounded-xl p-4 text-center hover:bg-gray-600/50 transition-colors">
-                      <div className="text-2xl mb-2">{app.logo}</div>
-                      <div className="text-xs text-gray-300 truncate">{app.name}</div>
-                    </div>
-                  ))}
-                </div>
-                <div className="text-center mt-6">
-                  <span className="text-xs text-gray-400">Powered by 🔧 Pica</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right side - Code */}
-            <div className="bg-gray-900/50 backdrop-blur border border-gray-800/50 rounded-2xl overflow-hidden">
-              <div className="flex items-center justify-between bg-gray-800/50 px-6 py-4 border-b border-gray-700/50">
-                <span className="text-gray-300 text-sm font-semibold">typescript</span>
-                <div className="flex space-x-3">
-                  <button className="p-2 text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-gray-700/50">
-                    <Download className="h-4 w-4" />
-                  </button>
-                  <button className="p-2 text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-gray-700/50">
-                    <Copy className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-              <div className="p-8 text-left">
-                <pre className="text-sm text-gray-300 leading-relaxed overflow-x-auto">
-                  <code>
-{`import { useAuthKit } from "@picahq/authkit";
-import { Button } from "@/components/ui/button";
-
-export function AuthKitButton() {
-  const { open } = useAuthKit({
-    token: {
-      url: "https://api.your-company-name.com/authkit-token",
-      headers: {},
-    },
-    onSuccess: (connection) => {},
-    onError: (error) => {},
-    onClose: () => {},
-  });
-
-  return (
-    <Button onClick={open}>
-      Connect Tools
-    </Button>
-  );
-}`}
-                  </code>
-                </pre>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      {!user && (
-        <section className="py-24 bg-gradient-to-r from-blue-600 to-purple-600">
-          <div className="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Ready to Build?
-            </h2>
-            <p className="text-xl text-blue-100 mb-10">
-              Start building agentic automations with Pica today.
-            </p>
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Ready to Protect Your Ideas?
+          </h2>
+          <p className="text-xl text-blue-100 mb-8">
+            Join thousands of creators who trust IPVerse with their intellectual property.
+          </p>
+          {!user && (
             <Link to="/login" className="inline-block">
-              <Button variant="outline" size="lg" className="px-10 py-4 bg-white text-blue-600 hover:bg-gray-100 border-white hover:border-gray-100 font-semibold text-lg rounded-xl">
-                Get Started
+              <Button variant="outline" size="lg" className="px-8 bg-white text-blue-600 hover:bg-gray-100 border-white hover:border-gray-100">
+                Start Your Free Trial
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-          </div>
-        </section>
-      )}
+          )}
+        </div>
+      </section>
     </div>
   );
 };
