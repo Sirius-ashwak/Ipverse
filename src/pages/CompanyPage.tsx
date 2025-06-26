@@ -14,7 +14,11 @@ import {
   Calendar,
   TrendingUp,
   Shield,
-  Zap
+  Zap,
+  Trophy,
+  Code,
+  Rocket,
+  ExternalLink
 } from 'lucide-react';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
@@ -27,39 +31,6 @@ export const CompanyPage: React.FC = () => {
       role: 'CEO & Founder',
       bio: 'Visionary leader and blockchain pioneer. Founded IPVerse to democratize IP protection for creators worldwide.',
       avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=2',
-      social: {
-        linkedin: '#',
-        twitter: '#',
-        github: '#'
-      }
-    },
-    {
-      name: 'Sarah Rodriguez',
-      role: 'CTO & Co-founder',
-      bio: 'AI researcher with 10+ years in machine learning. Led AI initiatives at Google and OpenAI.',
-      avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=2',
-      social: {
-        linkedin: '#',
-        twitter: '#',
-        github: '#'
-      }
-    },
-    {
-      name: 'Marcus Johnson',
-      role: 'Head of Product',
-      bio: 'Product leader with experience at Stripe and Coinbase. Expert in Web3 user experience.',
-      avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=2',
-      social: {
-        linkedin: '#',
-        twitter: '#',
-        github: '#'
-      }
-    },
-    {
-      name: 'Emily Zhang',
-      role: 'Head of Partnerships',
-      bio: 'Business development expert who built strategic partnerships at Alchemy and thirdweb.',
-      avatar: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=2',
       social: {
         linkedin: '#',
         twitter: '#',
@@ -99,39 +70,58 @@ export const CompanyPage: React.FC = () => {
     }
   ];
 
-  const milestones = [
+  const buildathonMilestones = [
     {
-      date: 'Q1 2024',
-      title: 'Company Founded',
-      description: 'IPVerse was founded by Sirius with the mission to democratize IP protection.'
+      date: '20 May 2025',
+      title: 'Buildathon Begins',
+      description: 'Started development for the Surreal World Assets Buildathon by Story Protocol.'
     },
     {
-      date: 'Q2 2024',
-      title: 'Seed Funding',
-      description: 'Raised $5M seed round led by Andreessen Horowitz.'
+      date: 'Week 1',
+      title: 'Core Platform',
+      description: 'Built the foundational IP management platform with React and TypeScript.'
     },
     {
-      date: 'Q3 2024',
-      title: 'Partner Network',
-      description: 'Established partnerships with 10+ leading Web3 and AI companies.'
+      date: 'Week 2',
+      title: 'AI Integration',
+      description: 'Integrated AI agents for licensing, negotiation, and infringement detection.'
     },
     {
-      date: 'Q4 2024',
-      title: 'Platform Launch',
-      description: 'Launched IPVerse platform with AI agents and blockchain integration.'
+      date: 'Week 3',
+      title: 'Partner APIs',
+      description: 'Connected 10+ partner APIs including Story Protocol, Crossmint, and Alchemy.'
     },
     {
-      date: 'Q1 2025',
-      title: 'Global Expansion',
-      description: 'Expanded to serve creators worldwide with multi-language support.'
+      date: 'Week 4',
+      title: 'Advanced Features',
+      description: 'Added analytics, marketplace, and comprehensive documentation.'
+    },
+    {
+      date: 'Week 5',
+      title: 'Polish & Deploy',
+      description: 'Final optimizations, testing, and deployment preparation.'
+    },
+    {
+      date: '26 June 2025',
+      title: 'Submission',
+      description: 'Project submission for the Surreal World Assets Buildathon.'
     }
   ];
 
-  const stats = [
-    { label: 'Creators Protected', value: '12K+', icon: Users },
-    { label: 'IP Assets Registered', value: '50K+', icon: Shield },
+  const buildathonStats = [
+    { label: 'Development Time', value: '5 Weeks', icon: Calendar },
     { label: 'Partner Integrations', value: '10+', icon: Globe },
-    { label: 'Countries Served', value: '25+', icon: MapPin }
+    { label: 'Prize Pool', value: '$55K+', icon: Trophy },
+    { label: 'Lines of Code', value: '15K+', icon: Code }
+  ];
+
+  const partners = [
+    { name: 'Story Protocol', role: 'Main Sponsor', description: 'World\'s IP Blockchain' },
+    { name: 'Crossmint', role: 'NFT Partner', description: 'Walletless NFT Minting' },
+    { name: 'Alchemy', role: 'Infrastructure', description: 'Web3 Development Platform' },
+    { name: 'thirdweb', role: 'Smart Contracts', description: 'Web3 Development Tools' },
+    { name: 'Gelato', role: 'Automation', description: 'Web3 Automation Platform' },
+    { name: 'Fleek', role: 'Hosting', description: 'Decentralized Web Services' }
   ];
 
   return (
@@ -144,33 +134,74 @@ export const CompanyPage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
+            {/* Buildathon Badge */}
+            <div className="flex justify-center mb-6">
+              <Badge variant="warning" className="px-6 py-3 text-lg">
+                <Trophy className="h-5 w-5 mr-2" />
+                Surreal World Assets Buildathon Project
+              </Badge>
+            </div>
+
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Building the future of{' '}
+              Solving real-world problems with{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                IP protection
+                real-world assets
               </span>
             </h1>
-            <p className="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
-              We're on a mission to democratize intellectual property protection through AI and blockchain technology, 
-              empowering creators worldwide to protect and monetize their work.
+            <p className="text-xl text-gray-400 mb-8 max-w-4xl mx-auto">
+              IPVerse is our submission for the <strong>Surreal World Assets Buildathon</strong> by Story Protocol. 
+              We're building on the World's IP Blockchain to democratize intellectual property protection through 
+              AI and Web3 technology.
             </p>
             
+            {/* Buildathon Info */}
+            <div className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-lg p-6 mb-8 max-w-2xl mx-auto">
+              <div className="flex items-center justify-center mb-4">
+                <img 
+                  src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2" 
+                  alt="Story Protocol" 
+                  className="w-12 h-12 rounded-full mr-3"
+                />
+                <div className="text-left">
+                  <h3 className="text-lg font-semibold text-white">Story Protocol Buildathon</h3>
+                  <p className="text-purple-300 text-sm">20 May - 26 June, 2025</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4 text-center">
+                <div>
+                  <div className="text-2xl font-bold text-yellow-400">$55K+</div>
+                  <div className="text-sm text-gray-400">Prize Pool</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-blue-400">10+</div>
+                  <div className="text-sm text-gray-400">Partner APIs</div>
+                </div>
+              </div>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button className="bg-blue-600 text-white hover:bg-blue-700 border-0">
-                <Mail className="h-4 w-4 mr-2" />
-                Contact Us
+              <Button 
+                className="bg-purple-600 text-white hover:bg-purple-700 border-0"
+                onClick={() => window.open('https://github.com/your-team/ipverse', '_blank')}
+              >
+                <Github className="h-4 w-4 mr-2" />
+                View Source Code
               </Button>
-              <Button variant="outline" className="text-white border-gray-600 hover:bg-gray-700 hover:text-white hover:border-gray-500">
-                <Users className="h-4 w-4 mr-2" />
-                Join Our Team
+              <Button 
+                variant="outline" 
+                className="text-white border-gray-600 hover:bg-gray-700 hover:text-white hover:border-gray-500"
+                onClick={() => window.open('https://story.foundation/', '_blank')}
+              >
+                <ExternalLink className="h-4 w-4 mr-2" />
+                Story Protocol
               </Button>
             </div>
           </motion.div>
         </div>
 
-        {/* Stats */}
+        {/* Buildathon Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-          {stats.map((stat, index) => (
+          {buildathonStats.map((stat, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -180,7 +211,7 @@ export const CompanyPage: React.FC = () => {
               className="text-center"
             >
               <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
-                <stat.icon className="h-8 w-8 text-blue-400 mx-auto mb-4" />
+                <stat.icon className="h-8 w-8 text-purple-400 mx-auto mb-4" />
                 <div className="text-3xl font-bold text-white mb-2">{stat.value}</div>
                 <div className="text-sm text-gray-400">{stat.label}</div>
               </div>
@@ -188,7 +219,7 @@ export const CompanyPage: React.FC = () => {
           ))}
         </div>
 
-        {/* Mission & Vision */}
+        {/* Project Mission */}
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -200,10 +231,11 @@ export const CompanyPage: React.FC = () => {
               <div className="bg-blue-500/20 p-3 rounded-lg w-fit mb-6">
                 <Target className="h-8 w-8 text-blue-400" />
               </div>
-              <h2 className="text-2xl font-bold text-white mb-4">Our Mission</h2>
+              <h2 className="text-2xl font-bold text-white mb-4">Project Mission</h2>
               <p className="text-gray-300 leading-relaxed">
-                To democratize intellectual property protection by making it accessible, affordable, and automated for creators worldwide. 
-                We believe every creator deserves to protect their work without barriers or complexity.
+                To demonstrate how AI + Web3 can solve real-world IP management problems. IPVerse showcases 
+                the power of Story Protocol's IP blockchain combined with intelligent automation to make 
+                IP protection accessible to all creators.
               </p>
             </Card>
           </motion.div>
@@ -216,20 +248,20 @@ export const CompanyPage: React.FC = () => {
           >
             <Card className="p-8 bg-gray-800 border-gray-700 h-full">
               <div className="bg-purple-500/20 p-3 rounded-lg w-fit mb-6">
-                <Award className="h-8 w-8 text-purple-400" />
+                <Rocket className="h-8 w-8 text-purple-400" />
               </div>
-              <h2 className="text-2xl font-bold text-white mb-4">Our Vision</h2>
+              <h2 className="text-2xl font-bold text-white mb-4">Buildathon Goals</h2>
               <p className="text-gray-300 leading-relaxed">
-                A world where intellectual property is seamlessly protected, fairly monetized, and efficiently managed through 
-                intelligent automation, enabling creators to focus on what they do best—creating.
+                Create a production-ready platform that integrates 10+ partner APIs, deploys intelligent 
+                AI agents, and provides a seamless user experience for IP management on the blockchain.
               </p>
             </Card>
           </motion.div>
         </div>
 
-        {/* Values */}
+        {/* Technical Innovation */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-white text-center mb-8">Our Values</h2>
+          <h2 className="text-3xl font-bold text-white text-center mb-8">Technical Innovation</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
               <motion.div
@@ -251,16 +283,16 @@ export const CompanyPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Timeline */}
+        {/* Development Timeline */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-white text-center mb-8">Our Journey</h2>
+          <h2 className="text-3xl font-bold text-white text-center mb-8">Development Timeline</h2>
           <div className="max-w-4xl mx-auto">
             <div className="relative">
               {/* Timeline line */}
-              <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-700"></div>
+              <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-purple-600"></div>
               
               <div className="space-y-8">
-                {milestones.map((milestone, index) => (
+                {buildathonMilestones.map((milestone, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
@@ -269,7 +301,7 @@ export const CompanyPage: React.FC = () => {
                     viewport={{ once: true }}
                     className="relative flex items-start"
                   >
-                    <div className="bg-blue-600 w-8 h-8 rounded-full flex items-center justify-center relative z-10">
+                    <div className="bg-purple-600 w-8 h-8 rounded-full flex items-center justify-center relative z-10">
                       <Calendar className="h-4 w-4 text-white" />
                     </div>
                     <div className="ml-6 flex-1">
@@ -290,9 +322,46 @@ export const CompanyPage: React.FC = () => {
 
         {/* Team */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-white text-center mb-8">Meet Our Team</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
+          <h2 className="text-3xl font-bold text-white text-center mb-8">Project Team</h2>
+          <div className="flex justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="max-w-sm"
+            >
+              <Card className="p-6 bg-gray-800 border-gray-700 text-center">
+                <img
+                  src={team[0].avatar}
+                  alt={team[0].name}
+                  className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+                />
+                <h3 className="text-lg font-semibold text-white mb-1">{team[0].name}</h3>
+                <p className="text-purple-400 text-sm mb-3">{team[0].role}</p>
+                <p className="text-gray-400 text-sm mb-4">{team[0].bio}</p>
+                
+                <div className="flex justify-center space-x-3">
+                  <Button variant="ghost" size="sm" className="p-2">
+                    <Linkedin className="h-4 w-4 text-gray-400 hover:text-purple-400" />
+                  </Button>
+                  <Button variant="ghost" size="sm" className="p-2">
+                    <Twitter className="h-4 w-4 text-gray-400 hover:text-purple-400" />
+                  </Button>
+                  <Button variant="ghost" size="sm" className="p-2">
+                    <Github className="h-4 w-4 text-gray-400 hover:text-purple-400" />
+                  </Button>
+                </div>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Partner Integrations */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-white text-center mb-8">Partner Integrations</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {partners.map((partner, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -300,75 +369,45 @@ export const CompanyPage: React.FC = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card className="p-6 bg-gray-800 border-gray-700 text-center">
-                  <img
-                    src={member.avatar}
-                    alt={member.name}
-                    className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
-                  />
-                  <h3 className="text-lg font-semibold text-white mb-1">{member.name}</h3>
-                  <p className="text-blue-400 text-sm mb-3">{member.role}</p>
-                  <p className="text-gray-400 text-sm mb-4">{member.bio}</p>
-                  
-                  <div className="flex justify-center space-x-3">
-                    <Button variant="ghost" size="sm" className="p-2">
-                      <Linkedin className="h-4 w-4 text-gray-400 hover:text-blue-400" />
-                    </Button>
-                    <Button variant="ghost" size="sm" className="p-2">
-                      <Twitter className="h-4 w-4 text-gray-400 hover:text-blue-400" />
-                    </Button>
-                    <Button variant="ghost" size="sm" className="p-2">
-                      <Github className="h-4 w-4 text-gray-400 hover:text-blue-400" />
-                    </Button>
+                <Card className="p-6 bg-gray-800 border-gray-700">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold text-white">{partner.name}</h3>
+                    <Badge variant="primary" size="sm">{partner.role}</Badge>
                   </div>
+                  <p className="text-gray-400 text-sm">{partner.description}</p>
                 </Card>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Investors */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-white text-center mb-8">Backed by Leading Investors</h2>
-          <Card className="p-8 bg-gray-800 border-gray-700">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-              {[
-                'Andreessen Horowitz',
-                'Coinbase Ventures',
-                'Polygon Ventures',
-                'OpenAI Fund'
-              ].map((investor, index) => (
-                <div key={index} className="text-center">
-                  <div className="bg-gray-700 rounded-lg p-6 mb-2">
-                    <div className="text-gray-400 font-semibold">{investor}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Card>
-        </div>
-
         {/* CTA */}
         <div className="text-center">
-          <Card className="p-12 bg-gradient-to-r from-blue-900/20 to-purple-900/20 border-gray-700">
+          <Card className="p-12 bg-gradient-to-r from-purple-900/20 to-blue-900/20 border-purple-500/30">
+            <div className="flex justify-center mb-6">
+              <Trophy className="h-16 w-16 text-yellow-400" />
+            </div>
             <h2 className="text-3xl font-bold text-white mb-4">
-              Join us in building the future
+              Built for the Surreal World Assets Buildathon
             </h2>
             <p className="text-xl text-gray-400 mb-8">
-              We're always looking for talented individuals who share our passion for empowering creators.
+              Join Story Protocol and their partners to build on the World's IP Blockchain with over $55k in prizes!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-blue-600 text-white hover:bg-blue-700 border-0">
-                <Users className="h-4 w-4 mr-2" />
-                View Open Positions
+              <Button 
+                className="bg-purple-600 text-white hover:bg-purple-700 border-0"
+                onClick={() => window.open('https://github.com/your-team/ipverse', '_blank')}
+              >
+                <Github className="h-4 w-4 mr-2" />
+                View Project Code
               </Button>
               <Button 
                 variant="outline"
                 className="text-white border-gray-600 hover:bg-gray-700 hover:text-white hover:border-gray-500"
-                onClick={() => window.open('mailto:hello@ipverse.app')}
+                onClick={() => window.open('https://story.foundation/', '_blank')}
               >
-                <Mail className="h-4 w-4 mr-2" />
-                Get in Touch
+                <ExternalLink className="h-4 w-4 mr-2" />
+                Learn About Story Protocol
               </Button>
             </div>
           </Card>
